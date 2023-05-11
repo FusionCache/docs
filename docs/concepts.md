@@ -23,7 +23,7 @@ These concepts are used in other software or programming languages, so it's a ca
 Every object stored in the cache is assigned a unique identifier, called an ObjectID, or just OID.
 
 <br />
-An OID is a standard UUID v4, allowing Fusion to identify an object by its OID. As OIDs are unique, they can be used in set and map structures for efficient retrieval.
+An OID is a standard UUID (version 4), allowing Fusion to identify an object by its OID. As OIDs are unique, they can be used in set and map structures for efficient retrieval.
 
 When you store an object to the cache, Fusion assigns it an OID and the OID is returned in the response. You can use that OID with queries such as `GET`, `UPDATE` and `DELETE`.
 
@@ -45,8 +45,8 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
+
 
 ```json
 {
@@ -63,7 +63,8 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
   } 
 }
 ```
-</code>
+
+
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -85,8 +86,7 @@ Fusion responds:
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
 
 ```json
 {
@@ -101,7 +101,7 @@ Fusion responds:
   ]
 }
 ```
-</code>
+
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -120,8 +120,7 @@ You can use the OID to get, delete or update the object later:
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
 
 ```json
 {
@@ -134,7 +133,6 @@ You can use the OID to get, delete or update the object later:
   }
 }
 ```
-</code>
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -190,8 +188,7 @@ For example, if we cache data for people, would could have a `Person` class with
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
 
 ```json
 {
@@ -211,8 +208,6 @@ For example, if we cache data for people, would could have a `Person` class with
   }
 }
 ```
-
-</code>
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -233,8 +228,7 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
 
 ```json
 {
@@ -257,8 +251,7 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 }
 ```
 
-</code>
-</td>    
+</td>
 <td style="vertical-align: top; padding: 0">
 <p>
 
@@ -277,8 +270,7 @@ This means when you request a Person object, Fusion can also return the Address 
 
 <table>
 <tr>
-<td>
-<code>
+<td markdown="1">
 
 ```json
 {
@@ -291,8 +283,6 @@ This means when you request a Person object, Fusion can also return the Address 
   }
 }
 ```
-
-</code>
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -309,9 +299,7 @@ The response is:
 
 <table>
 <tr>
-<td>
-<code>
-
+<td markdown="1">
 
 ```json
 {
@@ -337,8 +325,6 @@ The response is:
   ]
 }
 ```
-
-</code>
 </td>    
 <td style="vertical-align: top; padding: 0">
 <p>
@@ -357,9 +343,7 @@ The `Address` is a separate object so we can just `GET` the `Address`:
 
 <table>
 <tr>
-<td style="vertical-align: top; padding: 10">
-<code>
-
+<td markdown="1" style="vertical-align: top; padding: 10">
 
 ```json
 {
@@ -372,12 +356,8 @@ The `Address` is a separate object so we can just `GET` the `Address`:
   }
 }
 ```
-
-</code>
 </td>    
-<td style="vertical-align: top; padding: 10">
-<code>
-
+<td markdown="1" style="vertical-align: top; padding: 10">
 
 ```json
 {
@@ -394,9 +374,7 @@ The `Address` is a separate object so we can just `GET` the `Address`:
   ]
 }
 ```
-
-</code>
-  </td>
+</td>
 </tr>
 </table>
 

@@ -67,5 +67,5 @@ Fusion is only available as a Docker image, Ubuntu and Alpine packages will be a
 Start with understanding Concepts then the Quickstart tutorial.
 
 {: .important}
-> The documentation assumes you are familiar with JSON and UUIDs (universally unique identifier).
+> The documentation assumes you are familiar with JSON and UUIDs (universally unique identifiers).
 
