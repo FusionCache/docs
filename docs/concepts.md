@@ -67,7 +67,6 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - Store an object
 - Type is `Person`
@@ -75,8 +74,6 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 - This `Person` object has two members:
   - `forename` - a string value "Susan"
   - `surname` - a string value "Boyle"
-
-</p>
   </td>
 </tr>
 </table>
@@ -327,12 +324,9 @@ The response is:
 ```
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - The `Person` object is returned with the `Address`
 - The `Address` has an OID because it cached as a separate object
-
-</p>
   </td>
 </tr>
 </table>
