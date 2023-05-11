@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Overview
+title: Concepts
 nav_order: 1
 parent: Overview
 ---
@@ -14,7 +14,7 @@ Fusion is designed to be easy to use with just a few concepts:
 - Relationships
 - Query interfaces
 
-These concepts are used in other software or programming languages, so it's a case of how they apply to Fusion. 
+These concepts are used in other software or programming languages, so it's a case of learning how they apply in Fusion. 
 
 
 <br/>
@@ -23,30 +23,32 @@ These concepts are used in other software or programming languages, so it's a ca
 Every object stored in the cache is assigned a unique identifier, called an ObjectID, or just OID.
 
 <br />
-
-An OID is a standard UUID v4, allowing Fusion to identify an object by its OID. As OIDs  unique, they can be stored in set and map structures for efficient retrieval, with the OID as a key.
+An OID is a standard UUID v4, allowing Fusion to identify an object by its OID. As OIDs are unique, they can be used in set and map structures for efficient retrieval.
 
 When you store an object to the cache, Fusion assigns it an OID and the OID is returned in the response. You can use that OID with queries such as `GET`, `UPDATE` and `DELETE`.
 
 {: .important}
-> It is not possible for users to supply the OID because Fusion cannot be sure it is unique.
+> It is not possible for users to supply the OID when storing because Fusion cannot be certain it is unique.
 
 <br />
 
 ## Classes
-A Fusion class is similar to a class in an object orientated programming language in that:
+A Fusion class is similar to a class in an object orientated programming language:
 
 - The class must have a unique name
 - A class has members
-- Each class member has a data type (string, integer, etc)
+- Each member has a data type (string, integer, etc)
 - A member's data type can also be a class
 
 
 To store, delete, update, etc objects, you must tell Fusion the class type. This means that most queries require a class name:
 
+<table>
+<tr>
+<td>
+<code>
 
 ```json
-
 {
   "STORE":
   {
@@ -58,21 +60,33 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
         "surname":"Boyle"
       }
     ]
-  }
+  } 
 }
 ```
-
-This query says:
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
 
 - Store an object
-- Its type is `Person`
+- Type is `Person`
 - `_objects` is therefore an array of `Person` objects
-- The `Person` object has:
-  - `forename` has a string value "Susan"
-  - `surname` hass a string value "Boyle"
+- This `Person` object has two members:
+  - `forename` - a string value "Susan"
+  - `surname` - a string value "Boyle"
+
+</p>
+  </td>
+</tr>
+</table>
 
 
-Fusion sends a response:
+Fusion responds:
+
+<table>
+<tr>
+<td>
+<code>
 
 ```json
 {
@@ -87,10 +101,27 @@ Fusion sends a response:
   ]
 }
 ```
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
 
-If the `STORE` contained two objects, there would be two objects and two OIDs in the response.
+- An array of `Person` objects
+- Each object includes the OID assigned to the cached object
+
+</p>
+  </td>
+</tr>
+</table>
+
 
 You can use the OID to get, delete or update the object later:
+
+
+<table>
+<tr>
+<td>
+<code>
 
 ```json
 {
@@ -103,12 +134,20 @@ You can use the OID to get, delete or update the object later:
   }
 }
 ```
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
 
-This query is:
-
-- I want an object from the cache
-- The object is a type of Person
+- Get an object from the cache
+- The object is a type of `Person`
 - Here is the OID
+
+</p>
+  </td>
+</tr>
+</table>
+
 
 The response is:
 
@@ -132,18 +171,232 @@ The response is:
 
 Some final points:
 - A query response is the original query name with `_RSP` appended 
-- `GET` always returns the OID for each object, even though you must already know the OID to request the object. This is because you can `GET` multiple objects, so you use each OID to any particular objects you need
+- `GET` always returns the OID for each object, even though you must already know the OID to request the object. This is because you can `GET` multiple objects, and can use the OID when you need a particular object
 - If you don't need to know the OID after storing, you can use either:
-  - `_rsp:"error"`, which will only have a response if there's an erorr (only available on WebSocket)
-  - `_rsp:"none"` , which will prevent Fusion sending a response, including on an error
+  - `"_rsp":"error"` - only responds if there's an erorr (only available on WebSocket)
+  - `"_rsp":"none"` - no response, including on an error
   - This is also useful if  you are storing many objects, avoiding handling large responses
 
 
+<br/>
+<br/>
 
 
+## Relations
+As with programming language classes, a member of a Fusion class can be a class type.
+
+For example, if we cache data for people, would could have a `Person` class with forename, surname, city and area, but it is better encaspulate the address data in a separate `Address` class:
 
 
+<table>
+<tr>
+<td>
+<code>
+
+```json
+{
+  "CREATE_CLASSES":
+  {
+    "Address":
+    {
+      "city":"string",
+      "area":"string"
+    },
+    "Person":
+    {
+      "forename":"string",
+      "surname":"string",
+      "address":"Address"
+    }
+  }
+}
+```
+
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
+
+- Use `CREATE_CLASSES` to create two classes
+- `Person::address` is a type of `Address`
+
+</p>
+  </td>
+</tr>
+</table>
 
 
+When we store a Person and their Address, Fusion creates two objects: one for Person and the other for Address, assigning each object a separate OID.
 
+What's the point? The point is Fusion can manage the relationship between the Person and Address:
+
+
+<table>
+<tr>
+<td>
+<code>
+
+```json
+{
+  "STORE":
+  {
+    "_class":"Person",
+    "_objects":
+    [
+      {
+        "forename":"Sean",
+        "surname":"Connory",
+        "address":
+        {
+          "city":"New York",
+          "area":"Love Island"
+        }
+      }
+    ]
+  }
+}
+```
+
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
+
+- Store a `Person` object
+- `Person::address` is an `Address`, so we can set the `Address` members
+
+</p>
+  </td>
+</tr>
+</table>
+
+Because Fusion knows `Person` and `Address` are linked, it records the link between these Person and Address objects (using their OIDs).
+
+This means when you request a Person object, Fusion can also return the Address object:
+
+
+<table>
+<tr>
+<td>
+<code>
+
+```json
+{
+  "GET":
+  {
+    "Person":
+    {
+      "_oids":["9f0d0983-686e-42e1-99f4-02c8a003bab1"]
+    }
+  }
+}
+```
+
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
+
+- Assume that the OID was returned in the `STORE_RSP`
+
+</p>
+  </td>
+</tr>
+</table>
+
+The response is:
+
+
+<table>
+<tr>
+<td>
+<code>
+
+
+```json
+{
+  "GET_RSP":
+  [
+    {
+      "Person":
+      {
+        "forename":"Susan",
+        "surname":"Boyle",
+        "address":
+        {
+          "Address":
+          {
+            "city":"New York",
+            "area":"Love Island",
+            "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
+          }
+        },
+        "_oid":"9f0d0983-686e-42e1-99f4-02c8a003bab1"        
+      }
+    }
+  ]
+}
+```
+
+</code>
+</td>    
+<td style="vertical-align: top; padding: 0">
+<p>
+
+- The `Person` object is returned with the `Address`
+- The `Address` has an OID because it cached as a separate object
+
+</p>
+  </td>
+</tr>
+</table>
+
+
+The `Address` is a separate object so we can just `GET` the `Address`:
+
+
+<table>
+<tr>
+<td style="vertical-align: top; padding: 10">
+<code>
+
+
+```json
+{
+  "GET":
+  {
+    "Address":
+    {
+      "_oids":["5838e71e-2a01-4065-9f3a-110433f75097"]
+    }
+  }
+}
+```
+
+</code>
+</td>    
+<td style="vertical-align: top; padding: 10">
+<code>
+
+
+```json
+{
+  "GET_RSP":
+  [
+    {
+      "Address":
+      {
+        "city":"New York",
+        "area":"Love Island",
+        "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
+      },
+    }
+  ]
+}
+```
+
+</code>
+  </td>
+</tr>
+</table>
 
