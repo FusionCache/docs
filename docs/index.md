@@ -14,6 +14,21 @@ From here onwards, FusionCache is referred to as just Fusion.
 
 Fusion's engine is designed to prioritise read queries, maxing all cores if required. The engine is fully asychronous, including the network and query execution to maximise CPU resources. 
 
+### Query Interfaces
+There are three query interfaces:
+
+- REST
+- WebSocket Normal
+- WebSocket Bulk
+
+The bulk interface can assign a larger buffer per query which is useful when storing many objects. In most cases, queries are likely to be much smaller, so the normal interface can be used.
+
+The intent is to reduce memory usage by users only using (or even enabling) the bulk interface when required.
+
+<br/>
+
+
+## Limitations
 Fusion is still alpha software with limitations:
 
 
