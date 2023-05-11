@@ -10,6 +10,7 @@ parent: Overview
 Fusion is designed to be easy to use with just a few concepts:
 
 - ObjectID (object identifiers)
+- FQL (Fusion Query Language)
 - Classes
 - Relationships
 - Query interfaces
@@ -30,7 +31,15 @@ When you store an object to the cache, Fusion assigns it an OID and the OID is r
 {: .important}
 > It is not possible for users to supply the OID when storing because Fusion cannot be certain it is unique.
 
-<br />
+<br/>
+<br/>
+
+## Fusion Query Language (FQL)
+FQL is just JSON with a particular structure.
+
+<br/>
+<br/>
+
 
 ## Classes
 A Fusion class is similar to a class in an object orientated programming language:
@@ -323,7 +332,7 @@ The response is:
 </table>
 
 
-{: important}
+{: .important}
 > The `address` includes its class type (`Address`) because of plans to support inheritance.
 
 
