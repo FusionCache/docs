@@ -33,7 +33,7 @@ The bulk interface can assign a larger buffer per query which is useful when rec
 
 The reasons for this:
 - Reduce memory usage by users only using/enabling the bulk interface when required
-- It is more efficient to issue a single large `STORE` query than thousands of smaller queries.
+- It is more efficient to issue a single large `STORE` query than thousands of smaller queries
 
 <br/>
 
@@ -44,18 +44,18 @@ Fusion is still in alpha and has limitations:
 
 | Limitation            | Description               |
 |:----------------------|:--------------------------|
-|Memory | There is no data eviction, nor any protection against memory use. This means Fusion will always attempt to allocate memory, causing the OS to swapped memory if the heap is full. <br/> Of course you can delete objects at any time.<br/> A future release will provide at least one auto eviction policy. |
-|REST/WebSocket Interfaces| There are only two threads to handle these interfaces. The bulk has a dedicated thread, whilst the REST and 'normal' (i.e non-bulk) WebSocket interfaces share a thread.<br/> A future release will allow multiple threads per interface, configurable by the user (e.g. you know that you'll rarely use REST and bulk so they can share a thread).|
+|Memory | There is no data eviction, nor any protection against memory use. This means Fusion will eat system memory, causing the OS to use swapped memory if the heap is full. <br/> Of course you can delete objects at any time.<br/> A future release will provide at least one auto eviction policy. |
+|REST/WebSocket Interfaces| There are only two threads to handle these interfaces. The bulk has a dedicated thread, whilst the REST and WebSocket Normal interfaces share a thread.<br/> A future release will allow multiple threads per interface, configurable by the user (e.g. you know that you'll rarely use REST and bulk so they can share a thread).|
 |Security| The query interfaces use HTTPS, but there is no user authentication or a way to assign query types to a user, for example to prevent certain users deleting.<br/>A possible solution is to use a combination of simple role based authentication and user tokens.
 
 <br/>
 
 
-## Install
+## Install and Deploy
 Fusion is only available as a Docker image, Ubuntu and Alpine packages will be available later.
 
 
-{: important}
+{: .important}
 > Fusion is only available for 64bit x86 CPUs.
 >
 > It has not been tested on Mac OS.
@@ -64,8 +64,10 @@ Fusion is only available as a Docker image, Ubuntu and Alpine packages will be a
 <br/>
 
 ## Start Here
-Start with understanding Concepts then the Quickstart tutorial.
+Start with understanding the Concepts, then follow the Quickstart tutorial.
 
 {: .important}
 > The documentation assumes you are familiar with JSON and UUIDs (universally unique identifiers).
+>
+> The Quickstart assumes you are familiar with Docker.
 

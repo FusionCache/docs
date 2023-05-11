@@ -100,7 +100,7 @@ Fusion responds:
 ```
 
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 
 - An array of `Person` objects
 - Each object includes the OID assigned to the cached object
@@ -190,7 +190,7 @@ For example, if we cache data for people, would could have a `Person` class with
     "Address":
     {
       "city":"string",
-      "area":"string"
+      "area":"string"      
     },
     "Person":
     {
@@ -214,7 +214,7 @@ For example, if we cache data for people, would could have a `Person` class with
 
 When we store a Person and their Address, Fusion creates two objects: one for Person and the other for Address, assigning each object a separate OID.
 
-What's the point? The point is Fusion can manage the relationship between the Person and Address:
+What's the point? Fusion can manage the relationship between the Person and Address:
 
 
 <table>
@@ -233,8 +233,8 @@ What's the point? The point is Fusion can manage the relationship between the Pe
         "surname":"Connory",
         "address":
         {
-          "city":"New York",
-          "area":"Love Island"
+          "area":"Love Island",
+          "city":"New York"
         }
       }
     ]
@@ -246,7 +246,7 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 <td markdown="1" style="vertical-align: top; padding: 0">
 
 - Store a `Person` object
-- `Person::address` is an `Address`, so we can set the `Address` members
+- `Person::address` is an `Address`, so we set the `Address` members
 
 </td>
 </tr>
@@ -254,7 +254,7 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 
 Because Fusion knows `Person` and `Address` are linked, it records the link between these Person and Address objects (using their OIDs).
 
-This means when you request a Person object, Fusion can also return the Address object:
+When you request a Person object, Fusion can also return the Address object:
 
 
 <table>
@@ -301,8 +301,8 @@ The response is:
         {
           "Address":
           {
-            "city":"New York",
             "area":"Love Island",
+            "city":"New York",            
             "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
           }
         },
@@ -323,7 +323,13 @@ The response is:
 </table>
 
 
-The `Address` is a separate object so we can just `GET` the `Address`:
+{: important}
+> The `address` includes its class type (`Address`) because of plans to support inheritance.
+
+
+<br/>
+
+The `Address` is a separate object so we can `GET` only the `Address`:
 
 
 <table>
@@ -351,14 +357,74 @@ The `Address` is a separate object so we can just `GET` the `Address`:
     {
       "Address":
       {
-        "city":"New York",
         "area":"Love Island",
+        "city":"New York",        
         "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
       },
     }
   ]
 }
 ```
+</td>
+</tr>
+</table>
+
+
+Finally, this relationship can be used when using `FIND` to search. Let's say we search for all people who have an address in New Yok:
+
+
+<table>
+<tr>
+<td markdown="1" width="300" style="vertical-align: top; padding: 10">
+
+```json
+{
+  "FIND":
+  {
+    "Person":
+    {
+      "address":
+      {
+        "city":"New York"
+      }
+    }
+  }
+}
+```
+</td>    
+<td markdown="1" style="vertical-align: top; padding: 10">
+
+- Search for people who live in the city of New York
+
+</td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+<td markdown="1" width="300" style="vertical-align: top; padding: 10">
+
+```json
+{
+  "FIND":
+  {
+    "Person":
+    {
+      "surname":"Boyle",
+      "address":
+      {
+        "city":"New York"
+      }
+    }
+  }
+}
+```
+</td>    
+<td markdown="1" style="vertical-align: top; padding: 10">
+
+- Search for people who live in the city of New York **and** have surname "Boyle"
+
 </td>
 </tr>
 </table>
