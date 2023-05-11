@@ -22,8 +22,8 @@ title: FusionCache Docs # the main title
 
 tagline: JSON cache # it will display as the sub-title
 
-description: >- # used by seo meta and the atom feed
-  Low latency JSON cache.
+description: "Low latency JSON cache." # used by seo meta and the atom feed
+  
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://fusioncache.github.io/docs"
@@ -37,8 +37,8 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: FusionCache
+  email:  # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/FusionCache # change to your twitter homepage
