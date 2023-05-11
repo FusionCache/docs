@@ -1,3 +1,10 @@
+---
+layout: default
+title: Overview
+nav_order: 1
+parent: Overview
+---
+
 # Concepts
 
 Fusion is designed to be easy to use with just a few concepts:
