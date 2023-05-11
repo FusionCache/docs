@@ -64,7 +64,6 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 }
 ```
 
-
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
 
@@ -102,13 +101,11 @@ Fusion responds:
 
 </td>    
 <td style="vertical-align: top; padding: 0">
-<p>
 
 - An array of `Person` objects
 - Each object includes the OID assigned to the cached object
 
-</p>
-  </td>
+</td>
 </tr>
 </table>
 
@@ -133,14 +130,12 @@ You can use the OID to get, delete or update the object later:
 ```
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - Get an object from the cache
 - The object is a type of `Person`
 - Here is the OID
 
-</p>
-  </td>
+</td>
 </tr>
 </table>
 
@@ -208,13 +203,11 @@ For example, if we cache data for people, would could have a `Person` class with
 ```
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - Use `CREATE_CLASSES` to create two classes
 - `Person::address` is a type of `Address`
 
-</p>
-  </td>
+</td>
 </tr>
 </table>
 
@@ -251,13 +244,11 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 
 </td>
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - Store a `Person` object
 - `Person::address` is an `Address`, so we can set the `Address` members
 
-</p>
-  </td>
+</td>
 </tr>
 </table>
 
@@ -283,12 +274,10 @@ This means when you request a Person object, Fusion can also return the Address 
 ```
 </td>    
 <td markdown="1" style="vertical-align: top; padding: 0">
-<p>
 
 - Assume that the OID was returned in the `STORE_RSP`
 
-</p>
-  </td>
+</td>
 </tr>
 </table>
 
@@ -328,7 +317,8 @@ The response is:
 
 - The `Person` object is returned with the `Address`
 - The `Address` has an OID because it cached as a separate object
-  </td>
+
+</td>
 </tr>
 </table>
 
