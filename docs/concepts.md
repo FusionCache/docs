@@ -74,7 +74,8 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 - This `Person` object has two members:
   - `forename` - a string value "Susan"
   - `surname` - a string value "Boyle"
-  </td>
+
+</td>
 </tr>
 </table>
 
