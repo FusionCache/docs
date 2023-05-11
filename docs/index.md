@@ -14,7 +14,7 @@ From here onwards, FusionCache is referred to as just Fusion.
 
 Fusion's engine is designed to prioritise read queries, maxing all cores if required. The engine is fully asychronous, including the network and query execution to maximise CPU resources. 
 
-Fusion is still alpa software with limitations:
+Fusion is still alpha software with limitations:
 
 
 | Limitation            | Description               |
