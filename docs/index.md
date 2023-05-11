@@ -1,13 +1,20 @@
-# Welcome to MkDocs
+# FusionCache Overview
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+FusionCache is an object cache for storing, searching and retrieving data. Queries and responses are handled by REST and WebSocket interfaces, with a dedicated WebSocket interface for bulk data.
 
-## Commands
+The priority is reducing latency, particularly for read queries. A read query is one which does not change data, such `GET` or `FIND`. The opposite to this is a write query which changes data, such as `STORE` or `UPDATE`.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+{: .note}
+
+From here onwards, FusionCache is referred to as just Fusion.
+
+
+
+## Design
+
+Fusion's engine is designed to priotise read queries, maxing all cores if required. The engine is fully asychronous, including the network and query engine code to maximise CPU resources. 
+
+
 
 ## Project layout
 
