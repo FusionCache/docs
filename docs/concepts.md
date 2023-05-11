@@ -66,7 +66,7 @@ To store, delete, update, etc objects, you must tell Fusion the class type. This
 
 
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - Store an object
@@ -134,7 +134,7 @@ You can use the OID to get, delete or update the object later:
 }
 ```
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - Get an object from the cache
@@ -209,7 +209,7 @@ For example, if we cache data for people, would could have a `Person` class with
 }
 ```
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - Use `CREATE_CLASSES` to create two classes
@@ -252,7 +252,7 @@ What's the point? The point is Fusion can manage the relationship between the Pe
 ```
 
 </td>
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - Store a `Person` object
@@ -284,7 +284,7 @@ This means when you request a Person object, Fusion can also return the Address 
 }
 ```
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - Assume that the OID was returned in the `STORE_RSP`
@@ -326,7 +326,7 @@ The response is:
 }
 ```
 </td>    
-<td style="vertical-align: top; padding: 0">
+<td markdown="1" style="vertical-align: top; padding: 0">
 <p>
 
 - The `Person` object is returned with the `Address`
