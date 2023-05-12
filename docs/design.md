@@ -1,3 +1,9 @@
+---
+layout: default
+title: Design
+nav_order: 2
+---
+
 # Design
 
 Fusion prioritises:
