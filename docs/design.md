@@ -10,12 +10,12 @@ Fusion prioritises:
 
 - Read query performance (i.e. queries that don't change the cache, such as `GET` and `FIND`)
 - Low latency
-- Avoid convoluted query interaction
-- Avoid endless configuration options
+- Avoiding convoluted query interaction
+- Avoiding endless configuration options
 
 
 
-The engine is asynchronous to decouple query execution from query request and responses. The network layer is also asynchronous to avoid threads waiting on network socket operations whilst other tasks can be processed.
+The engine is asynchronous to decouple query execution from query requests and responses. The network layer is also asynchronous to avoid threads waiting on network socket operations whilst other tasks can be processed.
 
 <br/>
 
@@ -31,7 +31,7 @@ Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. 
 When the query execution is complete, the response is sent to the client.
 
 {: .important}
-> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be the same when sending to different interfaces.
+> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when on different interfaces.
 >
 > A client can send queries on different interfaces but only if the order of execution doesn't matter.
 
@@ -94,23 +94,6 @@ These contraints benefit read queries:
 - by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection
 
 If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries (they are all read-only, no data races possible so no interthread communication required).
-
-<br/>
-
-## Query Execution Sequence
-With this in mind, the general sequence is:
-
-- Check the query queue:
-  - If it is empty then wait
-  - Otherwise dequeue a query
-- If there are no active queries, execute this query immediately
-- If there are active queries, check access levels:
-  - If this query is write and the active query is write:
-    - Send this query to execute but don't execute until the active write query is complete
-  - If this query is read and the active queries are read:
-    - Execute this query immediately on the next available thread
-  - Otherwise it is an access level mismatch
-    - Wait for the active queries to finish then execute this query immediately
 
 
 <br/>
