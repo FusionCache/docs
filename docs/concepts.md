@@ -23,10 +23,9 @@ These concepts are used in other software or programming languages, so it's a ca
 ## Object ID (OID)
 Every object stored in the cache is assigned a unique identifier, called an ObjectID, or just OID.
 
-<br />
 An OID is a standard UUID (version 4), allowing Fusion to identify an object by its OID. As OIDs are unique, they can be used in set and map structures for efficient retrieval.
 
-When you store an object to the cache, Fusion assigns it an OID and the OID is returned in the response. You can use that OID with queries such as `GET`, `UPDATE` and `DELETE`.
+When an object is stored, Fusion assigns it an OID and the OID is returned in the response. You can use the OID with queries such as `GET`, `UPDATE` and `DELETE`.
 
 {: .important}
 > It is not possible for users to supply the OID when storing because Fusion cannot be certain it is unique.
@@ -34,8 +33,9 @@ When you store an object to the cache, Fusion assigns it an OID and the OID is r
 <br/>
 <br/>
 
+
 ## Fusion Query Language (FQL)
-FQL is just JSON with a particular structure.
+FQL is JSON with a particular structure.
 
 <br/>
 <br/>
@@ -171,7 +171,7 @@ The response is:
 
 Some final points:
 - A query response is the original query name with `_RSP` appended 
-- `GET` always returns the OID for each object, even though you must already know the OID to request the object. This is because you can `GET` multiple objects, and can use the OID when you need a particular object
+- `GET` always returns the OID for each object, even though you have known the OID to request the object. This is because you can `GET` multiple objects, and can use the OID in teh response when you need a particular object
 - If you don't need to know the OID after storing, you can use either:
   - `"_rsp":"error"` - only responds if there's an erorr (only available on WebSocket)
   - `"_rsp":"none"` - no response, including on an error
