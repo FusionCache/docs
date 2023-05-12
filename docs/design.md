@@ -47,14 +47,6 @@ The query engine is what actually executes queries:
 
 A performance killer for multithreaded software are mutexes used to protect mutable shared data between threads: a thread needs to read or write to a memory location whilst at least one other thread also must read or write to the same location.
 
-- A thread arrives at a mutex, checking if it's available
-  - If not, it's pushed to the 'waiting' queue
-  - If so, it acquires the mutex
-- When the acquired thread completes, it releases the mutex
-- The next thread is popped from the 'waiting' queue
-
-This takes time, is likely to invalidate cache lines and the waiting threads must be synchronised. 
-
 If more than one thread can mutate the same memory location, then all threads that access that memory location must use protection, even if the majority of the threads only require read access.
 
 
@@ -112,7 +104,7 @@ With this in mind, the general sequence is:
   - If it is empty then wait
   - Otherwise dequeue a query
 - If there are no active queries, execute this query immediately
-- If there are active queries, check for same access levels:
+- If there are active queries, check access levels:
   - If this query is write and the active query is write:
     - Send this query to execute but don't execute until the active write query is complete
   - If this query is read and the active queries are read:
@@ -124,6 +116,20 @@ With this in mind, the general sequence is:
 <br/>
 
 ## Query Response Order
-There are gaurantees:
-- If the same client on the same interface sends multiple write queries,  they are executed in order
+
+
+### Write Queries
+The gaurantees apply only when sending from the same client on the same query interface:
+
+- Execution: in the order received
+- Responses: sent in the order received
+
+### Read Queries
+
+- Execution: in the order received
+- Responses: no guarantees, responses are sent immediately when the query finishes
+
+More about that. Let's say a client sends a `FIND` and then a `GET`. A `GET` query involves less work so it'll likely complete first. So even though the `GET` was sent second, it may finish first, therefore its response is sent first.
+
+
 
