@@ -19,6 +19,8 @@ The engine is asynchronous to decouple query execution from query requests and r
 
 <br/>
 
+[](images/design_overview.svg)
+
 
 ## Query Interfaces
 There are two interface types: REST and WebSocket. There is one REST interface and two WebSocket interfaces:
