@@ -6,19 +6,17 @@ nav_order: 2
 
 # Design
 
-Fusion prioritises:
+Fusion prioritises low latency for read queries and limiting configuration.
 
-- Read query performance (i.e. queries that don't change the cache, such as `GET` and `FIND`)
-- Low latency
-- Avoiding convoluted query interaction
-- Avoiding endless configuration options
-
-
-The engine is asynchronous to decouple query execution from query requests and responses. The network layer is also asynchronous to avoid threads waiting for a socket operation, whilst other sockets have data.
 
 <br/>
 
-![](images/design_overview.svg)
+![Fusion design](images/design_overview.svg)
+
+The engine is asynchronous to decouple query execution from requests and responses. The network layer is also asynchronous to avoid threads blocking on a socket operation, whilst other sockets can be serviced.
+
+
+<br/>
 
 
 ## Query Interfaces
@@ -27,14 +25,14 @@ There are two interface types: REST and WebSocket. There is one REST interface a
 - WebSocket Normal: for typical query payloads
 - WebSocket Bulk: for larger payloads, intended for `STORE` with many objects
 
-Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. If these are successful then the query is passed to the query engine. This is an asychronous operation so the interface thread can continue to serve requests/responses for any client.
+Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. If these are successful then the query is passed to the query engine. This is an asychronous operation so the network interface thread can continue to serve requests/responses for any client.
 
-When the query execution is complete, the response is sent to the client.
+When a query execution completes, the response is sent to the client on a separate thread, allowing the query engine thread execute other queries.
 
 {: .important}
-> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when on different interfaces.
+> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when to different interfaces.
 >
-> A client can send queries on different interfaces but only if the order of execution doesn't matter.
+> It is safe to send queries to different interfaces but only if the order of execution is not important.
 
 <br/>
 
@@ -46,25 +44,25 @@ The query engine is what actually executes queries:
 - Each query is completely separate - there is no interthread communication required
 - When a read query finishes executing, the response is sent immediately, irrespective of the receive order (explanation further down)
 
-A performance killer for multithreaded software are mutexes used to protect mutable shared data between threads: a thread needs to read or write to a memory location whilst at least one other thread also must read or write to the same location.
+A performance killer for multithreaded software are mutexes, used to protect mutable shared data between threads. A thread needs to read or write to a memory location whilst at least one other thread reads or writes to the same location.
 
 If more than one thread can mutate the same memory location, then all threads that access that memory location must use protection, even if the majority of the threads only require read access.
 
 
 <br/>
 
-## Query Access
+## Query Access Type
 
 Each query type has a data access level:
 
-- read: the query only reads from the cache, does not mutate (`GET`, `FIND`, `COUNT`, etc)
-- write: the query mutates the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
+- Read: the query only reads from the cache, it does not mutate (`GET`, `FIND`, `COUNT`, etc)
+- Write: the query mutates the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
 
 
 <br/>
 
 ## Query Execution
-To reduce data race issues, only one access level can execute at a given time:
+To reduce data race issues, only one access type can execute at a given time:
 
 - If a write query is executing, no other queries can execute
 - If a read query is executing, only read queries can execute
@@ -94,7 +92,7 @@ These contraints benefit read queries:
 - as a read query executes, there can't be data races because there can't be write queries executing to change the cache
 - by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection
 
-If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries (they are all read-only, no data races possible so no interthread communication required).
+If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries - they are all read-only, no interthread communication required so no data races possible.
 
 
 <br/>
@@ -103,17 +101,19 @@ If there are no active write queries, a read query must only wait to execute if 
 
 
 ### Write Queries
-The gaurantees apply only when sending from the same client on the same query interface:
+These gaurantees only apply when sending from the same client on the same query interface:
 
 - Execution: in the order received
-- Responses: sent in the order received
+- Responses: sent in the same order as the write queries were received
+
+<br/>
 
 ### Read Queries
 
 - Execution: in the order received
 - Responses: no guarantees, responses are sent immediately when the query finishes
 
-More about that. Let's say a client sends a `FIND` and then a `GET`. A `GET` query involves less work so it'll likely complete first. So even though the `GET` was sent second, it may finish first, therefore its response is sent first.
+If a client sends a `FIND` and then a `GET`. A `GET` query involves less work so it'll likely complete first. So even though the `GET` was received second, the execution may complete first, therefore its response is sent first.
 
 
 
