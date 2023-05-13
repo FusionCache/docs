@@ -14,12 +14,11 @@ Fusion prioritises:
 - Avoiding endless configuration options
 
 
-
-The engine is asynchronous to decouple query execution from query requests and responses. The network layer is also asynchronous to avoid threads waiting on network socket operations whilst other tasks can be processed.
+The engine is asynchronous to decouple query execution from query requests and responses. The network layer is also asynchronous to avoid threads waiting for a socket operation, whilst other sockets have data.
 
 <br/>
 
-[](images/design_overview.svg)
+![](images/design_overview.svg)
 
 
 ## Query Interfaces
