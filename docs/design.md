@@ -13,7 +13,10 @@ Fusion prioritises low latency for read queries and limiting configuration.
 
 ![Fusion design](images/design_overview.svg)
 
-The engine is asynchronous to decouple query execution from requests and responses. The network layer is also asynchronous to avoid threads blocking on a socket operation, whilst other sockets can be serviced.
+The network and query execution are asynchronous to decouple query execution from requests and responses. This avoids threads blocking:
+
+- The interface threads pass queries to the query engine, freeing the interface thread to service other network requests
+- When a query completes, the query engine passes the response to the interface, so the query engine thread can execute other queries
 
 
 <br/>
