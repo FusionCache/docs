@@ -9,7 +9,7 @@ grand_parent: API
 # Examples
 
 
-### Store one object, create class with simple member types
+### Store one object with class definition and simple members
 The `Person` class has string, integer, bool and decimal members:
 
 ```json
@@ -41,10 +41,9 @@ The `Person` class has string, integer, bool and decimal members:
 }
 ```
 
-
 <br/>
 
-### Store one object, class already exists, with simple member types
+### Store one object with class name and simple members
 The `Person` class has string, integer, bool and decimal members:
 
 ```json
@@ -69,7 +68,7 @@ The `Person` class has string, integer, bool and decimal members:
 
 <br/>
 
-### Store two objects, class already exists, with simple member types
+### Store two objects with class name and simple members
 The `Person` class has string, integer, bool and decimal members:
 
 ```json
@@ -92,6 +91,43 @@ The `Person` class has string, integer, bool and decimal members:
         "age":45,
         "height":135.0,
         "employed":false
+      }
+    }
+  }
+}
+```
+
+<br/>
+
+### Store one object with class name and complex member
+The `Order` class has a `decimal` member `total` and an array of `Item`.
+
+```json
+{
+  "STORE":
+  {
+    "_class":"Order",
+    "_objects":
+    {
+      {
+        "total":900.00,
+        "items":
+        [
+          {
+            "Item":
+            {
+              "name":"Laptop",
+              "price":700.00
+            }
+          },
+          {
+            "Item":
+            {
+              "name":"Monitor",
+              "price":200.00
+            }
+          }
+        ]
       }
     }
   }

@@ -9,14 +9,16 @@ parent: API
 
 Documenting JSON can become confusing because of nested levels and non-standard comments, so placeholders are used to represent values:
 
-<br/>
+The documentation refers to simple and complex types:
 
+- Simple: a type which is not a JSON object or an array of objects. Examples are `string`, `decimal` and an array of `string`
+- Complex: a JSON object or an array of objects
+
+<br/>
 
 ## Root Class Name
 
 `<RootClassName>` - name of the root class.
-
-<br/>
 
 This is the value of `_class`:
 
@@ -37,7 +39,7 @@ This is the value of `_class`:
 }
 ``` 
 
-`Session` is the root class 
+`Session` is the root class. 
 
 <br/>
 
