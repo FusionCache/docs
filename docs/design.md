@@ -6,7 +6,7 @@ nav_order: 2
 
 # Design
 
-Fusion prioritises low latency for read queries and limiting configuration.
+Fusion prioritises low latency for read queries.
 
 
 <br/>
@@ -119,17 +119,17 @@ For example, a client sends two queries:
 
 - The client sends a `FIND`
 - The client sends a `GET` 10 microseconds later
+- The `FIND` execution takes 80 microseconds
 - The `GET` execution takes 50 microseconds
-- The `FIND` execution takes 80 microseconds 
 
-Even though the `GET` was received second, it complete before the `FIND`, therefore the client will receive the `GET_RSP` first.
+Even though the `GET` was received second, it completes before the `FIND`, therefore the client will receive the `GET_RSP` first.
 
 
 <br/>
 
 
 ## CPU Utilisation
-A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two stages:
+A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two states:
 
 1. **Poll:** poll the query queue
 2. **Wait:** wait for a query to be pushed onto the queue
@@ -138,19 +138,19 @@ The difference is:
 - Polling: the queue is constantly checked for queries
 - Waiting: waits in a condition variable until it is notified a query has arrived, which requires a mutex for the condition variable
 
-Fusion's approach is in preference to frequently entering the condition variable when it's expecting queries imminently.
+This approach avoids locking/unlocking the mutex when it is expecting queries imminently.
 
 <br/>
 
 
 ### Sequence
-This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this will drop to near zero.
+This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this reduces to near zero.
 
 The sequence is:
 
 1. Poll the query queue
 2. If a query arrives, extend the polling period
-3. Repeat (1) and (2) until no queries arrive for the polling period
+3. Repeat (1) and (2) until no queries arrive during the polling period
 4. Enter wait
 5. When a query arrives, repeat from (1)
 
