@@ -14,7 +14,7 @@ Metrics allow us to see notable changes in latency during development and users 
 
 To receive metrics, set `"_metrics":true` in the query object - at the same level as the <RootClassName>, **not** inside the root class because not all queries have a root class name:
 
-With this attribute set to true, an `_metrics` object is appended to the response - it is not nested in the `_RSP`.
+With this attribute set to true, an `_metrics` object is appended to the response - it is not a child of the `_RSP`, it is sibling a (example below).
 
 
 <br/>
@@ -89,6 +89,13 @@ The structure is:
 
 ## Example
 
+This is an example, it is not intended to reflect real world timings:
+
+- Fusion was running on a laptop (AMD Ryzen 9 5900HX)
+- There was only one client which only sent one `FIND`
+
+<br/>
+
 We have a key-value cache:
 
 - A "kv" class has "k" and "v" to store key and value respectively
@@ -96,6 +103,7 @@ We have a key-value cache:
 - The value is a string, not indexed
 - Keys are randomly generated email addresses, typically ~ 20 to 35 characters
 - There are 999,778 keys (i.e. indexes)
+- Values are randomly generated words
 
 <br/>
 
@@ -141,11 +149,17 @@ The response is:
 <br/>
 This means:
 
-- The query was on the query for 9 microseconds
+- The query was on the query queue for 9 microseconds
 - The executor took 18 microseconds
 - As part of executing, there was an index lookup (since `k` is indexed), which took 7 microseconds
 - There were no non-indexed terms in the `FIND` so `_nonIndexes` is 0
-- Total time from enqueing the query to the queue to when the network interface returns the response was 27 microseconds
+- Total time from enqueing the query to when the network interface returns the response was 27 microseconds
 
+<br/>
+
+{: .important}
+> Note
+>
+> `_metrics` is a sibling of `FIND_RSP`, not a child of `FIND_RSP`
 
 
