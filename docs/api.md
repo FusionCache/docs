@@ -6,6 +6,10 @@ has_children: true
 ---
 
 # API
+The API documentation contains many examples as this is preferred to verbose technical syntax descriptions.
+
+<br/>
+
 All queries are available on the REST and WebSocket interfaces, though WebSockets are generally preffered due to lower latency once the connection is established.
 
 - Query names must be all capitals, i.e `find` and `Find` are invalid, it must be `FIND`
