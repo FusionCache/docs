@@ -19,11 +19,17 @@ Object
 ## Attributes
 |Attribute|Required|Description|
 |:-----|:---|:-------|
-| _class    | Yes | Name of class which must exist, or a class definition|
-| _objects  | Yes | An array of objects. Each object must be the same type as "_class"|
+| _class    | Yes | Name of class which must exist, or a class definition |
+| _objects  | Yes | An array of objects. Each object must be the same type as "_class" |
 | _rspMode  | No  | "none" or "error" |
 
 
+| head1        | head two          | three |
+|:-------------|:------------------|:------|
+| ok           | good swedish fish | nice  |
+| out of stock | good and plenty   | nice  |
+| ok           | good `oreos`      | hmm   |
+| ok           | good `zoute` drop | yumm  |
 
 <br/>
 

@@ -3,6 +3,7 @@ layout: default
 title: Examples
 nav_order: 1
 parent: Store
+grand_parent: API
 ---
 
 # Store Examples
