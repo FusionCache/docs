@@ -69,7 +69,7 @@ The `Person` class has string, integer, bool and decimal members:
 
 <br/>
 
-### Store two object, class already exists, with simple member types
+### Store two objects, class already exists, with simple member types
 The `Person` class has string, integer, bool and decimal members:
 
 ```json

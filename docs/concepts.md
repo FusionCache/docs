@@ -9,13 +9,13 @@ parent: Overview
 
 Fusion is designed to be easy to use with just a few concepts:
 
-- ObjectID (object identifiers)
+- ObjectID (Object Identifiers)
 - FQL (Fusion Query Language)
 - Classes
 - Relationships
 - Query interfaces
 
-These concepts are used in other software or programming languages, so it's a case of learning how they apply in Fusion. 
+These concepts are similar to those found in other software or programming languages.
 
 
 <br/>

@@ -11,12 +11,11 @@ has_children: true
 ## Purpose
 Store one or more objects.
 
-<br/>
 
 ## Type
 Object
 
-<br/>
+
 
 ## Attributes
 
@@ -27,13 +26,11 @@ Object
 | _rspMode  | No  | "none" or "error" |
 
 
-<br/>
 
 ## Detail
 - If `_class` is a definition, the class will be created
 - The `_objects` array cannot be empty
 
-<br/>
 
 ## Response
 `STORE_RSP`
