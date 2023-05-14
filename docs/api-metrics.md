@@ -93,6 +93,7 @@ This is an example, it is not intended to reflect real world timings:
 
 - Fusion was running on a laptop (AMD Ryzen 9 5900HX)
 - There was only one client which only sent one `FIND`
+- The keys are small
 
 <br/>
 
@@ -118,7 +119,6 @@ We have a key-value cache:
     }
   }
 }
-
 ```
 
 <br/>
