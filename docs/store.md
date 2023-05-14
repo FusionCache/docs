@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Store
-nav_order: 3
+nav_order: 1
 parent: API
 ---
 
@@ -13,4 +13,9 @@ parent: API
 |Type|Object|
 
 
+## Purpose
+Store one or more objects
+
+## Type
+Object
 
