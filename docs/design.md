@@ -49,32 +49,17 @@ The query engine is what actually executes queries:
 
 A performance killer for multithreaded software are mutexes.
 
-When multiple threads access a memory location and just one _may_ write to that location, access by all threads must be protected, even if most of the threads  require only read access.  
-
-<br/>
-
-
-
-### Sequence
-This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this will drop to near zero.
-
-The sequence is:
-
-1. Poll the query queue
-2. If a query arrives, extend the polling period
-3. Repeat (1) and (2) until no queries arrive for the polling period
-4. Enter wait
-5. When a query arrives, repeat from (1)
+When multiple threads access the same memory location and just one _may_ write to that location, access by all threads must be protected, even if most of the threads  require only read access.  
 
 
 <br/>
 
 
 ## Query Access Type
-Each query type has a data access type:
+Each query has a data access type:
 
-- Read: the query only reads from the cache, it does not mutate (`GET`, `FIND`, `COUNT`, etc)
-- Write: the query mutates the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
+- Read: the query reads from the cache, it does not mutate (`GET`, `FIND`, `COUNT`, etc)
+- Write: the query may mutate the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
 
 
 <br/>
@@ -91,9 +76,9 @@ To reduce data race issues, only one access type can execute at a given time:
 
 
 ### Write Queries
-There is one constraint for write queries: there can only be one write query executing.
+Write queries have a constraint: there can only be one write query executing.
 
-This may seem a huge disadvantage, but there is an upside: although there can only be one write query executing, it is _**the**_ only query, so no data race protection is required. 
+This may seem a huge disadvantage, but there is an advantage: although there can only be one write query executing, it is _**the**_ only query, so no data race protection is required. 
 
 
 
@@ -108,32 +93,36 @@ This may seem a huge disadvantage, but there is an upside: although there can on
 
 ### Read Queries
 These contraints benefit read queries:
-- as a read query executes, there can't be data races because there can't be write queries executing to change the cache
-- by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection
+- as a read query executes, there can't be data races because there isn't write queries executing
+- by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection is required
 
-If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries - they are all read-only, no interthread communication required so no data races possible.
+If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries: they are all read-only, no interthread communication required so no data races possible.
 
 
 <br/>
 
 
 ## Query Response Order
+Write and read queries are executed in the order received but the response order differs.
 
+<br/>
 
 ### Write Queries
-These gaurantees only apply when sending from the same client on the same query interface:
-
-- Execution: in the order received
-- Responses: sent in the same order as the queries were received
+Responses are sent in the same order as received.
 
 <br/>
 
 ### Read Queries
+Responses are sent immediately, even if there is a read query from the same client still executing that was received first.
 
-- Execution: in the order received
-- Responses: no guarantees, responses are sent immediately when the query executor completes
+For example, a client sends two queries:
 
-If a client sends a `FIND` and then a `GET`. A `GET` query involves less work so it'll likely complete first. So even though the `GET` was received second, the execution may complete first, therefore its response is sent first.
+- The client sends a `FIND`
+- The client sends a `GET` 10 microseconds later
+- The `GET` execution takes 50 microseconds
+- The `FIND` execution takes 80 microseconds 
+
+Even though the `GET` was received second, it complete before the `FIND`, therefore the client will receive the `GET_RSP` first.
 
 
 <br/>
@@ -152,3 +141,16 @@ The difference is:
 Fusion's approach is in preference to frequently entering the condition variable when it's expecting queries imminently.
 
 <br/>
+
+
+### Sequence
+This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this will drop to near zero.
+
+The sequence is:
+
+1. Poll the query queue
+2. If a query arrives, extend the polling period
+3. Repeat (1) and (2) until no queries arrive for the polling period
+4. Enter wait
+5. When a query arrives, repeat from (1)
+
