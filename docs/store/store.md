@@ -11,12 +11,15 @@ has_children: true
 ## Purpose
 Store one or more objects.
 
+<br/>
+
 ## Type
 Object
 
 <br/>
 
 ## Attributes
+
 | Attribute | Required | Description |
 |:-----|:---|:-------|
 | _class    | Yes | Name of class which must exist, or a class definition |
@@ -24,22 +27,13 @@ Object
 | _rspMode  | No  | "none" or "error" |
 
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
 <br/>
 
 ## Detail
 - If `_class` is a definition, the class will be created
 - The `_objects` array cannot be empty
 
-
 <br/>
-
 
 ## Response
 `STORE_RSP`
