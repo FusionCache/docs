@@ -10,7 +10,7 @@ grand_parent: API
 
 
 ### Search with one simple term
-Find `Customer` objects with `surname` of "Smith".
+Find objects with `Customer::surname` == "Smith".
 
 ```json
 {
@@ -27,7 +27,7 @@ Find `Customer` objects with `surname` of "Smith".
 <br/>
 
 ### Search with multiple simple term
-Find `Customer` objects with `surname` == "Smith" `AND` `status` == "Active".
+Find objects with `Customer::surname` == "Smith" `AND` `status` == "Active".
 
 ```json
 {
@@ -45,7 +45,7 @@ Find `Customer` objects with `surname` == "Smith" `AND` `status` == "Active".
 <br/>
 
 ### Search with one simple term and one object term
-Find `Customer` objects with `surname` == "Smith" `AND` `address::Address::city` == "London".
+Find objects with `Customer::surname` == "Smith" `AND` `address::Address::city` == "London".
 
 ```json
 {
@@ -66,7 +66,7 @@ Find `Customer` objects with `surname` == "Smith" `AND` `address::Address::city`
 <br/>
 
 ### Search with two simple terms and one object term
-Find `Customer` objects with `Customer::surname` == "Smith" `AND` `Customer::status` == "Active" `AND` `address::Address::city` == "London".
+Find objects with `Customer::surname` == "Smith" `AND` `Customer::status` == "Active" `AND` `address::Address::city` == "London".
 
 ```json
 {

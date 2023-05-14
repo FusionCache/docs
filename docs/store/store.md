@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Store
-nav_order: 2
+nav_order: 3
 parent: API
 has_children: true
 ---
@@ -24,7 +24,7 @@ Object
 | _class    | Yes | Either: <ol> <li>Name of a class which must exist </li> <li>A class definition to create the class</li></ol> |
 | _objects  | Yes | `<StoreObjectArray>` Each object must be the same type as "_class" |
 | _rspMode  | No  | "none" or "error" <br/> **Note** "error" is only available for WebSockets |
-|"_metrics" | No  | Return query metrics |
+| _metrics  | No  | Return query metrics |
 
 
 ## Detail

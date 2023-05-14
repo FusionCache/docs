@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Find
-nav_order: 3
+nav_order: 4
 parent: API
 has_children: true
 ---
@@ -21,16 +21,15 @@ Object
 
 | Attribute | Required | Description      |
 |:-----     | :---|:-------               |
-|"_metrics" | No  | Return query metrics  |
+| _metrics  | No  | Return query metrics  |
 
 
 ## Detail
-See ### for `_metrics` information.
 
-- A `<RootClassName>` must be supplied. This sets the starting point of the search and the objects that will be returned.
-- The root class can contain zero or more terms are required.
+- A `<RootClassName>` must be supplied. This sets the starting point of the search and the objects that will be returned
+- The root class can contain zero or more terms
 - If no terms are defined, all objects for the root class are returned
-- The `FIND` is recursive. If the root class has members that are an object, those objects are returned, and if those objects also have object members, they're also returned.
+- The `FIND` is recursive. If the root class has members that are objects, those objects are returned, and if those objects also have object members, they're also returned
 
 <br/>
 
@@ -77,7 +76,7 @@ This says, "Find `Customer` objects that have the `surname` of 'Smith' `AND` a `
 
 **Object Members**
 
-You can access object members by using the root class member name then the nested member name.
+You can access object members by using the member name then nested member names.
 
 With a `Customer` class containing an `address` member that is an `Address`:
 
@@ -126,7 +125,7 @@ You can search deeper nested levels:
 }
 ```
 
-This says, "Find `Customer` objects with `surname` of 'Smith' `AND` the `Address` object has `city` of 'London'" `AND` has an `Order` with an `Item` with `item` of 'Laptop'.
+This says, "Find `Customer` objects with `surname` of 'Smith' `AND` the `Address` object has `city` of 'London'" `AND` has an `Order` with an `Item` with `name` of 'Laptop'.
 
 In plain language, "Find customers with surname Smith who live in London and have ordered a laptop".
 
