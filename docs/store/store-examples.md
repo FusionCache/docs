@@ -6,7 +6,7 @@ parent: Store
 grand_parent: API
 ---
 
-# Store Examples
+# Examples
 
 
 ### Store one object, create class with simple member types
