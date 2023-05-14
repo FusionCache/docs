@@ -3,7 +3,6 @@ layout: default
 title: API Format
 nav_order: 1
 parent: API
-has_children: true
 ---
 
 # API Format
