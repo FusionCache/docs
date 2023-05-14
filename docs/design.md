@@ -15,7 +15,7 @@ Fusion prioritises low latency for read queries and limiting configuration.
 
 The network and query execution are asynchronous to decouple query execution from requests and responses. This avoids threads blocking:
 
-- The interface threads pass queries to the query engine, freeing the interface thread to service other network requests
+- The interface threads pass queries to the query engine, freeing the interface thread to service other network operations
 - When a query completes, the query engine passes the response to the interface, so the query engine thread can execute other queries
 
 
@@ -30,7 +30,7 @@ There are two interface types: REST and WebSocket. There is one REST interface a
 
 Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. If these are successful then the query is passed to the query engine. This is an asychronous operation so the network interface thread can continue to serve requests/responses for any client.
 
-When a query execution completes, the response is sent to the client on a separate thread, allowing the query engine thread execute other queries.
+When a query execution completes, the response is sent to the client on a separate thread, allowing the query engine thread to execute other queries.
 
 {: .important}
 > There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when to different interfaces.
@@ -51,18 +51,48 @@ A performance killer for multithreaded software are mutexes, used to protect mut
 
 If more than one thread can mutate the same memory location, then all threads that access that memory location must use protection, even if the majority of the threads only require read access.
 
+<br/>
+
+
+## CPU Utilisation
+A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two stages:
+
+1. **Poll:** poll the query queue
+2. **Wait:** wait for a query to be pushed onto the queue
+
+The difference is:
+- Polling: the queue is constantly checked for queries
+- Waiting: waits in a condition variable until it is notified a query has arrived, which requires a mutex for the condition variable
+
+Fusion's approach is in preference to frequently entering the condition variable when it's expecting queries imminently.
 
 <br/>
 
-## Query Access Type
 
-Each query type has a data access level:
+### Sequence
+This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this will drop to near zero.
+
+The sequence is:
+
+1. Poll the query queue
+2. If a query arrives, extend the polling period
+3. Repeat (1) and (2) until no queries arrive for the polling period
+4. Enter wait
+5. When a query arrives, repeat from (1)
+
+
+<br/>
+
+
+## Query Access Type
+Each query type has a data access type:
 
 - Read: the query only reads from the cache, it does not mutate (`GET`, `FIND`, `COUNT`, etc)
 - Write: the query mutates the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
 
 
 <br/>
+
 
 ## Query Execution
 To reduce data race issues, only one access type can execute at a given time:
@@ -73,8 +103,8 @@ To reduce data race issues, only one access type can execute at a given time:
 
 <br/>
 
-### Write Queries
 
+### Write Queries
 There is one constraint for write queries: there can only be one write query executing.
 
 This may seem a huge disadvantage, but there is an upside: although there can only be one write query executing, it is _**the**_ only query, so no data race protection is required. 
@@ -89,8 +119,8 @@ This may seem a huge disadvantage, but there is an upside: although there can on
 
 <br/>
 
-### Read Queries
 
+### Read Queries
 These contraints benefit read queries:
 - as a read query executes, there can't be data races because there can't be write queries executing to change the cache
 - by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection
@@ -99,6 +129,7 @@ If there are no active write queries, a read query must only wait to execute if 
 
 
 <br/>
+
 
 ## Query Response Order
 
