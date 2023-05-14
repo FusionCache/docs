@@ -44,29 +44,15 @@ When a query execution completes, the response is sent to the client on a separa
 The query engine is what actually executes queries:
 
 - A query executes on its own thread
-- Each query is completely separate - there is no interthread communication required
-- When a read query finishes executing, the response is sent immediately, irrespective of the receive order (explanation further down)
+- Queries are executed in isolation - no interthread communication is required
+- Queries are executed in batches, grouped by the query access type (explained below)
 
-A performance killer for multithreaded software are mutexes, used to protect mutable shared data between threads. A thread needs to read or write to a memory location whilst at least one other thread reads or writes to the same location.
+A performance killer for multithreaded software are mutexes.
 
-If more than one thread can mutate the same memory location, then all threads that access that memory location must use protection, even if the majority of the threads only require read access.
-
-<br/>
-
-
-## CPU Utilisation
-A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two stages:
-
-1. **Poll:** poll the query queue
-2. **Wait:** wait for a query to be pushed onto the queue
-
-The difference is:
-- Polling: the queue is constantly checked for queries
-- Waiting: waits in a condition variable until it is notified a query has arrived, which requires a mutex for the condition variable
-
-Fusion's approach is in preference to frequently entering the condition variable when it's expecting queries imminently.
+When multiple threads access a memory location and just one _may_ write to that location, access by all threads must be protected, even if most of the threads  require only read access.  
 
 <br/>
+
 
 
 ### Sequence
@@ -138,16 +124,31 @@ If there are no active write queries, a read query must only wait to execute if 
 These gaurantees only apply when sending from the same client on the same query interface:
 
 - Execution: in the order received
-- Responses: sent in the same order as the write queries were received
+- Responses: sent in the same order as the queries were received
 
 <br/>
 
 ### Read Queries
 
 - Execution: in the order received
-- Responses: no guarantees, responses are sent immediately when the query finishes
+- Responses: no guarantees, responses are sent immediately when the query executor completes
 
 If a client sends a `FIND` and then a `GET`. A `GET` query involves less work so it'll likely complete first. So even though the `GET` was received second, the execution may complete first, therefore its response is sent first.
 
 
+<br/>
 
+
+## CPU Utilisation
+A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two stages:
+
+1. **Poll:** poll the query queue
+2. **Wait:** wait for a query to be pushed onto the queue
+
+The difference is:
+- Polling: the queue is constantly checked for queries
+- Waiting: waits in a condition variable until it is notified a query has arrived, which requires a mutex for the condition variable
+
+Fusion's approach is in preference to frequently entering the condition variable when it's expecting queries imminently.
+
+<br/>

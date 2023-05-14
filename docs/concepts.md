@@ -171,11 +171,11 @@ The response is:
 
 Some final points:
 - A query response is the original query name with `_RSP` appended 
-- `GET` always returns the OID for each object, even though you have known the OID to request the object. This is because you can `GET` multiple objects, and can use the OID in teh response when you need a particular object
+- `GET` always returns the OID for each object, even though you must have known the OID to request the object. This is because you can `GET` multiple objects, and can use the OID to get specific object from the response
 - If you don't need to know the OID after storing, you can use either:
-  - `"_rsp":"error"` - only responds if there's an erorr (only available on WebSocket)
+  - `"_rsp":"error"` - only responds if there's an error (only available on WebSocket)
   - `"_rsp":"none"` - no response, including on an error
-  - This is also useful if  you are storing many objects, avoiding handling large responses
+  - This avoids handling large responses when storing many objects
 
 
 <br/>
@@ -379,7 +379,7 @@ The `Address` is a separate object so we can `GET` only the `Address`:
 </table>
 
 
-Finally, this relationship can be used when using `FIND` to search. Let's say we search for all people who have an address in New Yok:
+Finally, this relationship can be used when using `FIND` to search:
 
 
 <table>
@@ -438,3 +438,4 @@ Finally, this relationship can be used when using `FIND` to search. Let's say we
 </tr>
 </table>
 
+In both cases, the response is a `FIND_RSP` is sent with an array of one `Person` object with its associated `Address` object.
