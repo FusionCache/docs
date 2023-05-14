@@ -105,12 +105,10 @@ If there are no active write queries, a read query must only wait to execute if 
 ## Query Response Order
 Write and read queries are executed in the order received but the response order differs.
 
-<br/>
 
 ### Write Queries
 Responses are sent in the same order as received.
 
-<br/>
 
 ### Read Queries
 Responses are sent immediately, even if there is a read query from the same client still executing that was received first.
