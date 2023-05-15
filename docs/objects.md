@@ -37,11 +37,9 @@ When an object is stored:
 
 An OID is generated for that object and a mapping from the OID to the object is created. If we have three `Person` objects it is visualised as (the OIDS are pseudo for clarity):
 
-<center>
 
 ![Oid to objects map](images/objects_oidobjectmap.svg)
 
-</center>
 
 When you use the `GET`:
 
@@ -83,11 +81,8 @@ Similarly, if the `Person` class has an `address` member which is an `Address` t
 
 Two objects are created, one for `Person` and another for `Address`, and each has a unique OID and separate OID to object mapping:
 
-<center>
-
 ![Oid to objects map](images/objects_oidobjectmap2.svg)
 
-</center>
 
 <br/>
 
