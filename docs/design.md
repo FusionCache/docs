@@ -131,7 +131,6 @@ A queue is used to ensure queries are executed in the correct order. Fusion assu
 
 This process has two states:
 
-<br/>
 
 ### Poll
 
