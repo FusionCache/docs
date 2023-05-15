@@ -65,14 +65,14 @@ In queries that don't use `_class`, the root class is the first object that's no
 
 ## Oid
 
-```<Oid>```
+`<Oid>`
 
 An OID as a string. An OID is a version 4 UUID.
 
 ---
 
 ## Class Name
-```<ClassName>```
+`<ClassName>`
 
 The name of a class.
 
@@ -83,11 +83,12 @@ In `STORE`:
 ---
 
 ## Class Definition
-```<ClassDefinition>```
+`<ClassDefinition>`
 
 The definition of a class which includes each member name, type and other attributes:
 
 ```json
+
 "Person":
 {
   "forename":"string",
@@ -98,12 +99,14 @@ The definition of a class which includes each member name, type and other attrib
   },
   "address":"Address"
 }
+
 ```
 
 </br>
 For example, in `CREATE_CLASSES`:
 
 ```json
+
 {
   "CREATE_CLASSES":
   {
@@ -119,11 +122,13 @@ For example, in `CREATE_CLASSES`:
     }
   }
 }
+
 ```
 
 Is shown as:
 
 ```json
+
 {
   "CREATE_CLASSES":
   {
@@ -133,10 +138,11 @@ Is shown as:
     <ClassDefinition>
   }
 }
+
 ```
 
-
 ---
+
 
 ## Store Object Array
 `<StoreObjectArray>`
@@ -144,6 +150,7 @@ Is shown as:
 An array of objects to be stored:
 
 ```json
+
 "_objects":
 [
   {
@@ -155,6 +162,7 @@ An array of objects to be stored:
     }
   }
 ]
+
 ```
 
 Is represented as:
@@ -171,6 +179,7 @@ Is represented as:
 An array of objects returned from the cache:
 
 ```json
+
 "FIND_RSP":
 [
   {
@@ -196,6 +205,7 @@ An array of objects returned from the cache:
     }
   }
 ]
+
 ```
 
 <br/>
@@ -203,8 +213,7 @@ An array of objects returned from the cache:
 Is represented as:
 
 ```json
+
 "FIND_RSP" : <CachedObjectArray>
 
 ```
-
----

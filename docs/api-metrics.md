@@ -8,13 +8,11 @@ parent: API
 # Query Metrics
 During development it is useful to record timings during query processing and these metrics are available in the response for most queries.
 
-Metrics allow us to see notable changes in latency during development and users as objects and indexes are stored.
-
 <br/>
 
-To receive metrics, set `"_metrics":true` in the query object - at the same level as the <RootClassName>, **not** inside the root class because not all queries have a root class name:
+To receive metrics, set `"_metrics":true` in the query object - at the same level as the root class name, **not** inside the root class because not all queries have a root class name.
 
-With this attribute set to true, an `_metrics` object is appended to the response - it is not a child of the `_RSP`, it is sibling a (example below).
+With this attribute true, a `_metrics` object is appended to the response - it is not a child of the `_RSP`, it is a sibling (example below).
 
 
 <br/>
@@ -71,7 +69,7 @@ All metric durations are **microseconds**.
 
 The structure is:
 
-| Metrics     |  Description    | Relevant Queries |
+| Metric     |  Description    | Relevant Queries |
 |:-----       |:-------         |:---- |
 | _qryQueue   | How long the query was on the query queue | All |
 | _executor   | Duration of the executor | All |

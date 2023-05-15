@@ -41,7 +41,7 @@ An OID is generated for that object and a mapping from the OID to the object is 
 ![Oid to objects map](images/objects_oidobjectmap.svg)
 
 
-When you use the `GET`:
+When you use `GET`:
 
 ```json
 {
@@ -79,14 +79,14 @@ Similarly, if the `Person` class has an `address` member which is an `Address` t
 }
 ```
 
-Two objects are created, one for `Person` and another for `Address`, and each has a unique OID and separate OID to object mapping:
+Two objects are created, one for `Person` and another for `Address`, and each has a unique OID and separate OID to object mappings:
 
 ![Oid to objects map](images/objects_oidobjectmap2.svg)
 
 
 <br/>
 
-Fusion also stored the link between these `Person` and `Address` OIDs. This means when you retrieve (`GET` or `FIND`) the `Person` object, the `Address` can also be returned:
+Fusion also stores the link between these `Person` and `Address` OIDs. This means when you retrieve the `Person` object, the `Address` can also be returned:
 
 ```json
 {
@@ -125,5 +125,5 @@ Fusion also stored the link between these `Person` and `Address` OIDs. This mean
 {: .important}
 > Note 
 >
-> The `Person::address` contains the `city` in an `Address` object because of an intent to support inheritance. If a member is a base type, such as (`Vehicle`) then the caller must be told type concrete type (`Car`, `Bus`, etc).
+> The `Person::address` contains the `city` in an `Address` object because of an intent to support inheritance. If a member is a base type, such as `Vehicle`, then the caller must be told type concrete type (`Car`, `Bus`, etc).
 
