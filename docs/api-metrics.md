@@ -151,7 +151,7 @@ This means:
 - The executor took 18 microseconds
 - As part of executing, there was an index lookup (since `k` is indexed), which took 7 microseconds
 - There were no non-indexed terms in the `FIND` so `_nonIndexes` is 0
-- Total time from enqueing the query to when the network interface returns the response was 27 microseconds
+- Total time from enqueing the query to when the network interface sent the response was 27 microseconds (`_total` can't include the time taken to transfer the response to the client)
 
 <br/>
 

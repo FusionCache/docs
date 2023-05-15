@@ -102,7 +102,8 @@ The definition of a class which includes each member name, type and other attrib
 
 ```
 
-</br>
+<br/>
+
 For example, in `CREATE_CLASSES`:
 
 ```json
@@ -168,7 +169,9 @@ An array of objects to be stored:
 Is represented as:
 
 ```json
+
 "_objects" : <StoreObjectArray>
+
 ```
 
 ---
