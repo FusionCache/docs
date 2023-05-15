@@ -139,14 +139,14 @@ This process has two states:
 
 ### Poll
 
-Constantly checked for queries. This period is 10 seconds.
+Repeatedly checks for queries to pop. The period is 10 seconds.
 
 This maxes one logical core. When a query is popped, the polling period is extended by another 10 seconds.
 
 
 ### Wait
 
-Wait until it is notified a query has arrived.
+Wait until being notified that a query is in the queue.
  
 Core usage reduces to near zero whilst waiting.
 
