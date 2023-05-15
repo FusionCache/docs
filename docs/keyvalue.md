@@ -107,6 +107,12 @@ This returns:
 
 This caches the three objects, each has an ObjectID (`_oid`) which are returned. 
 
+
+Fusion only returns each object's OID, so we don't know which OID relates to which stored object.
+
+We could have sent an individual `STORE` for each but for this example we don't need. Our app may store these on initial logon so they are available when required.
+
+
 ### Check Indexes
 We can confirm there are three index entries for the `kv` class:
 
@@ -134,9 +140,6 @@ Response:
 ```
 
 Internally, indexed members are arranged by their class, so the response shows the `kv` class with the `k` member and three unique keys. Each of those has a single OID (not returned by `INDEXES`).
-
-Fusion only returns each object's OID, so we don't know which OID relates to each stored object (i.e. which OID is for the user's email, expire and balance).
-We could have sent an individual `STORE` for each but for this example we don't need to know initially. Our app may store these on initial logon so they are available when required.
 
 
 ## Find
@@ -176,8 +179,6 @@ When retreiving cached objects, the `_oid` for each object is always returned. W
 ## Get
 A `GET` query can be used when you know the OID for the object(s) - whereas `FIND` is to search based on member values.
 
-We must specify the class name because objects are cached in relation to their class type (rather than one large cache for objects):
-
 ```json
 {
   "GET":
@@ -211,12 +212,12 @@ The balance has changed since we cached the object, perhaps they spent money.
 <br/>
 
 ## Alternative Solution
-This approach has disadvantages:
+The above design has disadvantages:
 
 - Each key-value pair creates a separate object
-- To delete all key-values for a user we need to delete all the objects for that user. In this example that's just three, but realistically it would higher
+- To delete all key-values for a user we need to delete all the `kv` objects for that user. In this example that's just three, but realistically it would higher
 
-An alternative is a class which contains all the session values. This requires one object per user session, with all values available in a single object.
+An alternative is a class which contains all the session values. This moves all the session values into a single object.
 
 Create the class:
 
@@ -234,7 +235,7 @@ Create the class:
 }
 ```
 
-Cache when the session starts:
+Cache when the session starts we cache the data:
 
 ```json
 {
@@ -311,3 +312,9 @@ Delete the session:
   }
 }
 ```
+
+<br/>
+
+`GET` has lower latency than `FIND`. In a small cache the difference is negligable but the combination of large indexes, many objects and many requests can make a notable difference.
+
+This is because there is a mapping between an OID and the object on a per class basis, which is in preference to one large cache for all objects. This is why the class type must be specified in `GET`.
