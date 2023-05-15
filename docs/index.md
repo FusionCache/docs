@@ -47,9 +47,9 @@ Fusion is still in alpha and has limitations:
 
 | Limitation            | Description               |
 |:----------------------|:--------------------------|
-|Memory | There is no data eviction, nor any protection against memory use. This means Fusion will eat system memory, causing the OS to use swapped memory if the heap is full. <br/> Of course you can delete objects at any time.<br/> A future release will provide at least one auto eviction policy. |
-|REST/WebSocket Interfaces| There are only two threads to handle these interfaces. The bulk has a dedicated thread, whilst the REST and WebSocket Normal interfaces share a thread.<br/> A future release will support multiple threads per interface.|
-|Security| The query interfaces use HTTPS, but there is no user authentication or a way to assign query types to a user, for example to prevent certain users deleting.<br/>A possible solution is to use a combination of simple role based authentication and user tokens.
+|Memory | There is no data eviction, nor any protection against memory use. This means Fusion will eat system memory, causing the OS to use swapped memory if the heap is full. <br/> Of course you can delete objects at any time.<br/> A future release will address this. |
+|REST/WebSocket Interfaces| There are only two threads to handle these interfaces. The WebSocket Normal has a dedicated thread, whilst REST and WebSocket Bulk share a thread. This is an assumption the WebSocket Normal will be the primary query interface.<br/>Fusion supports multiple I/O threads per interface but it does not configure based on CPU resources which requires testing.|
+|Security| The query interfaces use HTTP rather than HTTPS.<br/>There is no user authentication or a way to assign query types to a user, for example to prevent certain users deleting.
 
 <br/>
 
@@ -67,10 +67,11 @@ Fusion is only available as a Docker image, Ubuntu and Alpine packages will be a
 <br/>
 
 ## Start Here
-Start with understanding the Concepts, then follow the Quickstart tutorial.
+A good start are [Concepts](concepts.md) and then [Objects](objects.md). There's a Quickstart and [Design](design.md) information.
+
 
 {: .important}
-> The documentation assumes you are familiar with JSON and UUIDs (universally unique identifiers).
+> The documentation assumes familiarity with JSON and UUIDs (universally unique identifiers).
 >
-> The Quickstart assumes you are familiar with Docker.
+> The Quickstart assumes familiarity with Docker.
 

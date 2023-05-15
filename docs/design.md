@@ -13,7 +13,7 @@ Fusion prioritises low latency for read queries.
 
 ![Fusion design](images/design_overview.svg)
 
-The network and query execution are asynchronous to decouple query execution from requests and responses. This avoids threads blocking:
+To reduce blocking threads, the network operations and query execution are asynchronous and decoupled:
 
 - The interface threads pass queries to the query engine, freeing the interface thread(s) to service other network operations
 - When a query completes, the query engine passes the response to the interface, so the query engine thread can execute other queries
@@ -23,8 +23,9 @@ The network and query execution are asynchronous to decouple query execution fro
 
 
 ## Query Interfaces
-There are two interface types: REST and WebSocket. There is one REST interface and two WebSocket interfaces:
+There are three interfaces: one REST and two WebSockets:
 
+- REST: for typical query payloads
 - WebSocket Normal: for typical query payloads
 - WebSocket Bulk: for larger payloads, intended for `STORE` with many objects
 
@@ -36,6 +37,13 @@ When a query execution completes, the response is sent to the client on a networ
 > There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when sent to different interfaces.
 >
 > It is safe for a client to send queries to different interfaces but only if the order of execution is not important.
+
+<br/>
+
+## Query: REST vs WebSockets
+A REST query requires a new HTTP connection for each query, but a WebSocket only requires the connection is established once. This reduces latency but it requires Fusion and the OS to maintain the connection until the client dsiconnects.
+
+Generally, if a client queries regularly then it is usually best to favour the WebSocket interface. The frequency of queries to consider 'regular' depends on network latency and hardware resources.
 
 <br/>
 
