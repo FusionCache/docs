@@ -127,28 +127,22 @@ Even though the `GET` was received second, it completes before the `FIND`, there
 
 
 ## CPU Utilisation
-A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible. This process has two states:
+A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible.
 
-1. **Poll:** poll the query queue
-2. **Wait:** wait for a query to be pushed onto the queue
-
-The difference is:
-- Polling: the queue is constantly checked for queries
-- Waiting: waits in a condition variable until it is notified a query has arrived, which requires a mutex for the condition variable
-
-This approach avoids locking/unlocking the mutex when it is expecting queries imminently.
+This process has two states:
 
 <br/>
 
+### Poll
 
-### Sequence
-This approach maxes one logical core during the poll period, which is 10 seconds. When it enters wait, this reduces to near zero.
+Constantly checked for queries.
 
-The sequence is:
+This maxes one logical core during, which is 10 seconds. When a query is popped the polling period is extended by another 10 seconds.
 
-1. Poll the query queue
-2. If a query arrives, extend the polling period
-3. Repeat (1) and (2) until no queries arrive during the polling period
-4. Enter wait
-5. When a query arrives, repeat from (1)
+
+### Wait
+
+Wait until it is notified a query has arrived.
+ 
+The core reduces to near zero whilst waiting.
 
