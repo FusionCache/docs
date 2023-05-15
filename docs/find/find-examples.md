@@ -26,7 +26,7 @@ Find objects with `Customer::surname` == "Smith".
 
 <br/>
 
-### Search with multiple simple term
+### Search with multiple simple terms
 Find objects with `Customer::surname` == "Smith" `AND` `status` == "Active".
 
 ```json

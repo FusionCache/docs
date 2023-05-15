@@ -117,10 +117,15 @@ For example, a client sends two queries:
 
 - The client sends a `FIND`
 - The client sends a `GET` 10 microseconds later
-- The `FIND` execution takes 80 microseconds
-- The `GET` execution takes 50 microseconds
+- The `FIND` execution takes 100 microseconds
+- The `GET` execution takes 60 microseconds
 
-Even though the `GET` was received second, it completes before the `FIND`, therefore the client will receive the `GET_RSP` first.
+<br/>
+
+![executors](images/design_executors.svg)
+
+
+Even though the `GET` was received after `FIND`, it completes before the `FIND`, therefore the client will receive the `GET_RSP` first.
 
 
 <br/>

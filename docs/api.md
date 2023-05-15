@@ -10,8 +10,6 @@ The API documentation contains many examples as this is preferred to verbose tec
 
 <br/>
 
-<br/>
-
 ## Notes
 All queries are available on the REST and WebSocket interfaces, though WebSockets are generally preffered due to lower latency once the connection is established.
 
