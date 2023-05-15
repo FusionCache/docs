@@ -15,7 +15,7 @@ Fusion prioritises low latency for read queries.
 
 The network and query execution are asynchronous to decouple query execution from requests and responses. This avoids threads blocking:
 
-- The interface threads pass queries to the query engine, freeing the interface thread to service other network operations
+- The interface threads pass queries to the query engine, freeing the interface thread(s) to service other network operations
 - When a query completes, the query engine passes the response to the interface, so the query engine thread can execute other queries
 
 
@@ -30,12 +30,12 @@ There are two interface types: REST and WebSocket. There is one REST interface a
 
 Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. If these are successful then the query is passed to the query engine. This is an asychronous operation so the network interface thread can continue to serve requests/responses for any client.
 
-When a query execution completes, the response is sent to the client on a separate thread, allowing the query engine thread to execute other queries.
+When a query execution completes, the response is sent to the client on a network interface thread, allowing the query engine thread to execute other queries.
 
 {: .important}
-> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when to different interfaces.
+> There is no synchronisation between the REST and WebSocket interfaces. Queries are executed in the order received, which may not be in the same order as sent when sent to different interfaces.
 >
-> It is safe to send queries to different interfaces but only if the order of execution is not important.
+> It is safe for a client to send queries to different interfaces but only if the order of execution is not important.
 
 <br/>
 
@@ -93,8 +93,8 @@ This may seem a huge disadvantage, but there is an advantage: although there can
 
 ### Read Queries
 These contraints benefit read queries:
-- as a read query executes, there can't be data races because there isn't write queries executing
-- by definition a read query doesn't change data, so multiple read queries can execute concurrently without data races, therefore no data race protection is required
+- as a read query executes, there can't be data races because there are no write queries executing
+- by definition a read query does not change data, so multiple read queries can execute concurrently without data races, therefore no data race protection is required
 
 If there are no active write queries, a read query must only wait to execute if all threads are busy, otherwise it will always execute immediately and be completely independant from the other read queries: they are all read-only, no interthread communication required so no data races possible.
 
@@ -134,14 +134,14 @@ This process has two states:
 
 ### Poll
 
-Constantly checked for queries.
+Constantly checked for queries. This period is 10 seconds.
 
-This maxes one logical core during, which is 10 seconds. When a query is popped the polling period is extended by another 10 seconds.
+This maxes one logical core. When a query is popped, the polling period is extended by another 10 seconds.
 
 
 ### Wait
 
 Wait until it is notified a query has arrived.
  
-The core reduces to near zero whilst waiting.
+Core usage reduces to near zero whilst waiting.
 

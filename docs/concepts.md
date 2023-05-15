@@ -223,7 +223,7 @@ For example, if we cache data for people, would could have a `Person` class with
 
 When we store a Person and their Address, Fusion creates two objects: one for Person and the other for Address, assigning each object a separate OID.
 
-What's the point? Fusion can manage the relationship between the Person and Address:
+Fusion can manage the relationship between the Person and Address:
 
 
 <table>
@@ -338,7 +338,7 @@ The response is:
 
 <br/>
 
-The `Address` is a separate object so we can `GET` only the `Address`:
+The `Address` is a separate object so we can `GET` only the `Address` object if we wish:
 
 
 <table>
@@ -438,4 +438,4 @@ Finally, this relationship can be used when using `FIND` to search:
 </tr>
 </table>
 
-In both cases, the response is a `FIND_RSP` is sent with an array of one `Person` object with its associated `Address` object.
+In both cases, the response is a `FIND_RSP` with an array of one `Person` object with its associated `Address` object.
