@@ -7,7 +7,7 @@ parent: Overview
 
 # Concepts
 
-Fusion is designed to be easy to use with just a few concepts:
+There are a few concepts to understand:
 
 - ObjectID (Object Identifiers)
 - FQL (Fusion Query Language)

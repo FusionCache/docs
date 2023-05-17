@@ -18,7 +18,7 @@ The documentation refers to simple and complex types:
 
 ## Root Class Name
 
-`<RootClassName>` - name of the root class.
+`<RootClass>` - name of the root class.
 
 This is the value of `_class`:
 

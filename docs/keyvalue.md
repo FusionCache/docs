@@ -18,10 +18,10 @@ The steps are:
 
 Create a class "kv" with two members:
 
-- `k`: indexed, `string` data type
-- `v` of `any` data type
+- `k`: `string` data type and is indexed
+- `v`: `any` data type
 
-Using `any` type means Fusion won't insist types are the same when storing or updating, and we can find for any type. `k` can also be `any` but that's useful in this example.
+Using `any` type means that `v` can be any simple type (i.e. not an array or object). `k` could also be `any` but that's not useful in this example.
 
 
 ```json
@@ -45,7 +45,8 @@ We receive a response:
 
 ```json
 {
-  "CREATE_CLASSES_RSP": {
+  "CREATE_CLASSES_RSP":
+  {
     "kv": {}
   }
 }
@@ -85,19 +86,23 @@ This returns:
 
 ```json
 {
-  "STORE_RSP": [
+  "STORE_RSP":
+  [
     {
-      "kv": {
+      "kv":
+      {
         "_oid": "18393a92-0683-40a8-b606-945533e94560"
       }
     },
     {
-      "kv": {
+      "kv":
+      {
         "_oid": "bdfde7a5-99d3-4276-b7c5-f5ef83b71d65"
       }
     },
     {
-      "kv": {
+      "kv":
+      {
         "_oid": "143c18f2-3d34-4eea-98f6-c682996ff1af"
       }
     }
@@ -105,12 +110,12 @@ This returns:
 }
 ```
 
-This caches the three objects, each has an ObjectID (`_oid`) which are returned. 
+This caches the three objects, each has an ObjectID (`_oid`), which are returned in the response. 
 
 
 Fusion only returns each object's OID, so we don't know which OID relates to which stored object.
 
-We could have sent an individual `STORE` for each but for this example we don't need. Our app may store these on initial logon so they are available when required.
+We could send an individual `STORE` for each but for this example we don't need to - our app may store these on initial logon so they are available when required.
 
 
 ### Check Indexes
@@ -125,11 +130,14 @@ We can confirm there are three index entries for the `kv` class:
 Response:
 ```json
 {
-  "INDEXES_RSP": [
+  "INDEXES_RSP":
+  [
     {
-      "kv": [
+      "kv":
+      [
         {
-          "k": {
+          "k":
+          {
             "_keys": 3
           }
         }
@@ -139,7 +147,7 @@ Response:
 }
 ```
 
-Internally, indexed members are arranged by their class, so the response shows the `kv` class with the `k` member and three unique keys. Each of those has a single OID (not returned by `INDEXES`).
+Internally, indexed members are arranged by their class, so the response shows the `kv` class with the `k` member and three unique keys. Each of those has a single OID (not shown in the response).
 
 
 ## Find
@@ -161,9 +169,11 @@ Response:
 
 ```json
 {
-  "FIND_RSP": [
+  "FIND_RSP":
+  [
     {
-      "kv": {
+      "kv":
+      {
         "k": "user1_account_balance",
         "v": 300.6,
         "_oid": "143c18f2-3d34-4eea-98f6-c682996ff1af"
@@ -177,7 +187,7 @@ When retreiving cached objects, the `_oid` for each object is always returned. W
 
 
 ## Get
-A `GET` query can be used when you know the OID for the object(s) - whereas `FIND` is to search based on member values.
+A `GET` query can be used when you know the OID for the object(s). Now that we have the OID from `FIND_RSP` we can use `GET` to update our `balance` value:
 
 ```json
 {
@@ -195,9 +205,11 @@ This returns:
 
 ```json
 {
-  "GET_RSP": [
+  "GET_RSP":
+  [
     {
-      "kv": {
+      "kv":
+      {
         "k": "user1_account_balance",
         "v": 200.6,
         "_oid": "143c18f2-3d34-4eea-98f6-c682996ff1af"
@@ -235,7 +247,7 @@ Create the class:
 }
 ```
 
-Cache when the session starts we cache the data:
+We cache the data when the user's session starts:
 
 ```json
 {
@@ -258,9 +270,11 @@ This returns:
 
 ```json
 {
-  "STORE_RSP": [
+  "STORE_RSP":
+  [
     {
-      "Session": {
+      "Session":
+      {
         "_oid": "201f3c45-9d64-4517-8084-0603ae94790f"
       }
     }
@@ -285,7 +299,7 @@ Extend the session:
 }
 ```
 
-Get the session (to check the balance):
+Get the session to get the latest balance:
 
 ```json
 {
@@ -317,4 +331,11 @@ Delete the session:
 
 `GET` has lower latency than `FIND`. In a small cache the difference is negligable but the combination of large indexes, many objects and many requests can make a notable difference.
 
-This is because there is a mapping between an OID and the object on a per class basis, which is in preference to one large cache for all objects. This is why the class type must be specified in `GET`.
+This is because:
+
+- `GET` is a simpler query to parse than `FIND`
+- There is a direct mapping between an OID and its object
+- Objects are arranged in the cache by their class
+
+To `GET` the `Session` object, Fusion only has to parse the query then make one lookup in the `Session` OID map.
+
