@@ -32,7 +32,7 @@ Set `expire` to a new value for two objects:
 <br/>
 
 ## Update all objects
-Set the `blocked` value for all `Session` objects: 
+Set `blocked` to `true` for all `Session` objects: 
 
 
 ```json
