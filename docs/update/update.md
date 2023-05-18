@@ -27,7 +27,7 @@ Object
 
 
 ## Detail
-- Requires the root class name
+- Requires a root class name
 - If `_oids` is present then the updates are applied to those objects only
 - If `_oids` is not present then updates are applied to all `<RootClass>` objects
 
@@ -36,7 +36,7 @@ Object
 > If `UPDATE` does not include `_oids` then all root class objects are updated, which may not be the intention. 
 
 
-The <RootClass> is the key and the value is a list of member names with values to overwrite the existing values.
+There should be one JSON object with the `<RootClass>` as the key. Its value is a list of member names and values to overwrite the existing value.
 
 
 ```json
@@ -52,7 +52,7 @@ The <RootClass> is the key and the value is a list of member names with values t
 }
 ```
 
-- The OID in `_oids` is for a `Customer` object
+- The OID is for a `Customer` object
 - Change this object's `surname` to "NewSurname"
 
 <br/>
@@ -85,6 +85,9 @@ This updates this Customer object's `address` to have a `city` value of "Paris".
 
 The response includes a `_cnt` unsigned integer which is the number of root class objects updated.
 
+- When `_oids` is set, the `_cnt` is the size of the `_oids` array.
+- When `_oids` is not set, the `_cnt` is the number of `<RootClass>` objects.
+
 
 On success:
 
@@ -100,10 +103,6 @@ On success:
 }
 ```
 
-
-When `_oids` is set, the `_cnt` is the size of the `_oids` array.
-
-When `_oids` is not set, the `_cnt` is the number of <RootClass> objects.
 
 <br/>
 
