@@ -18,7 +18,7 @@ The following apply to both REST and WebSocket interfaces:
 
 ## REST
 - The request must be a HTTP GET
-- The query must be in the body of the request, **not** the query parameters
+- The query must be in the body of the request, **not** the request's parameters
 - The Content-Type should be "application/json"
 
 Here's an example of a query sent to localhost from the Postman client software:

@@ -31,6 +31,8 @@ Object
 - If no terms are defined, all objects for the root class are returned
 - The `FIND` is recursive. If the root class has members that are objects, those objects are returned, and if those objects also have object members, they're also returned
 
+There is a limit to how many objects are returned by `FIND`. It is set to 50,000.
+
 <br/>
 
 ### Find Terms
