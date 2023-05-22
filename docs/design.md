@@ -147,9 +147,12 @@ This process has two states:
 
 ### Poll
 
-Repeatedly checks for queries to pop. The period is 10 seconds.
+Repeatedly checks for queries to pop. The period is 5 seconds.
 
-This maxes one logical core. When a query is popped, the polling period is extended by another 10 seconds.
+- When a query is popped, the polling period is extended by another 5 seconds
+- If no queries are received during the polling period, enter the Wait state 
+
+During the polling period one logical core is maxed.
 
 
 ### Wait
