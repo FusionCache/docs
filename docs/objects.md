@@ -105,17 +105,14 @@ Fusion also stores the link between these `Person` and `Address` OIDs. This mean
   "GET_RSP":
   [
     {
-      "Person":
+      "forename":"James",
+      "surname":"Smith",
+      "address":
       {
-        "forename":"James",
-        "surname":"Smith",
-        "address":
+        "Address":
         {
-          "Address":
-          {
-            "city":"Paris"
-          }          
-        }
+          "city":"Paris"
+        }          
       }
     }
   ]

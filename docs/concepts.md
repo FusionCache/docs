@@ -302,21 +302,18 @@ The response is:
   "GET_RSP":
   [
     {
-      "Person":
+      "forename":"Susan",
+      "surname":"Boyle",
+      "address":
       {
-        "forename":"Susan",
-        "surname":"Boyle",
-        "address":
+        "Address":
         {
-          "Address":
-          {
-            "area":"Love Island",
-            "city":"New York",            
-            "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
-          }
-        },
-        "_oid":"9f0d0983-686e-42e1-99f4-02c8a003bab1"        
-      }
+          "area":"Love Island",
+          "city":"New York",            
+          "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
+        }
+      },
+      "_oid":"9f0d0983-686e-42e1-99f4-02c8a003bab1"        
     }
   ]
 }
@@ -364,12 +361,9 @@ The `Address` is a separate object so we can `GET` only the `Address` object if 
   "GET_RSP":
   [
     {
-      "Address":
-      {
-        "area":"Love Island",
-        "city":"New York",        
-        "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
-      },
+      "area":"Love Island",
+      "city":"New York",        
+      "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
     }
   ]
 }
