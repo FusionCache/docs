@@ -121,7 +121,7 @@ Because each `Session` object is linked to an `Access` object, the response repo
 ## Delete Objects by OID
 Specific objects can be deletes using the `_oids` attribute.
 
-The rules for `_deep` still apply, except it on only applies to objects linked to those in `_oids`.
+The rules for `_deep` still apply, except it on only applies to the objects associated to those in `_oids`.
 
 We leave set `_deep` as its default `false`, so we'll only delete the two `Session` objects.
 
