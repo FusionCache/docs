@@ -76,10 +76,10 @@ When `k` is indexed, only `_indexes` is relevant, and `k` is not indexed, only `
 
 This tells us:
 
-- When `k` is indexed, it takes 11 microseconds to lookup the index
+- When `k` is indexed, it takes 10 microseconds to lookup the index
 - When `k` is not indexed, it takes 115699 microseconds (~116ms) to search all 500k objects
 
-Nearly a x10 difference with only 500,000 objects. Or another way of thinking - the executor that processed the query could have executed another 10 indexed queries during the time it was searching all the objects.
+About a x10 difference with only 500,000 objects. Or another way of thinking - the executor could have executed another 10 indexed queries during the time it was searching all the objects.
 
 
 <br/>
