@@ -79,8 +79,74 @@ This tells us:
 - When `k` is indexed, it takes 10 microseconds to lookup the index
 - When `k` is not indexed, it takes 115699 microseconds (~116ms) to search all 500k objects
 
-About a x10 difference with only 500,000 objects. Or another way of thinking - the executor could have executed another 10 indexed queries during the time it was searching all the objects.
+<br/>
 
+These differences are further realised when comparing a query with multiple terms.
+
+
+For example, a cache for customer orders with classes: `Customer` which has an `Address` and array of `Order`, and each `Order` has an array of `OrderItem`. 
+
+Find customers who live in "Derwood" that have ordered an item called "Apextri":
+
+
+```json
+{
+  "FIND":
+  {
+    "_metrics":true,
+    "Customer":
+    {
+      "address":
+      {
+        "city":"Derwood"
+      },
+      "orders":
+      {
+        "items":
+        {
+          "name":"Apextri"
+        }
+      }
+    }
+  }
+}
+```
+
+We compare with and without `Address::city` and `OrderItem::name` indexed.
+
+
+No indexes:
+
+```json
+{
+  "_metrics":
+  {
+    "_qryQueue": 26,
+    "_executor": 62188,
+    "_indexes": 0,
+    "_nonIndexes": 62082,
+    "_total": 62269
+  }
+}
+```
+
+
+With indexes:
+
+```json
+{
+  "_metrics":
+  {
+    "_qryQueue": 1,
+    "_executor": 329,
+    "_indexes": 152,
+    "_nonIndexes": 0,
+    "_total": 417
+  }
+}
+```
+
+Without indexes, the `_nonIndexes` search took ~62,000 microseconds (62ms), whilst the indexed search takes 152 microseconds (0.152ms).
 
 <br/>
 
