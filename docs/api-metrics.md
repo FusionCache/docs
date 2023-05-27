@@ -82,6 +82,7 @@ The structure is:
 
 `_index` and `_nonIndexes` measure time to search indexes and non-indexes, so these are only relevant for queries that involve searching.
 
+A query is always placed in the queue, so if `_qryQueue` is 0 it means the query was in the queue for less than 1 microsecond.
 
 <br/>
 
