@@ -66,7 +66,7 @@ The limit on threads supported by Fusion is not a technical limitation, but due 
 `queryEngine`
 
 The query engine is what executes queries. A query executes on a thread until its completion (excluding sending the response).
-- `threads` : The number of threads available for the query engine's executors
+- `threads` : The number of threads available for the query engine's executors. This is typically `threadsAvailable-1`, unless `threadsAvailable` is 1, in which case this value is also 1
 
 Read queries are executed concurrently, so `threads` is the maximum concurrent read queries.
 
