@@ -9,9 +9,57 @@ has_children: false
 # Create Classes
 This query creates one or more classes.
 
-A class contains at least one member, and each member must have data type. A member can also contain attributes, such as `_index`. 
+- A class contains at least one member
+- Each member must have a data type
 
-The classes are created in the order they appear in the query, which it useful if class B has a member of type class A, in which case the definition for class A appears before class B. This way, class A exists before class B requires it.
+There are two ways to define a member: compact and expanded:
+
+
+**Compact**
+
+A compact member definition is just the member type:
+
+```json
+{
+  "CREATE_CLASS":
+  {
+    "Person":
+    {
+      "forename":"string",
+      "surname":"string"
+    }
+  }
+}
+```
+
+`forename` and `surname` are both compact definitions because they only define the data type.
+
+
+**Expanded**
+
+An expanded definition lets you define the data type and if the member is indexed:
+
+```json
+{
+  "CREATE_CLASS":
+  {
+    "Person":
+    {
+      "forename":"string",
+      "surname":
+      {
+        "_type":"string",
+        "_index":true
+      }
+    }
+  }
+}
+```
+
+This defines `forename` as before, but `surname` is now indexed.
+
+The `_type` must be defined.
+
 
 <br/>
 
@@ -33,7 +81,9 @@ Object
 
 
 ## Details
-`CREATE_CLASSES` contains a JSON object for each class to be created. The key of each object is the class name:
+`CREATE_CLASSES` contains a JSON object for each class to be created. The key of each object is the class name.
+
+The classes are created in the order they appear in the query, which is useful when a class has a member which is also class:
 
 ```json
 {
@@ -53,6 +103,7 @@ Object
   }
 }
 ```
+
 
 This creates two classes, `Access` then `Session`. Notice the `Session` class has an `access` member whic his of typer `Access`, so the `Access` definition is before `Session` to ensure it exists when the `Session` definition refers to it.
 
