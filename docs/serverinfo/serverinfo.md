@@ -36,7 +36,7 @@ See Response.
 ## Response
 `SERVER_INFO_RSP` object.
 
-The response includes object with specific keys detailed below:
+The response includes objects with specific keys detailed below:
 
 | Key       | Type    | Description      |
 |:-----           |:---     |:-------          |
@@ -98,6 +98,9 @@ If a query is received that exceeds `maxReadSize` for the interface, it is rejec
 
 Example response, running in a Docker container. Fusion supports 16 threads but the container is limited to 12 threads:
 
+<br/>
+
+## Example
 
 ```json
 {
