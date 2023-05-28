@@ -110,7 +110,6 @@ Example response, running in a Docker container. Fusion supports 16 threads but 
       "cpu":
       {
         "threadsFusionMax": 16,
-        "threadsAvailable": 12,
         "threadsUsable": 12
       },
       "queryEngine":
