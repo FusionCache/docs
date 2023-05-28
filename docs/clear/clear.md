@@ -32,3 +32,24 @@ The `_confirm` default value is "IKnowWhatImDoing" and is case sensitive. The pu
 
 <br/>
 
+## Detail
+This query completely clears the cache, including classes and indexes. 
+
+Root class is not permitted.
+
+<br/>
+
+## Response
+`CLEAR_RSP`
+
+The response is a `CLEAR_RSP` object which contains `_cnt`, and integer of how many objects were deleted.
+
+
+```json
+{
+  "CLEAR_RSP":
+  {
+    "_cnt": 20465
+  }
+}
+```
