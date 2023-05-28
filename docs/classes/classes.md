@@ -38,7 +38,7 @@ The `CLASSES` is used to get the names and definitions of all classes in the cac
 
 The response is an array of object, with each object representing a class, which contains an expanded definition for each member.
 
-{. :important}
+{: .important}
 > Don't rely on the order of the classes in the response.
 
 <br/>
