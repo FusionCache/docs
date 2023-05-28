@@ -7,9 +7,6 @@ has_children: true
 ---
 
 # Delete
-
-
-## Purpose
 Delete object(s) from the cache.
 
 This frees the memory used by the object(s) in the cache.
