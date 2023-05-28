@@ -17,8 +17,16 @@ Count the number of objects. The query accepts:
 
 <br/>
 
+
 ## Type
 Object
+
+
+## Attributes
+
+| Attribute | Required  | Description      |
+|:-----     |:---       |:-------          |
+| _metrics  | No        | Return query metrics |
 
 <br/>
 

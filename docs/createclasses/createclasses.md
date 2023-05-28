@@ -11,54 +11,7 @@ This query creates one or more classes.
 
 - A class contains at least one member
 - Each member must have a data type
-
-There are two ways to define a member: compact and expanded:
-
-
-**Compact**
-
-A compact member definition is just the member type:
-
-```json
-{
-  "CREATE_CLASS":
-  {
-    "Person":
-    {
-      "forename":"string",
-      "surname":"string"
-    }
-  }
-}
-```
-
-`forename` and `surname` are both compact definitions because they only define the data type.
-
-
-**Expanded**
-
-An expanded definition lets you define the data type and if the member is indexed:
-
-```json
-{
-  "CREATE_CLASS":
-  {
-    "Person":
-    {
-      "forename":"string",
-      "surname":
-      {
-        "_type":"string",
-        "_index":true
-      }
-    }
-  }
-}
-```
-
-This defines `forename` as before, but `surname` is now indexed.
-
-The `_type` must be defined.
+- There are two ways to define a member, compact and expanded (see detail)
 
 
 <br/>
@@ -136,6 +89,55 @@ If a member requires an expanded definition, for example to set it as indexed, t
 ```
 
 <br/>
+
+
+
+**Compact**
+
+A compact member definition is just the member type:
+
+```json
+{
+  "CREATE_CLASS":
+  {
+    "Person":
+    {
+      "forename":"string",
+      "surname":"string"
+    }
+  }
+}
+```
+
+`forename` and `surname` are both compact definitions because they only define the data type.
+
+
+**Expanded**
+
+An expanded definition lets you define the data type and if the member is indexed.
+
+The `_type` must be defined.
+
+
+```json
+{
+  "CREATE_CLASS":
+  {
+    "Person":
+    {
+      "forename":"string",
+      "surname":
+      {
+        "_type":"string",
+        "_index":true
+      }
+    }
+  }
+}
+```
+
+This defines `forename` and `surname` as a `string`, but now `surname` is indexed.
+
 
 ## Response
 `CREATE_CLASSES_RSP` object.
