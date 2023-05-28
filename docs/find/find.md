@@ -7,8 +7,6 @@ has_children: true
 ---
 
 # Find
-
-## Purpose
 Search the cache.
 
 

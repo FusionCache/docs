@@ -7,8 +7,6 @@ has_children: true
 ---
 
 # Store
-
-## Purpose
 Store one or more objects.
 
 

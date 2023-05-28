@@ -7,8 +7,6 @@ has_children: true
 ---
 
 # Update
-
-## Purpose
 Update one or more objects.
 
 

@@ -7,9 +7,11 @@ has_children: false
 ---
 
 # Get
+Get object(s) from the cache using the OIDs.
 
-## Purpose
-Get an object(s) from the cache with the OID.
+Retrieving objects using `GET` has the lowest latency. Objects are organised by their class and there's a mapping between the OID and the cached object. This means to `GET` an object, only a single lookup in the class's OID/object map is required.
+
+If a client requires an object regularly or must refresh the values (i.e. another client updates the object), the best method is to get the object's OID and then call `GET` to retrieve the latest values. 
 
 <br/>
 
