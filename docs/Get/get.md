@@ -3,7 +3,7 @@ layout: default
 title: Get
 nav_order: 9
 parent: API
-has_children: true
+has_children: false
 ---
 
 # Get
@@ -17,14 +17,16 @@ Get an object(s) from the cache with the OID.
 ## Type
 Array
 
-
+<br/>
 
 ## Attributes
-| Attribute | Required | Description      |
-|:-----     | :---|:-------               |
+
+| Attribute | Required  | Description      |
+|:-----     |:---       |:-------               |
 | _oids     | Yes   | Array of OIDs for objects to retrieve  |
 | _metrics  | No    | Return query metrics  |
 
+<br/>
 
 ## Details
 `GET` will return objects from their OID. The OID is typically by calls to `STORE` and `FIND`.
