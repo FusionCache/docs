@@ -57,7 +57,7 @@ The `resources` object contains the following:
 
 Information about CPU resources:
 - `threadsFusionMax` : The maximum threads Fusion supports
-- `threadsUsable` : The number of threads reported by the Operating System, either all of the threads on the CPU or a subset if running in Docker/VM. This will be the same as `threadsFusionMax` unless it exceeds `threadsFusionMax` (i.e. if your CPU has more logical cores than Fusion supports).
+- `threadsAvailable` : The number of threads reported by the Operating System, either all of the threads on the CPU or a subset if running in Docker/VM. This will be the same as `threadsFusionMax` unless it exceeds `threadsFusionMax` (i.e. if your CPU has more logical cores than Fusion supports).
 
 The limit on threads supported by Fusion is not a technical limitation, but due to insufficient testing on that hardware.
 
