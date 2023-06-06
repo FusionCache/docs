@@ -31,7 +31,7 @@ Object
 <br/>
 
 ## Detail
-The stats returned include a `totalQueries` value which includes the `STATS` query itself.
+The stats include a `totalQueries` value which includes the `STATS` query itself - i.e. if the server starts and the only query received is `STATS`, the `totalQueries` value will be 1 because it includes the `STATS` just received.
 
 <br/>
 
@@ -78,8 +78,8 @@ Query:
 
 This means:
 
-- 25 clients have connected to REST but none are still connected
-- There have been 10 clients connected to the WebSocket interface and all are still connected
+- 25 clients have connected to REST and all have since disconnected
+- There have been 10 clients connected to the WebSocket interfaces and all are still connected
 
 If `total > connected` it means a client connected then disconnected before `STATS` was received.
 
