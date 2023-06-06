@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Key-Value Example
-nav_order: 5
+nav_order: 6
 ---
 
 # Key Value Cache

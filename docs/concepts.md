@@ -9,13 +9,29 @@ parent: Overview
 
 There are a few concepts to understand:
 
+- Query interfaces
 - ObjectID (Object Identifiers)
 - FQL (Fusion Query Language)
 - Classes
 - Relationships
-- Query interfaces
+
 
 These concepts are similar to those found in other software or programming languages.
+
+
+<br/>
+
+## Query Interfaces
+There are two types of interfaces: REST and WebSockets. 
+
+REST
+- For request-response queries
+
+There are two WebSocket interfaces: 
+- Normal: for typical queries
+- Bulk Store: for larger `STORE` queries to store many objects
+
+The Bulk Store interface permits larger receive buffers and does not permit searching, update or deleting. See [Interfaces](interfaces.md).
 
 
 <br/>
