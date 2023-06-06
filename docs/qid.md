@@ -28,10 +28,10 @@ Query:
 {
   "FIND":
   {
-    "_qid":"some_meaningful_value",
-    "Customer":
+    "_qid":"active_sessions",
+    "Session":
     {
-      "surname":"Jones"
+      "active":true
     }
   }
 }
@@ -41,14 +41,25 @@ Response:
 
 ```json
 {
-  "_qid":"some_meaningful_value",
+  "_qid":"active_sessions",
   "FIND_RSP":
   [
     {
-      "Customer":
+      "Session":
       {
-        "forename":"Sam",
-        "surname":"Jones"
+        "userId":"abcdef",
+        "lastActive":123456789,
+        "failedAuthAttempts":1,
+        "active":true
+      }
+    },
+    {
+      "Session":
+      {
+        "userId":"fedcba",
+        "lastActive":123456976,
+        "failedAuthAttempts":0,
+        "active":true
       }
     }
   ]
