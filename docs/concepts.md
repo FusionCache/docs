@@ -10,7 +10,7 @@ parent: Overview
 There are a few concepts to understand:
 
 - Query interfaces
-- ObjectID (Object Identifiers)
+- ObjectID (Object Identifier)
 - FQL (Fusion Query Language)
 - Classes
 - Relationships
@@ -24,10 +24,12 @@ These concepts are similar to those found in other software or programming langu
 ## Query Interfaces
 There are two types of interfaces: REST and WebSockets. 
 
-REST
+Thereis one REST interface:
+
 - For request-response queries
 
 There are two WebSocket interfaces: 
+
 - Normal: for typical queries
 - Bulk Store: for larger `STORE` queries to store many objects
 
@@ -47,15 +49,12 @@ When an object is stored, Fusion assigns it an OID and the OID is returned in th
 > It is not possible for users to supply the OID when storing because Fusion cannot be certain it is unique.
 
 <br/>
-<br/>
 
 
 ## Fusion Query Language (FQL)
 FQL is JSON with a particular structure.
 
 <br/>
-<br/>
-
 
 ## Classes
 A Fusion class is similar to a class in an object orientated programming language:
