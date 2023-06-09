@@ -31,7 +31,7 @@ An ARM build will be available later.
 
 | Version     | Link        |
 |:---|:---|
-|0.1.0 alpha|[Download](https://github.com/FusionCache/releases/tree/main/0.1)|
+|0.1.0 alpha|[Download](https://github.com/FusionCache/releases/blob/main/0.1/fusioncache_0.1_amd64.deb)|
 
 
 ## Run
