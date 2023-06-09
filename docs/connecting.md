@@ -28,7 +28,7 @@ Here's an example of a query sent to localhost from the Postman client software:
 <br/>
 
 ## WebSockets
-The Normal and Bulk WebSocket servers both have the following settings:
+The Standard and Bulk WebSocket servers both have the following settings:
 
 | Setting           | Value |
 |:---               |:---   |

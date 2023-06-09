@@ -26,7 +26,7 @@ To reduce blocking threads, the network operations and query execution are async
 There are three interfaces: one REST and two WebSockets:
 
 - REST: for typical query payloads
-- WebSocket Normal: for typical query payloads
+- WebSocket Standard: for typical query payloads
 - WebSocket Bulk: for larger payloads, intended for `STORE` with many objects
 
 Each query has a dedicated buffer. The query is parsed as JSON and then as FQL. If these are successful then the query is passed to the query engine. This is an asychronous operation so the network interface thread can continue to serve requests/responses for any client.
@@ -146,17 +146,15 @@ This process has two states:
 
 
 ### Poll
+Repeatedly checks for queries to pop. The period is 1 second.
 
-Repeatedly checks for queries to pop. The period is 5 seconds.
-
-- When a query is popped, the polling period is extended by another 5 seconds
+- When a query is popped, the polling period is extended by another 1 second
 - If no queries are received during the polling period, enter the Wait state 
 
 During the polling period one logical core is maxed.
 
 
 ### Wait
-
 Wait until being notified that a query is in the queue.
  
 Core usage reduces to near zero whilst waiting.

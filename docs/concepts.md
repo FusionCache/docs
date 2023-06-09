@@ -30,7 +30,7 @@ Thereis one REST interface:
 
 There are two WebSocket interfaces: 
 
-- Normal: for typical queries
+- Standard: for typical queries
 - Bulk Store: for larger `STORE` queries to store many objects
 
 The Bulk Store interface permits larger receive buffers and does not permit searching, update or deleting. See [Interfaces](interfaces.md).

@@ -18,7 +18,7 @@ Each interface can have its max read buffer size set, with each having a maximum
 | Interface   | Default     | Minimum   | Maximum     |
 |:---         |:---         |:---       |:---         |
 |REST         | 1024 bytes  | 32 bytes  | 4096 bytes  |
-|WS Normal    | 1024 bytes  | 32 bytes  | 8192 bytes  |
+|WS Standard  | 1024 bytes  | 32 bytes  | 8192 bytes  |
 |WS Bulk      | 8 MB        | 1024 bytes| 1 GB        |
 
 Each query uses the a buffer large enough for the query and it is not deallocated until query execution completes.

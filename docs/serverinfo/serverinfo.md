@@ -56,10 +56,8 @@ The `resources` object contains the following:
 `cpu`
 
 Information about CPU resources:
-- `threadsFusionMax` : The maximum threads Fusion supports
-- `threadsAvailable` : The number of threads reported by the Operating System, either all of the threads on the CPU or a subset if running in Docker/VM. This will be the same as `threadsFusionMax` unless it exceeds `threadsFusionMax` (i.e. if your CPU has more logical cores than Fusion supports).
-
-The limit on threads supported by Fusion is not a technical limitation, but due to insufficient testing on that hardware.
+- `threadsFusionMax` : The maximum threads Fusion supports. This is not a technical limit, it will increas as testing progresses.
+- `threadsAvailable` : The number of threads reported by the host (the CPU, VM or Docker container). This will be the same as `threadsFusionMax` unless it exceeds `threadsFusionMax` (i.e. if your CPU has more logical cores than Fusion supports)
 
 <br/>
 
@@ -74,8 +72,9 @@ Read queries are executed concurrently, so `threads` is the maximum concurrent r
 
 `networkIo`
 
-Query interfaces use threads to handle client connections, receiving queries and sending responses. Each interface can run use multiple threads or share threads. 
-- `threads` : The total number of threads available to the network interfaces
+Query interfaces use threads to handle client connections, receiving queries and sending responses. Each interface can run use multiple threads or share threads.
+
+- `threads` : The total number of threads available to the network interfaces. The proportion of I/O to available threads may change as testing progresses
 
 The response does not show the number of threads available per interface because they can share threads.
 
@@ -96,7 +95,7 @@ Within each of these, the following are returned:
 If a query is received that exceeds `maxReadSize` for the interface, it is rejected.
 
 
-Example response, running in a Docker container. Fusion supports 16 threads but the container is limited to 12 threads:
+Example response. This version of Fusion supports up to 64 threads but the host CPU has 12:
 
 <br/>
 
@@ -106,13 +105,13 @@ Example response, running in a Docker container. Fusion supports 16 threads but 
 {
   "SERVER_INFO_RSP":
   {
-    "serverVersion": "0.0.1c",
+    "serverVersion": "0.1.0",
     "userAgent": "FusionCache",
     "resources":
     {
       "cpu":
       {
-        "threadsFusionMax": 16,
+        "threadsFusionMax": 64,
         "threadsUsable": 12
       },
       "queryEngine":
@@ -121,7 +120,7 @@ Example response, running in a Docker container. Fusion supports 16 threads but 
       },
       "networkIo":
       {
-        "threads": 4
+        "threads": 2
       }
     },
     "interfaces":
