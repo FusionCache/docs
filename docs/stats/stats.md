@@ -36,7 +36,7 @@ The stats include a `totalQueries` value which includes the `STATS` query itself
 <br/>
 
 ## Response
-`STATS_RSP` object with the follow keys:
+`STATS_RSP` object with keys:
 
 | Key           | Type      | Description      |
 |:-----         |:---       |:-------          |
