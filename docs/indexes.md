@@ -179,7 +179,9 @@ A `Customer` class with an indexed `surname` member:
 }
 ```
 
-The `surname` index is checked for "Smith" entries. If no entries are found an empty response is returned, otherwise the objects for "Smith" are returned. 
+- Lookup the `surname` index
+- If none, return an empty response is returned
+- Else the objects for "Smith" are returned
 
 
 <br/>
@@ -204,7 +206,7 @@ If there is one indexed term and one non-indexed term:
  The sequence is:
 
 - Lookup the `surname` index for "Smith"
-- If it does not exist, return empty response
+- If none, return empty response
 - Else check if any of the "Smith" objects have `forename` of "John"
 
 
@@ -212,7 +214,10 @@ If there is one indexed term and one non-indexed term:
 
 
 ### Two Indexed Terms and One Non-Indexed
-We have a `Customer` class with two indexed members, `surname` and `registeredYear`, and `forename` which is not indexed.
+We have a `Customer` class with three members:
+
+- `surname` and `registeredYear` are indexed
+- `forename` is not indexed
 
 
 ```json
@@ -233,7 +238,7 @@ The sequence is:
 
 1. Lookup the `surname` index, if no results then return empty response
 2. Lookup the `registeredYear` index, if no results then return empty response
-3. We have a OIDs from `surname` and `registeredYear`, so do an intersection to find which OIDs are present in both
+3. We have a OIDs from `surname` and `registeredYear` index lookups, so do an intersection to find which OIDs are present in both
 4. If there are no OIDs from the intersection, return empty response
 5. From the intersected OIDs, check which have `forename` of "John"
 6. If none then return empty response, otherwise return the objects
@@ -261,13 +266,11 @@ The same applies when the query includes an associated class:
 }
 ```
 
-Assuming `surname` and `city` are indexed:
+Assuming `Customer::surname` and `Address::city` are indexed:
 
-1. Lookup the `surname` index, if no results return empty response
-2. For each OID, get its `address` OID (i.e find the `Address` object for each "Smith")
-3. Intersect each `Address` OID with the `Address::city` index (i.e. which of the "Smith" addresses have a `city` of "London")
-4. Now we know the Address OIDs of only those people with `surname` of "Smith" and `city` of "London"
-5. These OIDs are Address oids, so the final stage is to "up join" from `Address` to `Customer`, to get the `Customer` OIDs for those `Address` objects
-
-Step 5 is called an "Up Join" because `Address` is a child of `Customer` (`Customer` **_has an_** an `Address`).
+1. Lookup the `Customer::surname` index for "Smith", if no results return empty response
+2. Step 1 returns `Customer` OIDs, so for each of those we get their `Address` OID
+3. Lookup the `Address::city` index for "London", if no results return empty response
+4. Intersect the `Address` OIDs from step 2 with the OIDs from step 3
+5. This tells us the customers returned in step 1 that have `Address::city` of London
 
