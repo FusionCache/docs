@@ -44,13 +44,13 @@ To download from GitHub, click download then select the 'Download raw file' (ico
 |:---|:---|
 |0.1|[Download](https://github.com/FusionCache/releases/blob/main/0.1/fusioncache_0.1_amd64.deb)|
 
-<br/>
+<br/> 
 
 ## Install
 
 `sudo dpkg -i fusioncache_0.1_amd64.deb`
  
-This is installed to `/usr/local/bin/fusioncache`.
+This is installs to: `/usr/local/bin/fusioncache`
 
 See [Run](run.md) for starting instructions.
 

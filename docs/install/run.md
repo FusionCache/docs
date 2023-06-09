@@ -52,7 +52,7 @@ This likely only matters if you are sending many smaller queries or a few large 
 ## Examples
 
 <br/>
-Rest only, with default port and read buffer:
+Rest only, with default port and read buffer size:
 
 `./fusionserver --restQueryIp=10.0.0.1`
 
