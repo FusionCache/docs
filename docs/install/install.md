@@ -1,0 +1,48 @@
+---
+layout: default
+title: Install
+nav_order: 4
+has_children: true
+---
+
+# Install
+Fusion is available as a Debian package. Docker images will be published soon.
+
+<br/>
+
+{: .important}
+>There is not an installer for Windows and there are no plans for this.
+>The Debian package should run in WSL2 but this has not been tested.
+
+
+<br/>
+
+## Debian Package
+There is only an 64-bit build and there are no plans to release a 32-bit build.
+
+An ARM build will be available later.
+
+<br/>
+
+### Downloads
+
+| Version     | Link        |
+|:---|:---|
+|0.1.0 alpha|[Download](https://github.com/FusionCache/releases/tree/main/0.1)|
+
+
+## Run
+
+The package installs the server to `/usr/local/bin/fusioncache`, in which you'll find `fusionserver`.
+
+See [Run](run.md) for starting instructions.
+
+
+
+
+
+
+
+
+
+
