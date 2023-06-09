@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Stats
-nav_order: 16S
+nav_order: 16
 parent: API
 has_children: false
 ---
