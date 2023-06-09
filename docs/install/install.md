@@ -28,13 +28,29 @@ Fusion is available as a Debian package. Docker images will be published soon.
 
 <br/>
 
+### Clone
+You can clone the release repo:
+
+`git clone https://github.com/FusionCache/releases.git`
+
+Then `cd releases/0.1`.
+
+<br/>
+
+### Download
+To download from GitHub, click download then select the 'Download raw file' (icon with a down arrow).
+
 | Version     | Link        |
 |:---|:---|
-|0.1.0 alpha|[Download](https://github.com/FusionCache/releases/blob/main/0.1/fusioncache_0.1_amd64.deb)|
+|0.1|[Download](https://github.com/FusionCache/releases/blob/main/0.1/fusioncache_0.1_amd64.deb)|
 
+<br/>
 
-## Run
-The package installs the server to `/usr/local/bin/fusioncache`, in which you'll find `fusionserver`.
+## Install
+
+`sudo dpkg -i fusioncache_0.1_amd64.deb`
+ 
+This is installed to `/usr/local/bin/fusioncache`.
 
 See [Run](run.md) for starting instructions.
 
