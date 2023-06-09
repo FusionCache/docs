@@ -31,7 +31,7 @@ This is a standard HTTP request/response interface. All queries are accepted on 
 <br/>
 
 
-## WebSocket Normal
+## WebSocket Standard
 A standard HTTP connection, upgraded to a WebSocket.
 
 This is intended for typical queries, particularly those sent frequently.
