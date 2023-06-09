@@ -18,14 +18,13 @@ Fusion is available as a Debian package. Docker images will be published soon.
 <br/>
 
 ## Debian Package
-There is only a 64-bit build and no plans for a 32-bit build.
-
-An ARM build will be available later.
+- There is only a 64-bit build and no plans for a 32-bit build
+- An ARM build will be available later.
 
 <br/>
 
 {: .warning}
->Fusion is alpha, so no gaurantees are made and there may be breaking changes ahead.
+>Fusion is alpha, so there are no gaurantees and there may be breaking changes ahead.
 
 <br/>
 
