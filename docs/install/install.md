@@ -18,13 +18,16 @@ Fusion is available as a Debian package. Docker images will be published soon.
 <br/>
 
 ## Debian Package
-There is only an 64-bit build and there are no plans to release a 32-bit build.
+There is only a 64-bit build and no plans for a 32-bit build.
 
 An ARM build will be available later.
 
 <br/>
 
-### Downloads
+{: .warning}
+>Fusion is alpha, so no gaurantees are made and there may be breaking changes ahead.
+
+<br/>
 
 | Version     | Link        |
 |:---|:---|
@@ -32,7 +35,6 @@ An ARM build will be available later.
 
 
 ## Run
-
 The package installs the server to `/usr/local/bin/fusioncache`, in which you'll find `fusionserver`.
 
 See [Run](run.md) for starting instructions.
