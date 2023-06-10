@@ -71,11 +71,11 @@ Fusion ready
 }
 ```
 
-![Postman](quickstart_1_serverinfo.png "HTTP Get Request")
+![Postman](quickstart_1_serverinfo.png)
 
 5. Press Send and Fusion will return server information:
 
-![Postman](quickstart_2_serverinfo_rsp.png "Server Info Response")
+![Postman](quickstart_2_serverinfo_rsp.png)
 
 <br/>
 
@@ -161,7 +161,7 @@ To get the objects from the cache, we use `GET`, which requires an OID, which we
 
 The easiest way is to use the "Duplicate Tab" feature in Postman. Click the three dots and click "Duplicate selected tab":
 
-![Postman](quickstart_3_duplicatetab.png "Duplicate tab")
+![Postman](quickstart_3_duplicatetab.png)
 
 1. In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above. For this example, we do this:
 
