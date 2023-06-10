@@ -38,11 +38,18 @@ Then `cd releases/0.1`.
 <br/>
 
 ### Download
-To download from GitHub, click download then select the 'Download raw file' (icon with a down arrow).
+To download from GitHub:
+
+- Follow the link below
+- Click "Assets"
+- Download the "Source code" for the zip or tar.gz
+- The package is in the zip/tar.gz file
+
+<br/> 
 
 | Version     | Link        |
 |:---|:---|
-|0.1|[Download](https://github.com/FusionCache/releases/blob/main/0.1/fusioncache_0.1_amd64.deb)|
+|0.1|[Download](https://github.com/FusionCache/releases/releases)|
 
 <br/> 
 
