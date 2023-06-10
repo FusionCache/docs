@@ -70,10 +70,9 @@ Fusion ready
   }
 }
 ```
+5. Press Send and Fusion will return server information
 
 ![Postman](quickstart_1_serverinfo.png)
-
-5. Press Send and Fusion will return server information:
 
 ![Postman](quickstart_2_serverinfo_rsp.png)
 
@@ -202,7 +201,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 
 <br/>
 
-### Store More Objects
+## Store More Objects
 
 1. We'll store three more `Person` objects by replacing the first `STORE` with:
 ```json
@@ -242,9 +241,10 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 ```
 2. The response will show the OIDs for the three `Person` and three `Address` objects 
 
+<br/>
 
-### Find
-The `STORE` queries put The Rock and Jason Bourne in Paris, let's confirm that by searching the cache with `FIND`.
+## Find
+The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let's confirm that by searching the cache with `FIND`.
 
 1. In the tab that contains the `GET` query, replace the query with:
 ```json
