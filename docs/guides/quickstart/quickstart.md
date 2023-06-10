@@ -9,10 +9,10 @@ has_children: true
 # Quick Start
 This guide takes you from nothing to sending queries to Fusion:
 
-1. Install
-2. Run
-3. Store objects
-4. Query objects
+- Install
+- Run
+- Store objects
+- Query objects
 
 The guide uses Postman to query the server, which provides a cross-platform UI to create HTTP clients, including WebSocket clients.
 
@@ -34,8 +34,8 @@ The default ports are 1981 and 1982.
 
 If these ports are used by other software, you can use `--restQueryPort` or `--wsQueryPort`.
 
-1. Enter the install directory: `cd /usr/local/bin/fusioncache`
-2. Start: `./fusionserver --restQueryIp=127.0.0.1 --wsQueryIp=127.0.0.1`
+- Enter the install directory: `cd /usr/local/bin/fusioncache`
+- Start: `./fusionserver --restQueryIp=127.0.0.1 --wsQueryIp=127.0.0.1`
 
 The server will report similar to:
 
@@ -59,10 +59,10 @@ Fusion ready
 
 ## Server Info
 
-1. Open Postman and create a new HTTP `GET` request
-2. Ensure the request is `GET` and the address is `localhost:1981`
-3. Select `Body` tab, just under the address bar
-4. Inside `Body` tab, enter:
+- Open Postman and create a new HTTP `GET` request
+- Ensure the request is `GET` and the address is `localhost:1981`
+- Select `Body` tab, just under the address bar
+- Inside `Body` tab, enter:
 ```json
 {
   "SERVER_INFO":
@@ -70,7 +70,7 @@ Fusion ready
   }
 }
 ```
-5. Press Send and Fusion will return server information
+- Press Send and Fusion will return server information
 
 ![Postman](quickstart_1_serverinfo.png)
 
@@ -81,7 +81,7 @@ Fusion ready
 
 ## Create Class
 
-1. In Postman, replace the `SERVER_INFO` query with the following and press Send:
+- In Postman, replace the `SERVER_INFO` query with the following and press Send:
 
 ```json
 {
@@ -101,7 +101,7 @@ Fusion ready
 }
 ```
 
-2. This creates an `Address` and `Person` class. The `Person` class has an `address` member which type `Address`. The response has the two classes without errors:
+- This creates an `Address` and `Person` class. The `Person` class has an `address` member which type `Address`. The response has the two classes without errors:
 ```json
 {
   "CREATE_CLASSES_RSP":
@@ -115,7 +115,7 @@ Fusion ready
 
 ## Store Person and Address Objects
 
-1. Replace the `CREATE_CLASSES` query with:
+- Replace the `CREATE_CLASSES` query with:
 
 ```json
 {
@@ -136,8 +136,8 @@ Fusion ready
   }
 }
 ```
-2. This creates two objects - a `Person` and an `Address` object
-3. The response will be similar to this but with different `_oid` values:
+- This creates two objects - a `Person` and an `Address` object
+- The response will be similar to this but with different `_oid` values:
 ```json
 {
   "STORE_RSP": [
@@ -162,7 +162,7 @@ The easiest way is to use the "Duplicate Tab" feature in Postman. Click the thre
 
 ![Postman](quickstart_3_duplicatetab.png)
 
-1. In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above. For this example, we do this:
+- In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above. For this example, we do this:
 
 ```json
 {
@@ -175,7 +175,7 @@ The easiest way is to use the "Duplicate Tab" feature in Postman. Click the thre
   }
 }
 ```
-2. Press Send and the response will be as below but with different OIDs:
+- Press Send and the response will be as below but with different OIDs:
 ```json
 {
   "GET_RSP":
@@ -203,7 +203,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 
 ## Store More Objects
 
-1. We'll store three more `Person` objects by replacing the first `STORE` with:
+- We'll store three more `Person` objects by replacing the first `STORE` with:
 ```json
 {
   "STORE":
@@ -239,14 +239,14 @@ This shows how Fusion manages relationships between objects: the `Person` class 
   }
 }
 ```
-2. The response will show the OIDs for the three `Person` and three `Address` objects 
+- The response will show the OIDs for the three `Person` and three `Address` objects 
 
 <br/>
 
 ## Find
 The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let's confirm that by searching the cache with `FIND`.
 
-1. In the tab that contains the `GET` query, replace the query with:
+- In the tab that contains the `GET` query, replace the query with:
 ```json
 {
   "FIND":
@@ -261,4 +261,4 @@ The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let'
   }
 }
 ```
-2. This says, "Return the `Person` objects with `Person::address::city` equal to "Paris". The `FIND_RSP` response has the `Person` objects for Jason Bourne and The Rock.
+- This says, "Return the `Person` objects with `Person::address::city` equal to "Paris". The `FIND_RSP` response has the `Person` objects for Jason Bourne and The Rock.
