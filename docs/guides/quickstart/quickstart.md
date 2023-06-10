@@ -63,6 +63,7 @@ Fusion ready
 - Ensure the request is `GET` and the address is `localhost:1981`
 - Select `Body` tab, just under the address bar
 - Inside `Body` tab, enter:
+
 ```json
 {
   "SERVER_INFO":
@@ -102,6 +103,7 @@ Fusion ready
 ```
 
 - This creates an `Address` and `Person` class. The `Person` class has an `address` member which type `Address`. The response has the two classes without errors:
+
 ```json
 {
   "CREATE_CLASSES_RSP":
@@ -111,6 +113,7 @@ Fusion ready
   }
 }
 ```
+
 <br/>
 
 ## Store Person and Address Objects
@@ -138,6 +141,7 @@ Fusion ready
 ```
 - This creates two objects - a `Person` and an `Address` object
 - The response will be similar to this but with different `_oid` values:
+
 ```json
 {
   "STORE_RSP": [
@@ -176,6 +180,7 @@ The easiest way is to use the "Duplicate Tab" feature in Postman. Click the thre
 }
 ```
 - Press Send and the response will be as below but with different OIDs:
+
 ```json
 {
   "GET_RSP":
@@ -204,6 +209,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 ## Store More Objects
 
 - We'll store three more `Person` objects by replacing the first `STORE` with:
+
 ```json
 {
   "STORE":
@@ -247,6 +253,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let's confirm that by searching the cache with `FIND`.
 
 - In the tab that contains the `GET` query, replace the query with:
+
 ```json
 {
   "FIND":
