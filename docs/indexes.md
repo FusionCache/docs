@@ -21,9 +21,9 @@ In Fusion, the topic is an object member's value (`surname` is "Smith") and the 
 
 
 ## Performance
-Indexes increase store, delete and update because the index has to be managed, but it will dramatically reduce search time.
+Indexes increase store, delete and update latency because indexes have to be managed, but it reduces search time.
 
-For example, a cache with only 500,000 key-value objects. We do a `FIND` for a `key`, we can compare the query metrics with `key` indexed and not indexed.
+For example, we a cache with only 500,000 key-value objects. We do a `FIND` for a `key`: 
 
 
 ```json
@@ -39,25 +39,13 @@ For example, a cache with only 500,000 key-value objects. We do a `FIND` for a `
 }
 ```
 
+We can compare execution time with `k` being indexed and not indexed.
 
 The [metrics](api-metrics.md) include time to search index and non-indexed terms, so we can compare the `_indexes` and `_nonIndexes` values. 
 
-When `k` is indexed, only `_indexes` is relevant, and `k` is not indexed, only `_nonIndexed` is relevant:
+- When `k` is indexed, only `_indexes` is relevant
+- When `k` is not indexed, only `_nonIndexed` is relevant:
 
-`k` is indexed:
-
-```json
-{
-  "_metrics":
-  {
-    "_qryQueue": 3,
-    "_executor": 30,
-    "_indexes": 10,
-    "_nonIndexes": 0,
-    "_total": 78
-  }
-}
-```
 
 `k` is not indexed:
 
@@ -74,9 +62,25 @@ When `k` is indexed, only `_indexes` is relevant, and `k` is not indexed, only `
 }
 ```
 
+`k` is indexed:
+
+```json
+{
+  "_metrics":
+  {
+    "_qryQueue": 3,
+    "_executor": 30,
+    "_indexes": 10,
+    "_nonIndexes": 0,
+    "_total": 78
+  }
+}
+```
+
+
 This tells us:
 
-- When `k` is indexed, it takes 10 microseconds to lookup the index
+- When `k` is indexed, it takes 10 microseconds to perform the index 
 - When `k` is not indexed, it takes 115699 microseconds (~116ms) to search all 500k objects
 
 <br/>
@@ -84,7 +88,11 @@ This tells us:
 These differences are further realised when comparing a query with multiple terms.
 
 
-For example, a cache for customer orders with classes: `Customer` which has an `Address` and array of `Order`, and each `Order` has an array of `OrderItem`. 
+For example, a cache for customer orders with a `Customer` class:
+
+- `Customer::address` is an `Address`
+- `Customer::orders` is array of `Order`
+- Each `Order` has an `items` member, which is an array of `OrderItem`. 
 
 Find customers who live in "Derwood" that have ordered an item called "Apextri":
 
@@ -112,7 +120,7 @@ Find customers who live in "Derwood" that have ordered an item called "Apextri":
 }
 ```
 
-We compare with and without `Address::city` and `OrderItem::name` indexed.
+We compare with `Address::city` and `OrderItem::name` indexed.
 
 
 No indexes:
@@ -180,7 +188,7 @@ A `Customer` class with an indexed `surname` member:
 ```
 
 - Lookup the `surname` index
-- If none, return an empty response is returned
+- If none, return an empty response
 - Else the objects for "Smith" are returned
 
 
@@ -188,7 +196,7 @@ A `Customer` class with an indexed `surname` member:
 
 
 ### One Indexed Term and One Non-Indexed
-If there is one indexed term and one non-indexed term:
+If `surname` is indexed and `forename` is not indexed:
 
 ```json
 {
