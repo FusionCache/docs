@@ -7,7 +7,7 @@ parent: API
 
 # API Format
 
-Documenting JSON can become confusing because of nested levels and non-standard comments, so placeholders are used to represent values:
+Documenting JSON can become confusing because of nested levels and non-standard comments, so placeholders are used to represent values.
 
 The documentation refers to simple and complex types:
 

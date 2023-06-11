@@ -18,6 +18,12 @@ This is because some responses are arrays whilst others are objects, so it is ea
 <br/>
 
 ## Error Response
+
+{: .important}
+> An error response on the REST interface is sent has the status field set to 400 (Bad Request)
+
+<br/>
+
 An error response is general form:
 
 ```json

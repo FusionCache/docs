@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Count
-nav_order: 12
+nav_order: 17
 parent: API
 has_children: false
 ---
