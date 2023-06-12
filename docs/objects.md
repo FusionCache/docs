@@ -46,6 +46,26 @@ If the `Person` class has an `address` member which is an `Address` type:
 
 ```json
 {
+  "CREATE_CLASSES":
+  {    
+    "Address":
+    {
+      "city":"string"
+    },
+    "Person":
+    {
+      "forename":"string",
+      "surname":"string",
+      "address":"Address"
+    }
+  }
+}
+```
+
+We can cache a `Person` with their `Address`:
+
+```json
+{
   "STORE":
   {
     "_class":"Person",
@@ -75,10 +95,11 @@ Two objects are created, one for `Person` and another for `Address`. Each has a 
 
 The response to the `STORE` query is a `STORE_RSP` which contains the OID for the `Person` and `Address` objects. 
 
-Fusion manages the relationship between the `Person` and `Address` OIDs. This means when you retrieve the `Person` object using its OID, the `Address` can also be returned.
+Fusion manages the relationship between the `Person` and `Address` OIDs, recording this `Person` OID has a link to that `Address` OID.
 
+This means when you retrieve the `Person` object, the `Address` can also be returned.
 
-Query:
+Retrieve the `Person` object using the OID:
 ```json
 {
   "GET":
@@ -114,7 +135,9 @@ Response:
   }
 }
 ```
-The link between the `Person` and `Address` OID is tracked by Fusion, so the `Address` object is returned with the `Person`.
+<br/>
+
+OIDs are returned in the `STORE` response (`STORE_RSP`) and by [`FIND`](find/find.md).
 
 <br/>
 
@@ -134,4 +157,4 @@ Creating separate objects allows Fusion to track the relationships and for objec
 }
 ```
 
-Now the James Smith lives in Paris - because the updated `Address` OID is linked to the `Person` object for James Smith.
+Now James Smith lives in Paris - because the updated `Address` OID is linked to the `Person` object for James Smith.

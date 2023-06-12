@@ -150,3 +150,4 @@ The general response structure is:
 }
 ```
 
+See [Examples](find-examples.md).
