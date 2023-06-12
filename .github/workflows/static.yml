@@ -26,23 +26,23 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}/0.1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: Upload
-        uses: sphinx-notes/pages@v3
+      #- name: Upload
+      #  uses: sphinx-notes/pages@v3
+      #  with:
+      #    documentation_path: docs/
+      #    target_path: docs/0.1/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          documentation_path: docs/
-          target_path: docs/0.1/
-      #- name: Upload artifact
-       # uses: actions/upload-pages-artifact@v1
-        #with:
           # it publishes the 'docs' folder as .md files
-         # path: "./"
+          path: "./"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
