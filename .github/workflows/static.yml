@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # it publishes the 'docs' folder as .md files
-          path: "./"
+          path: "./0.1/"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
