@@ -140,15 +140,19 @@ Fusion ready
 }
 ```
 - This creates two objects - a `Person` and an `Address` object
-- The response will be similar to this but with different `_oid` values:
+- Your response will have different `_oid` values:
 
 ```json
 {
-  "STORE_RSP": [
+  "STORE_RSP":
+  [
     {
-      "Person": {
-        "address": {
-          "Address": {
+      "Person":
+      {
+        "address":
+        {
+          "Address":
+          {
             "_oid": "6201f873-67c1-495b-a20a-23356b401635"
           }
         },
@@ -159,14 +163,23 @@ Fusion ready
 }
 ```
 
-## Get Object
-To get the objects from the cache, we use `GET`, which requires an OID, which we have in the `STORE_RSP`. 
+- Because `Person::address` is a class type (`Address`) a new object is created
+- The OID for each object is returned:
+  - Person: `a1eca163-7d2f-40d0-a6fc-ba717ba19930`
+  - Address: `6201f873-67c1-495b-a20a-23356b401635`
 
-The easiest way is to use the "Duplicate Tab" feature in Postman. Click the three dots and click "Duplicate selected tab":
+<br/>
+
+## Get Object
+`STORE_RSP` returned the OIDs for cached objects. When we know the OID for an object we want, we can use `GET` to retrieve the objejct from cache. 
+
+We can reduce typing by using the "Duplicate Tab" feature in Postman. Click the three dots and click "Duplicate selected tab":
 
 ![Postman](quickstart_3_duplicatetab.png)
 
-- In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above. For this example, we do this:
+- In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above.
+
+For this example, we do this:
 
 ```json
 {
@@ -208,6 +221,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 
 ## Store More Objects
 
+- `_objects` is an array so we can cache multiple objects in a single query
 - We'll store three more `Person` objects by replacing the first `STORE` with:
 
 ```json
@@ -250,7 +264,7 @@ This shows how Fusion manages relationships between objects: the `Person` class 
 <br/>
 
 ## Find
-The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let's confirm that by searching the cache with `FIND`.
+The `STORE` queries stored Jason Bourne and The Rock's `Address::city` as Paris, let's confirm that by searching the cache with `FIND`.
 
 - In the tab that contains the `GET` query, replace the query with:
 
@@ -268,4 +282,104 @@ The `STORE` queries set Jason Bourne and The Rock `Address::city` as Paris, let'
   }
 }
 ```
-- This says, "Return the `Person` objects with `Person::address::city` equal to "Paris". The `FIND_RSP` response has the `Person` objects for Jason Bourne and The Rock.
+- This says, "Return the `Person` objects with `Person::address::city` equal to "Paris". The `FIND_RSP` response has the `Person` objects for Jason Bourne and The Rock
+- The response is:
+
+```json
+{
+  "FIND_RSP": [
+    {
+      "Person": {
+        "forename": "The",
+        "surname": "Rock",
+        "address": {
+          "Address": {
+            "city": "Paris",
+            "_oid": "f2f16fac-4915-4cfa-9478-cde45ef4f083"
+          }
+        },
+        "_oid": "2207bdd2-43f5-4a72-81a3-1a089f2fcb87"
+      }
+    },
+    {
+      "Person": {
+        "forename": "Jason",
+        "surname": "Bourne",
+        "address": {
+          "Address": {
+            "city": "Paris",
+            "_oid": "0efed7d3-7962-492c-9f40-00ba0ae5c6ca"
+          }
+        },
+        "_oid": "292497b0-6c57-4ca9-b297-9c75cbbb58fc"
+      }
+    }
+  ]
+}
+```
+
+
+<br/>
+
+## Update
+The Rock moves Moscow so we need to update his address. This is simple because the `Address` is a separate object so all we need is the OID for his `Address`.
+
+The OID for The Rock's address was returned in `FIND_RSP` above so we can use `UPDATE` with the `Address` OID:
+
+```json
+{
+  "UPDATE":
+  {
+    "Address":
+    {
+      "_oids":["f2f16fac-4915-4cfa-9478-cde45ef4f083"],
+      "city":"Moscow"
+    }
+  }
+}
+```
+
+- The root class is `Address` because we're updating an `Address` object
+- We set `_oids` for the object to update. If we don't set this we'll update all Address objects (everyone will live in Moscow)
+
+Let's confirm the update. We'll use `GET` on the `Person` object for The Rock:
+
+```json
+{
+  "GET":
+  { 
+    "Person":
+    {
+      "_oids":["2207bdd2-43f5-4a72-81a3-1a089f2fcb87"]
+    }
+  }
+}
+```
+
+With response:
+
+```json
+{
+  "GET_RSP":
+  {
+    "_class":"Person",
+    "_objects":
+    [
+      {
+        "forename": "The",
+        "surname": "Rock",
+        "address":
+        {
+          "Address":
+          {
+            "city": "Moscow",
+            "_oid": "f2f16fac-4915-4cfa-9478-cde45ef4f083"
+          }
+        },
+        "_oid": "2207bdd2-43f5-4a72-81a3-1a089f2fcb87"
+      }
+    ]
+  }
+}
+```
+- 

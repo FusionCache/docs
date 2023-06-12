@@ -182,7 +182,6 @@ Is represented as:
 An array of objects returned from the cache:
 
 ```json
-
 "FIND_RSP":
 [
   {
@@ -208,7 +207,6 @@ An array of objects returned from the cache:
     }
   }
 ]
-
 ```
 
 <br/>

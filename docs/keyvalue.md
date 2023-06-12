@@ -206,16 +206,20 @@ This returns:
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "kv":
+  {
+    "_class":"kv",
+    "_objects":
+    [
       {
-        "k": "user1_account_balance",
-        "v": 200.6,
-        "_oid": "143c18f2-3d34-4eea-98f6-c682996ff1af"
+        "kv":
+        {
+          "k": "user1_account_balance",
+          "v": 200.6,
+          "_oid": "143c18f2-3d34-4eea-98f6-c682996ff1af"
+        }
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 

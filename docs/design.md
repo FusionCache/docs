@@ -91,9 +91,7 @@ This may seem a huge disadvantage, but there is an advantage: although there can
 
 
 {: .important}
-> There is an opportunity to execute multiple write queries in certain circumstances: if write queries are writing to different and unrelated Fusion classes, they can run independently. This will be considered in the future.
->
->"Fusion classes" here refers to the classes you create in the cache, not classes in the Fusion code.
+> There is an opportunity to execute multiple write queries. This will be investigated for a future release.
 
 
 <br/>

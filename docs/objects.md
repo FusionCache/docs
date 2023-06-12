@@ -103,19 +103,23 @@ Fusion also stores the link between these `Person` and `Address` OIDs. This mean
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "forename":"James",
-      "surname":"Smith",
-      "address":
+  {
+    "_class":"Person",
+    "_objects":
+    [
       {
-        "Address":
+        "forename":"James",
+        "surname":"Smith",
+        "address":
         {
-          "city":"Paris"
-        }          
+          "Address":
+          {
+            "city":"Paris"
+          }          
+        }
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 

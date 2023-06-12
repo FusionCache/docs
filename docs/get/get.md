@@ -57,9 +57,13 @@ General form:
 ```json
 {
   "GET_RSP":
-  [
-    <CachedObjects>
-  ]
+  {
+    "_class":"<RootClass>",
+    "_objects":
+    [
+      <CachedObjects>
+    ]
+  }
 }
 ```
 
@@ -95,35 +99,39 @@ Response:
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "id": "user3@email.com",
-      "expire": 123456789,
-      "accessRights":
+  {
+    "_class":"Session",
+    "_objects":
+    [
       {
-        "Access":
+        "id": "user3@email.com",
+        "expire": 123456789,
+        "accessRights":
         {
-          "create": true,
-          "delete": false,
-          "_oid": "3ac5ceef-b1b1-4caa-a3b9-00d5e339d2c3"
-        }
+          "Access":
+          {
+            "create": true,
+            "delete": false,
+            "_oid": "3ac5ceef-b1b1-4caa-a3b9-00d5e339d2c3"
+          }
+        },
+        "_oid": "be0db3f3-1554-451c-8829-1ec0a275139d"
       },
-      "_oid": "be0db3f3-1554-451c-8829-1ec0a275139d"
-    },
-    {
-      "id": "user4@email.com",
-      "expire": 123456789,
-      "accessRights":
       {
-        "Access":
+        "id": "user4@email.com",
+        "expire": 123456789,
+        "accessRights":
         {
-          "create": false,
-          "delete": false,
-          "_oid": "ea9a18eb-cd04-4284-a17c-c13bc78d81c7"
-        }
-      },
-      "_oid": "de70fe0e-4e0d-47cb-9b66-929af599d1ff"
-    }
-  ]
+          "Access":
+          {
+            "create": false,
+            "delete": false,
+            "_oid": "ea9a18eb-cd04-4284-a17c-c13bc78d81c7"
+          }
+        },
+        "_oid": "de70fe0e-4e0d-47cb-9b66-929af599d1ff"
+      }
+    ]    
+  }
 }
 ```

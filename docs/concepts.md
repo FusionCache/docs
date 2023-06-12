@@ -169,16 +169,17 @@ The response is:
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "Person":
+  {
+    "_class":"Person",
+    "_objects":
+    [    
       {
         "forename":"Susan",
         "surname":"Boyle",
         "_oid":"04546b65-7176-48c4-83ef-49912b753497"
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 
@@ -315,22 +316,26 @@ The response is:
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "forename":"Susan",
-      "surname":"Boyle",
-      "address":
+  {
+    "_class":"Person",
+    "_objects":
+    [ 
       {
-        "Address":
+        "forename":"Susan",
+        "surname":"Boyle",
+        "address":
         {
-          "area":"Love Island",
-          "city":"New York",            
-          "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
-        }
-      },
-      "_oid":"9f0d0983-686e-42e1-99f4-02c8a003bab1"        
-    }
-  ]
+          "Address":
+          {
+            "area":"Love Island",
+            "city":"New York",            
+            "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
+          }
+        },
+        "_oid":"9f0d0983-686e-42e1-99f4-02c8a003bab1"        
+      }
+    ]
+  }
 }
 ```
 </td>    
