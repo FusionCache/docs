@@ -35,29 +35,14 @@ When an object is stored:
 }
 ```
 
-An OID is generated for that object and a mapping from the OID to the object is created. If we have three `Person` objects it is visualised as (the OIDS are pseudo for clarity):
+An OID is generated for that object and a mapping from the OID to the object is created:
 
 
-![Oid to objects map](images/objects_oidobjectmap.svg)
+![Oid to objects map](images/objects_1_storetobject.png)
 
 
-When you use `GET`:
 
-```json
-{
-  "GET":
-  {
-    "Person":
-    {
-      "_oids":["abcdefgh-1234"]
-    }
-  }
-}
-```
-
-This map is used to get the object. 
-
-Similarly, if the `Person` class has an `address` member which is an `Address` type:
+If the `Person` class has an `address` member which is an `Address` type:
 
 ```json
 {
@@ -79,27 +64,34 @@ Similarly, if the `Person` class has an `address` member which is an `Address` t
 }
 ```
 
-Two objects are created, one for `Person` and another for `Address`, and each has a unique OID and separate OID to object mappings:
+Two objects are created, one for `Person` and another for `Address`. Each has a unique OID:
 
-![Oid to objects map](images/objects_oidobjectmap2.svg)
+<br/>
+
+![Oid to objects map](images/objects_2_storetobject.png)
 
 
 <br/>
 
-Fusion also stores the link between these `Person` and `Address` OIDs. This means when you retrieve the `Person` object, the `Address` can also be returned:
+The response to the `STORE` query is a `STORE_RSP` which contains the OID for the `Person` and `Address` objects. 
 
+Fusion manages the relationship between the `Person` and `Address` OIDs. This means when you retrieve the `Person` object using its OID, the `Address` can also be returned.
+
+
+Query:
 ```json
 {
   "GET":
   {
     "Person":
     {
-      "_oids":["acbdefh-1234"]
+      "_oids":["94e57e91-5161-41fd-9c17-82279aa4f7dc"]
     }
   }
 }
 ```
 
+Response:
 ```json
 {
   "GET_RSP":
@@ -122,9 +114,24 @@ Fusion also stores the link between these `Person` and `Address` OIDs. This mean
   }
 }
 ```
+The link between the `Person` and `Address` OID is tracked by Fusion, so the `Address` object is returned with the `Person`.
 
-{: .important}
-> Note 
->
-> The `Person::address` contains the `city` in an `Address` object because of an intent to support inheritance. If a member is a base type, such as `Vehicle`, then the caller must be told type concrete type (`Car`, `Bus`, etc).
+<br/>
 
+## Relationships
+Creating separate objects allows Fusion to track the relationships and for objects to be retrieved, deleted and updated separately. In the example above, the `Address` can be updated so the `city` is changed from "London" to "Paris":
+
+```json
+{
+  "UPDATE":
+  {
+    "Address":
+    {
+      "_oids":["4295a815-b983-4cbb-a97d-1859c785d84f"],
+      "city":"Paris"
+    }
+  }
+}
+```
+
+Now the James Smith lives in Paris - because the updated `Address` OID is linked to the `Person` object for James Smith.
