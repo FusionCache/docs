@@ -201,7 +201,7 @@ Some final points:
 ## Relations
 As with programming language classes, a member of a Fusion class can be a class type.
 
-For example, if we cache data for people, would could have a `Person` class with forename, surname, city and area, but it is better encaspulate the address data in a separate `Address` class:
+For example, if we cache data for people, we could have a `Person` class with forename, surname, city and area, but it is better encaspulate the address data in a separate `Address` class:
 
 
 <table>
@@ -254,8 +254,8 @@ Fusion can manage the relationship between the Person and Address:
     "_objects":
     [
       {
-        "forename":"Sean",
-        "surname":"Connory",
+        "forename":"Susan",
+        "surname":"Boyle",
         "address":
         {
           "area":"Love Island",
@@ -379,13 +379,17 @@ The `Address` is a separate object so we can `GET` only the `Address` object if 
 ```json
 {
   "GET_RSP":
-  [
-    {
-      "area":"Love Island",
-      "city":"New York",        
-      "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
-    }
-  ]
+  {
+    "_class":"Address",
+    "_objects":
+    [
+      {
+        "area":"Love Island",
+        "city":"New York",        
+        "_oid":"5838e71e-2a01-4065-9f3a-110433f75097"
+      }
+    ]    
+  }
 }
 ```
 </td>
@@ -393,7 +397,7 @@ The `Address` is a separate object so we can `GET` only the `Address` object if 
 </table>
 
 
-Finally, this relationship can be used when using `FIND` to search:
+This relationship can be used when using `FIND` to search:
 
 
 <table>
