@@ -32,7 +32,7 @@ There are three query interfaces:
 - WebSocket Standard
 - WebSocket Bulk
 
-The bulk interface can assign a larger buffer per query which is useful when receiving large queries, such as a `STORE` with thousands of objects . In most cases, queries are likely much smaller, so the normal interface can be used.
+The bulk interface can assign a larger buffer per query which is useful when receiving large queries, such as a `STORE` with thousands of objects . In most cases, queries are likely much smaller, so the standard interface is used.
 
 <br/>
 
