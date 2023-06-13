@@ -46,6 +46,4 @@ A standard WebSocket, except it will accept larger queries and disallows the fol
 - `UPDATE`
 - `GET`
 
-This interface is intended to store bulk hundreds of objects per query, possibly on startup when initial data is required.
-
-Due to the large query sizes it is intended for high transfer networks rather than over typical internet transfer rates.
+This interface is intended to store hundreds of objects per query, possibly on startup when initial data is required. It is more efficient to send one large or a few medium sized `STORE` queries rather than many small queries, for example if storing thousands of objects.

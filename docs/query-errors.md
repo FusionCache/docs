@@ -6,7 +6,7 @@ parent: API
 ---
 
 # Query Errors
-Errors in queries are reported in an specific response.
+Errors in queries are reported in a specific response.
 
 The response is the query name with `_RSP_ERR` appended (i.e. the normal response with `_ERR` appended):
 
