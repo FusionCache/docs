@@ -117,19 +117,21 @@ Response:
 {
   "GET_RSP":
   {
-    "_class":"Person",
+    "_class": "Person",
     "_objects":
     [
       {
-        "forename":"James",
-        "surname":"Smith",
+        "forename": "James",
+        "surname": "Smith",
         "address":
         {
           "Address":
           {
-            "city":"Paris"
-          }          
-        }
+            "city": "Paris",
+            "_oid": "82e1f914-845a-4ea5-9cfe-d3121f0a4444"
+          }
+        },
+        "_oid": "363aa7c2-8ed9-4502-817e-74bc97b10cc8"
       }
     ]
   }
@@ -142,7 +144,9 @@ OIDs are returned in the `STORE` response (`STORE_RSP`) and by [`FIND`](find/fin
 <br/>
 
 ## Relationships
-Creating separate objects allows Fusion to track the relationships and for objects to be retrieved, deleted and updated separately. In the example above, the `Address` can be updated so the `city` is changed from "London" to "Paris":
+Creating separate objects allows Fusion to track the relationships and for objects to be retrieved, deleted and updated separately.
+
+In the example above, the `Address` can be updated so the `city` is changed from "London" to "Paris" by using the `Address` OID:
 
 ```json
 {
@@ -150,7 +154,7 @@ Creating separate objects allows Fusion to track the relationships and for objec
   {
     "Address":
     {
-      "_oids":["4295a815-b983-4cbb-a97d-1859c785d84f"],
+      "_oids":["82e1f914-845a-4ea5-9cfe-d3121f0a4444"],
       "city":"Paris"
     }
   }
