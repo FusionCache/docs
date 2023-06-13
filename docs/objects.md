@@ -93,7 +93,28 @@ Two objects are created, one for `Person` and another for `Address`. Each has a 
 
 <br/>
 
-The response to the `STORE` query is a `STORE_RSP` which contains the OID for the `Person` and `Address` objects. 
+The response to the `STORE` query is a `STORE_RSP` which contains the OID for the `Person` and `Address` objects:
+
+```json
+{
+  "STORE_RSP":
+  [
+    {
+      "Person":
+      {
+        "address":
+        {
+          "Address":
+          {
+            "_oid": "82e1f914-845a-4ea5-9cfe-d3121f0a4444"
+          }
+        },
+        "_oid": "363aa7c2-8ed9-4502-817e-74bc97b10cc8"
+      }
+    }
+  ]
+}
+```
 
 Fusion manages the relationship between the `Person` and `Address` OIDs, recording this `Person` OID has a link to that `Address` OID.
 
@@ -106,7 +127,7 @@ Retrieve the `Person` object using the OID:
   {
     "Person":
     {
-      "_oids":["94e57e91-5161-41fd-9c17-82279aa4f7dc"]
+      "_oids":["363aa7c2-8ed9-4502-817e-74bc97b10cc8"]
     }
   }
 }
