@@ -51,7 +51,7 @@ Fusion is still in alpha and has limitations:
 
 
 ## Install
-Fusion is only available as a Debian package.
+Fusion is available as a Debian package. An Alpine Linux based Docker image will released soon.
 
 
 {: .important}
