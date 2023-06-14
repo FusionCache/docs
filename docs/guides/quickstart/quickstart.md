@@ -7,10 +7,11 @@ has_children: false
 ---
 
 # Quick Start
-This guide takes you from nothing to sending queries to Fusion:
+This guide covers:
 
 - Install
 - Run
+- Using [Postman](https://www.postman.com/)
 - Store objects
 - Query objects
 
@@ -28,11 +29,14 @@ Follow the [Install](../../install/install.md) instructions to download and inst
 <br/>
 
 # Run
-The [Run](../../install/run.md) contains full instructions but for this guide we can start with Rest and WS Standard interfaces on localhost, default buffer sizes and ports.
+[Run](../../install/run.md) contains full instructions but for this guide we only need:
+
+- Rest and WS Standard interfaces on localhost
+- Default buffer sizes and ports
 
 The default ports are 1981 and 1982.
 
-If these ports are used by other software, you can use `--restQueryPort` or `--wsQueryPort`.
+If these ports are unavailable, you can change Fusion's ports with `--restQueryPort` or `--wsQueryPort`.
 
 - Enter the install directory: `cd /usr/local/bin/fusioncache`
 - Start: `./fusionserver --restQueryIp=127.0.0.1 --wsQueryIp=127.0.0.1`
@@ -102,7 +106,8 @@ Fusion ready
 }
 ```
 
-- This creates an `Address` and `Person` class. The `Person` class has an `address` member which type `Address`. The response has the two classes without errors:
+- This creates an `Address` and `Person` class. The `Person` class has an `address` member which is type `Address`
+- The response is a `CREATE_CLASSES_RSP`. If there's an error, you'll receive `CREATE_CLASSES_RSP_ERR`
 
 ```json
 {
@@ -140,7 +145,7 @@ Fusion ready
 }
 ```
 - This creates two objects - a `Person` and an `Address` object
-- Your response will have different `_oid` values:
+- The `STORE_RSP` contains the two OIDs (Object IDs) - your response will have different `_oid` values:
 
 ```json
 {
@@ -171,15 +176,16 @@ Fusion ready
 <br/>
 
 ## Get Object
-`STORE_RSP` returned the OIDs for cached objects. When we know the OID for an object we want, we can use `GET` to retrieve the objejct from cache. 
+`STORE_RSP` returned the OIDs for the cached objects. When we know the OID for an object, we can use `GET` to retrieve the object from cache. 
 
 We can reduce typing by using the "Duplicate Tab" feature in Postman. Click the three dots and click "Duplicate selected tab":
 
 ![Postman](quickstart_3_duplicatetab.png)
 
-- In the new tab, select "Body". In the following query, you must set the OID in `_oids` to the `Person::_oid` returned in the `STORE_RSP` above.
+- In the new tab, select "Body"
+- In the following query, you must set `_oids` value to the `Person::_oid` returned in the `STORE_RSP` above.
 
-For this example, we do this:
+For this example, we do:
 
 ```json
 {
@@ -282,8 +288,8 @@ The `STORE` queries stored Jason Bourne and The Rock's `Address::city` as Paris,
   }
 }
 ```
-- This says, "Return the `Person` objects with `Person::address::city` equal to "Paris". The `FIND_RSP` response has the `Person` objects for Jason Bourne and The Rock
-- The response is:
+- This says, "Return the `Person` objects with `Person::address::city` equal to "Paris"
+- `FIND_RSP` has the `Person` objects for Jason Bourne and The Rock
 
 ```json
 {
@@ -322,7 +328,7 @@ The `STORE` queries stored Jason Bourne and The Rock's `Address::city` as Paris,
 <br/>
 
 ## Update
-The Rock moves Moscow so we need to update his address. This is simple because the `Address` is a separate object so all we need is the OID for his `Address`.
+The Rock moves to Moscow so we need to update his address. This is simple because the `Address` is a separate object so all we need is the OID for his `Address`.
 
 The OID for The Rock's address was returned in `FIND_RSP` above so we can use `UPDATE` with the `Address` OID:
 
@@ -382,4 +388,3 @@ With response:
   }
 }
 ```
-- 
