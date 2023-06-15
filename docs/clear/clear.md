@@ -42,7 +42,7 @@ Root class is not permitted.
 ## Response
 `CLEAR_RSP`
 
-The response is a `CLEAR_RSP` object which contains `_cnt`, and integer of how many objects were deleted.
+The response is a `CLEAR_RSP` object which contains `_cnt`, an integer value of how many objects were deleted.
 
 
 ```json

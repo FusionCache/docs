@@ -76,7 +76,7 @@ For example, if we create classes:
 }
 ```
 
-We have `Session::id` member is indexed. We then `STORE` two objects:
+We have a `Session::id` member which is indexed. We then `STORE` two objects:
 
 ```json
 {
