@@ -28,7 +28,7 @@ The `Person` class has string, integer, bool and decimal members:
       }
     },
     "_objects":
-    {
+    [
       {
         "forename":"James",
         "surname":"Smith",
@@ -36,7 +36,7 @@ The `Person` class has string, integer, bool and decimal members:
         "height":165.5,
         "employed":true
       }
-    }
+    ]
   }
 }
 ```
@@ -52,7 +52,7 @@ The `Person` class has string, integer, bool and decimal members:
   {
     "_class":"Person",
     "_objects":
-    {
+    [
       {
         "forename":"James",
         "surname":"Smith",
@@ -60,7 +60,7 @@ The `Person` class has string, integer, bool and decimal members:
         "height":165.5,
         "employed":true
       }
-    }
+    ]
   }
 }
 ```
@@ -77,7 +77,7 @@ The `Person` class has string, integer, bool and decimal members:
   {
     "_class":"Person",
     "_objects":
-    {
+    [
       {
         "forename":"James",
         "surname":"Smith",
@@ -92,7 +92,7 @@ The `Person` class has string, integer, bool and decimal members:
         "height":135.0,
         "employed":false
       }
-    }
+    ]
   }
 }
 ```
@@ -108,7 +108,7 @@ The `Order` class has a `decimal` member `total` and an array of `Item`.
   {
     "_class":"Order",
     "_objects":
-    {
+    [
       {
         "total":900.00,
         "items":
@@ -129,7 +129,7 @@ The `Order` class has a `decimal` member `total` and an array of `Item`.
           }
         ]
       }
-    }
+    ]
   }
 }
 ```
