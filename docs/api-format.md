@@ -57,8 +57,7 @@ In queries that don't use `_class`, the root class is the first object that's no
 }
 ```
 
-```Customer``` is the root class.
-
+`Customer` is the root class.
 
 
 ---
