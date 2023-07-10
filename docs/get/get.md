@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Get
-nav_order: 15
+nav_order: 16
 parent: API
 has_children: false
 ---
@@ -17,7 +17,7 @@ If a client requires an object regularly or must refresh the values (i.e. anothe
 
 
 ## Type
-Array
+Object
 
 <br/>
 
@@ -39,7 +39,7 @@ General form:
 {
   "GET":
   {
-    "<RootClass>":
+    "<ClassName>":
     {
       "_oids":<OidArray>
     }
@@ -58,7 +58,7 @@ General form:
 {
   "GET_RSP":
   {
-    "_class":"<RootClass>",
+    "_class":"<ClassName>",
     "_objects":
     [
       <CachedObjects>
