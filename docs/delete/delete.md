@@ -30,8 +30,8 @@ Object
 <br/>
 
 ## Detail
-- A `<RootClass>` must be supplied
-- The `_oids` array must be for objects of `<RootClass>` type
+- A `<ClassName>` must be supplied
+- The `_oids` array must be for objects of `<ClassName>` type
 - No terms are permittted
 
 
@@ -53,7 +53,7 @@ A `DELETE_RSP` is returned as:
   {
     <RootClass>:
     {
-      "_cnt":<int>
+      "_cnt":<unsigned int>
     }    
   }
 }
