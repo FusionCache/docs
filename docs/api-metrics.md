@@ -56,10 +56,9 @@ Queries without a root class:
 A query is processed as: 
 
 1. Query received by the network interface
-2. Query pushed on to the query queue
-3. Query popped from the queue and sent to the executor
-4. Execute the query and create the response
-5. Query response passed to the network interface to send
+2. Query is either executed immediately or pushed on to the query queue (see [Design](design.md))
+3. Execute the query and create the response
+4. Query response passed to the network interface to send
 
 <br/>
 
@@ -71,6 +70,7 @@ The structure is:
 
 | Metric     |  Description    | Relevant Queries |
 |:-----       |:-------         |:---- |
+| _qryQueued  | Boolean. `true` if the query was queued. `false` means the query was executed without being queued  | All
 | _qryQueue   | How long the query was on the query queue | All |
 | _executor   | Duration of the executor | All |
 | _indexes    | Duration to lookup indexes | `FIND`<br/>`COUNT`<br/>`UPDATE` with terms<br/>`DELETE` with terms |
@@ -126,16 +126,20 @@ The response is:
 
 ```json
 {
-  "FIND_RSP": [
+  "FIND_RSP":
+  [
     {
-      "kv": {
+      "kv":
+      {
         "k": "mckayfloyd@zenthall.com",
         "v": "cupidatat dolore",
         "_oid": "5c22fa91-9835-4f7a-9175-d0912da49d6d"
       }
     }
   ],
-  "_metrics": {
+  "_metrics":
+  {
+    "_qryQueued":true,
     "_qryQueue": 9,
     "_executor": 18,
     "_indexes": 7,
@@ -148,11 +152,13 @@ The response is:
 <br/>
 This means:
 
-- The query was on the query queue for 9 microseconds
+- The query was queued
+- The query was on the queue for 9 microseconds
 - The executor took 18 microseconds
 - As part of executing, there was an index lookup (since `k` is indexed), which took 7 microseconds
 - There were no non-indexed terms in the `FIND` so `_nonIndexes` is 0
-- Total time from enqueing the query to when the network interface sent the response was 27 microseconds (`_total` can't include the time taken to transfer the response to the client)
+- Total time from enqueing the query to when the network interface sent the response was 27 microseconds
+
 
 <br/>
 
