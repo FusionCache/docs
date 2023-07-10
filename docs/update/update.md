@@ -27,14 +27,14 @@ Object
 ## Detail
 - Requires a root class name
 - If `_oids` is present then the updates are applied to those objects only
-- If `_oids` is not present then updates are applied to all `<RootClass>` objects
+- If `_oids` is not present then updates are applied to all `<ClassName>` objects
 
 
 {: .important}
 > If `UPDATE` does not include `_oids` then all root class objects are updated, which may not be the intention. 
 
 
-There should be one JSON object with the `<RootClass>` as the key. Its value is a list of member names and values to overwrite the existing value.
+There should be one JSON object with the `<ClassName>` as the key. Its value is a list of member names and values to overwrite the existing value.
 
 
 ```json
@@ -81,10 +81,10 @@ This updates this Customer object's `address` to have a `city` value of "Paris".
 ## Response
 `UPDATE_RSP`
 
-The response includes a `_cnt` unsigned integer which is the number of root class objects updated.
+The response includes a `_cnt` unsigned integer which is the number of `_class` objects updated.
 
 - When `_oids` is set, the `_cnt` is the size of the `_oids` array.
-- When `_oids` is not set, the `_cnt` is the number of `<RootClass>` objects.
+- When `_oids` is not set, the `_cnt` is the number of `<ClassName>` objects.
 
 
 On success:
@@ -93,32 +93,13 @@ On success:
 {
   "UPDATE_RSP":
   {
-    "<RootClass>":
+    "<ClassName>":
     {
-      "_cnt":<NumberOfObjectsUpdated>
+      "_cnt":<unsigned int>
     }
   }
 }
 ```
-
-
-<br/>
-
-On error:
-
-```json
-{
-  "UPDATE_RSP":
-  {
-    "<RootClass>":
-    {
-      <ErrorResponse>
-    }
-  }
-}
-```
-
-
 
 <br/>
 

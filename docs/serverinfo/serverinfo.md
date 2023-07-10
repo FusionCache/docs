@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Server Info
-nav_order: 20
+nav_order: 21
 parent: API
 has_children: false
 ---
