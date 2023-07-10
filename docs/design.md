@@ -43,7 +43,7 @@ When a query execution completes, the response is sent to the client on a networ
 ## Query: REST vs WebSockets
 A REST query requires a new HTTP connection for each query, but a WebSocket only requires the connection is established once. This reduces latency but it requires Fusion and the OS to maintain the connection until the client dsiconnects.
 
-Generally, if a client queries regularly then it is usually best to favour the WebSocket interface. The frequency of queries to consider 'regular' depends on network latency and hardware resources.
+Generally, if a client queries regularly then it is usually best to favour the WebSocket interface.
 
 <br/>
 
@@ -68,6 +68,23 @@ Each query has a data access type:
 
 - Read: the query reads from the cache, it does not mutate (`GET`, `FIND`, `COUNT`, etc)
 - Write: the query may mutate the cache (`STORE`, `UPDATE`, `DELETE`, `CREATE_CLASS`, etc)
+
+
+<br/>
+
+
+## Query Queue
+There is a queue to ensure queries are executed in order - if a client sends an `UPDATE` then a `GET` for the updated object, the `GET` should be executed after the `UPDATE`. 
+
+If clients are sending just `Read` queries then order doesn't matter from a data consistency point of view - the data can't change because there are no `Write` queries present to change anything.
+
+Fusion uses this to avoid queueing queries unless it must. When a query is received:
+
+- If the query is Write then it must be queued
+- If the query is Read but there are Write queries pending execution, this query must be queued
+- Subsequent queries are queued until there are no Write queries pending
+
+This approach avoids uses the queue unless it is necessary for data consitency, reducing query execution time.
 
 
 <br/>
@@ -137,23 +154,26 @@ Even though the `GET` was received after `FIND`, it completes before the `FIND`,
 <br/>
 
 
-## CPU Utilisation
-A queue is used to ensure queries are executed in the correct order. Fusion assumes it will receive many queries so aims to pop the queries from the queue as soon as possible.
+## Resource Utilisation
+When Fusion starts it allocates memory then assigns a number of threads for network I/O and the query engine.
 
-This process has two states:
+<br/>
 
+### CPU
+Fusion assumes it can use all available logical cores, but unless the server is under high load, the threads will be mostly idle.
 
-### Poll
-Repeatedly checks for queries to pop. The period is 1 second.
+A future release will include a config option to set the max threads.
 
-- When a query is popped, the polling period is extended by another 1 second
-- If no queries are received during the polling period, enter the Wait state 
+<br/>
 
-During the polling period one logical core is maxed.
+### Memory
+Fusion allocates memory during startup to improve runtime performance. At this early development stage, little effort has gone into reducing memory usage. 
 
+A future release will include a config option to hint at the server size so Fusion can reduce initial memory footprint.
 
-### Wait
-Wait until being notified that a query is in the queue.
- 
-Core usage reduces to near zero whilst waiting.
+<br/>
 
+## Generating Object IDs
+ObjectIDs (OIDs) are just version 4 UUIDs. They provide a simple way to practically gaurantee each OID is unique, even when generating at a high frequency.
+
+UUID generation in Fusion takes advantage of Simple Instruction Multiple Data (SIMD), which can generate hundreds of thousands of UUIDs per second. 
