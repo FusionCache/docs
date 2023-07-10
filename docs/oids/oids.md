@@ -64,7 +64,7 @@ General form:
     "_class":"<ClassName>",
     "_objects":
     [
-      <OidsAsString>
+      <OidsAsStrings>
     ]
   }
 }

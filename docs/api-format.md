@@ -16,51 +16,6 @@ The documentation refers to simple and complex types:
 
 <br/>
 
-## Root Class Name
-
-`<RootClass>` - name of the root class.
-
-This is the value of `_class`:
-
-```json
-{
-  "STORE":
-  {
-    "_class":"Session",
-    "_objects":
-    [
-      {
-        "sessionId":"acbdefg",
-        "expire":12345678,
-        "username":"someusername"
-      }
-    ]
-  }
-}
-``` 
-
-`Session` is the root class. 
-
-<br/>
-
-In queries that don't use `_class`, the root class is the first object that's not a keyword:
-
-```json
-{
-  "FIND":
-  {
-    "Customer":
-    {
-      "surname":"Smith"
-    }
-  }
-}
-```
-
-`Customer` is the root class.
-
-
----
 
 ## Oid
 
@@ -78,6 +33,20 @@ The name of a class.
 In `STORE`:
 
 `"_class":"Person"`, would be represented as: `"_class":"<ClassName>"`
+
+In queries that require the class name as an object:
+
+```json
+{
+  "DELETE":
+  {
+    "<ClassName>":
+    {
+      "_oids":[<OidsAsStrings>]
+    }
+  }
+}
+```
 
 ---
 
