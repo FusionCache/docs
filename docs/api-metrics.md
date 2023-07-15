@@ -16,7 +16,8 @@ With this attribute true, a `_metrics` object is appended to the response - it i
 
 
 <br/>
-Queries with a root class:
+
+Queries without `_class`:
 
 ```json
 {
@@ -31,7 +32,7 @@ Queries with a root class:
 }
 ```
 
-Queries without a root class:
+Queries with `_class`:
 
 ```json
 {
@@ -82,7 +83,7 @@ The structure is:
 
 `_index` and `_nonIndexes` measure time to search indexes and non-indexes, so these are only relevant for queries that involve searching.
 
-A query is always placed in the queue, so if `_qryQueue` is 0 it means the query was in the queue for less than 1 microsecond.
+If `_qryQueued` is false and `_qryQueue` is 0, the query was in the queue for less than 1 microsecond.
 
 <br/>
 
@@ -155,7 +156,7 @@ This means:
 - The query was queued
 - The query was on the queue for 9 microseconds
 - The executor took 18 microseconds
-- As part of executing, there was an index lookup (since `k` is indexed), which took 7 microseconds
+- As part of executing, there was an index lookup (since `k` is indexed), which was 7 microseconds
 - There were no non-indexed terms in the `FIND` so `_nonIndexes` is 0
 - Total time from enqueing the query to when the network interface sent the response was 27 microseconds
 
