@@ -1,12 +1,12 @@
 ---
 layout: default
-title: API
-nav_order: 5
+title: Objects API
+nav_order: 8
 has_children: true
 ---
 
-# API
-The API documentation contains many examples as this is preferred to verbose syntax descriptions.
+# Objects API
+When in object mode, data is cached as JSON objects, with relationships between objects tracked my Fusion.
 
 <br/>
 

@@ -2,7 +2,7 @@
 layout: default
 title: Delete
 nav_order: 13
-parent: API
+parent: Objects API
 has_children: true
 ---
 

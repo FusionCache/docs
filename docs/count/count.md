@@ -2,7 +2,7 @@
 layout: default
 title: Count
 nav_order: 18
-parent: API
+parent: Objects API
 has_children: false
 ---
 

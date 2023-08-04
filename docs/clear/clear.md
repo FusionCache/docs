@@ -2,7 +2,7 @@
 layout: default
 title: Clear
 nav_order: 17
-parent: API
+parent: Objects API
 has_children: false
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: Oids
 nav_order: 15
-parent: API
+parent: Objects API
 has_children: false
 ---
 

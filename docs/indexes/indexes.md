@@ -2,7 +2,7 @@
 layout: default
 title: Indexes
 nav_order: 19
-parent: API
+parent: Objects API
 has_children: false
 ---
 
