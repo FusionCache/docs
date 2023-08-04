@@ -7,7 +7,7 @@ has_children: false
 ---
 
 # Clear
-Removes **all** keys from the cache.
+Completely empties the cache.
 
 
 <br/>
@@ -28,13 +28,7 @@ An empty object:
 <br/>
 
 ## Response
-`CLEAR_RSP` object containing the status (`st`) and `cnt` which is the total number of objects of keys deleted.
-
-<br/>
-
-| Status  | Meaning | Information | 
-|:---     |:---:    |:---     |
-|0        | Ok                | Success |
+`CLEAR_RSP` object containing the total number of objects of keys deleted (`cnt`) and the status (`cnt`) which is always 0 (Success).
 
 
 <br/>
@@ -51,18 +45,3 @@ Example:
 }
 ```
 
-
-
-
-<br/>
-
-
-## Examples
-
-```json
-{
-  "CLEAR":
-  {
-  }
-}
-```
