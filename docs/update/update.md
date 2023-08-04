@@ -2,7 +2,7 @@
 layout: default
 title: Update
 nav_order: 12
-parent: API
+parent: Objects API
 has_children: true
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: Store
 nav_order: 10
-parent: API
+parent: Objects API
 has_children: true
 ---
 

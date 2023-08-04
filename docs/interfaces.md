@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Interfaces
-nav_order: 3
+title: Object Interfaces
+nav_order: 5
 has_children: false
 ---
 
 
-# Interfaces
+# Object Interfaces
 Queries are submitted to REST or WebSocket interfaces. There is one REST interface and two WebSocket interfaces.
 
 Each interface can have its max read buffer size set, with each having a maximum defined by Fusion.

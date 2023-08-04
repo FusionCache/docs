@@ -2,7 +2,7 @@
 layout: default
 title: Find
 nav_order: 11
-parent: API
+parent: Objects API
 has_children: true
 ---
 

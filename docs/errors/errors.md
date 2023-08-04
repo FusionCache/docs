@@ -2,7 +2,7 @@
 layout: default
 title: Errors
 nav_order: 22
-parent: API
+parent: Objects API
 has_children: false
 ---
 

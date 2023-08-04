@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Design
-nav_order: 2
+nav_order: 3
 ---
 
 # Design
@@ -84,7 +84,7 @@ Fusion uses this to avoid queueing queries unless it must. When a query is recei
 - If the query is Read but there are Write queries pending execution, this query must be queued
 - Subsequent queries are queued until there are no Write queries pending
 
-This approach avoids uses the queue unless it is necessary for data consitency, reducing query execution time.
+This approach avoids using the queue unless it is necessary.
 
 
 <br/>

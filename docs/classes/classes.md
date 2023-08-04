@@ -2,7 +2,7 @@
 layout: default
 title: Classes
 nav_order: 20
-parent: API
+parent: Objects API
 has_children: false
 ---
 

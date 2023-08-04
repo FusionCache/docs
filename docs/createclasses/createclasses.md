@@ -2,7 +2,7 @@
 layout: default
 title: Create Classes
 nav_order: 14
-parent: API
+parent: Objects API
 has_children: false
 ---
 
