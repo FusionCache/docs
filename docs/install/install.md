@@ -33,29 +33,22 @@ You can clone the release repo:
 
 `git clone https://github.com/FusionCache/releases.git`
 
-Then change directory to the latest version (i.e. `cd releases/0.1.1`).
 
 <br/>
 
 ### Download
 To download from GitHub:
 
-- Follow the link below
-- Click "Assets"
-- Download the "Source code" for the zip or tar.gz
-- The package is in the zip/tar.gz file
-
-<br/> 
-
-| Version     | Link        |
-|:---|:---|
-|0.1.1|[Download](https://github.com/FusionCache/releases/releases)|
+- Go to https://github.com/FusionCache/releases/tree/main
+- Right-click on the `.deb` file and `Save link as...`
 
 <br/> 
 
 ## Install
 
-`sudo dpkg -i fusioncache_0.1.1_amd64.deb`
+It can be installused with `dpkg`, for example for version 0.1.5:
+
+`sudo dpkg -i fusioncache_0.1.5_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
