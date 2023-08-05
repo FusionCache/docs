@@ -44,11 +44,11 @@ If these ports are unavailable, you can change Fusion's ports in `default.json`.
 The server will report similar to:
 
 ```console
-Fusion v0.1.0 starting
+Fusion v0.1.5 starting
 Checking startup arguments
 Registering signals
 Available threads: 16
-I/O Threads: 2
+I/O Threads: 1
 Normal: 1
 Rest: 1
 Starting WebSocket Normal server 127.0.0.1:1982
