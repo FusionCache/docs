@@ -36,10 +36,10 @@ Follow the [Install](../../install/install.md) instructions to download and inst
 
 The default ports are 1981 and 1982.
 
-If these ports are unavailable, you can change Fusion's ports with `--restQueryPort` or `--wsQueryPort`.
+If these ports are unavailable, you can change Fusion's ports in `default.json`.
 
 - Enter the install directory: `cd /usr/local/bin/fusioncache`
-- Start: `./fusionserver --restQueryIp=127.0.0.1 --wsQueryIp=127.0.0.1`
+- Start: `./fusionserver --config=default.json`
 
 The server will report similar to:
 
