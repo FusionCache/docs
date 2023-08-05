@@ -111,7 +111,7 @@ Example:
 This produces four separate responses (one for each key in `SET`):
 ```json
 {
-  "GET_RSP":
+  "SET_RSP":
   {
     "k": "54321_active",
     "st": 1
@@ -121,7 +121,7 @@ This produces four separate responses (one for each key in `SET`):
 
 ```json
 {
-  "GET_RSP":
+  "SET_RSP":
   {
     "k": "54321_dobyear",
     "st": 1
@@ -131,7 +131,7 @@ This produces four separate responses (one for each key in `SET`):
 
 ```json
 {
-  "GET_RSP":
+  "SET_RSP":
   {
     "k": "54321_email",
     "st": 1
@@ -141,7 +141,7 @@ This produces four separate responses (one for each key in `SET`):
 
 ```json
 {
-  "GET_RSP":
+  "SET_RSP":
   {
     "k": "54321_username",
     "st": 1
