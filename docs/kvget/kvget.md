@@ -22,8 +22,6 @@ An array of keys:
   [
     "<key1>",
     "<key2>",
-    .
-    .
     "<keyN>"
   ]
 }

@@ -8,7 +8,7 @@ has_children: true
 # Key Value API
 In KV mode, Fusion acts similar to Redis and memcached: data is stored as key-value pairs. 
 
-See [KV Mode](TODO) for more information.
+See [KV Mode](design.md) for more information.
 
 
 
@@ -22,7 +22,7 @@ See [KV Mode](TODO) for more information.
 
 **Keys**
 
-- Keys have a minimum length (see [KV Mode](TODO))
+- Keys have a minimum length of 6 characters
 - Keys must be a string
 
 
