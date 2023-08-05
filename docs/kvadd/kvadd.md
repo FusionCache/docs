@@ -22,11 +22,8 @@ If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md)
 {
   "ADD":
   {
-    "<key1>":<value1>,
-    "<key2>":<value2>,
-    .
-    .
-    "<keyN>":<valueN>
+    "username":"bob",
+    "timeout":60
   }
 }
 ```

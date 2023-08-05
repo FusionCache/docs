@@ -27,17 +27,15 @@ If you want to set a key but don't want to overwrite the value if the key alread
 
 ## Structure
 
-An object with key-value pairs: `"<keyname>":<value>`:
+An object with key-value pairs: `"<keyname>":<value>`. 
 
 ```json
 {
   "SET":
   {
-    "<key1>":<value1>,
-    "<key2>":<value2>,
-    .
-    .
-    "<keyN>":<valueN>
+    "key1":"astring",
+    "key2":234,
+    "key3":true
   }
 }
 ```
