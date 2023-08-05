@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Bulk Store
+title: Objects - Bulk Store
 parent: Guides
 nav_order: 2
 has_children: false

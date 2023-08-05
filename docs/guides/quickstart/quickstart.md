@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Quickstart
+title: Objects - Quickstart
 parent: Guides
 nav_order: 1
 has_children: false
