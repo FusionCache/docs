@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Server Info
+# SERVER_INFO
 Requests server information.
 
 

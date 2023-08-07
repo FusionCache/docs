@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Set
+# SET
 Store one or many key-value pairs. It can also be used to update an existing key's value.
 
 If you want to set a key but don't want to overwrite the value if the key already exists, use [`ADD`](../kvadd/kvadd.md).

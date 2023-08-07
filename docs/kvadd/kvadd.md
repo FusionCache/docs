@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Add
+# ADD
 Stores one or multiple key-values but only if the key does not already exist.
 
 If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md).
