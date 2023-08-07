@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Get
+# GET
 Get one or many key-value pairs.
 
 

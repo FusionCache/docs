@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Remove
+# REMOVE
 Deletes one or many key-value pairs.
 
 

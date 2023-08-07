@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# Clear
+# CLEAR
 Completely empties the cache.
 
 
