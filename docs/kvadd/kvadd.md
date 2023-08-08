@@ -32,9 +32,7 @@ If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md)
 
 
 ## Response
-`ADD_RSP` object containing:
-- `k` : the key 
-- `st` : status
+`ADD_RSP` object containing the key `k` and status `st`.
 
 <br/>
 

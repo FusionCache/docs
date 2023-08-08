@@ -44,7 +44,7 @@ An object with key-value pairs: `"<keyname>":<value>`.
 
 
 ## Response
-`SET_RSP` object containing the key  (`k`) and the a status (`st`).
+`SET_RSP` object containing the key  (`k`) and the status (`st`).
 
 <br/>
 
