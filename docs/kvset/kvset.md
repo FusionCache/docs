@@ -33,9 +33,9 @@ An object with key-value pairs: `"<keyname>":<value>`.
 {
   "SET":
   {
-    "key1":"astring",
-    "key2":234,
-    "key3":true
+    "stringvalue":"astring",
+    "intvalue":234,
+    "boolvalue":true
   }
 }
 ```
@@ -107,6 +107,7 @@ Example:
 ```
 
 This produces four separate responses (one for each key in `SET`):
+
 ```json
 {
   "SET_RSP":
