@@ -1,10 +1,8 @@
 ---
 layout: default
-title: Objects
-parent: Concepts
-grand_parent: Overview
-nav_order: 2
-has_children: false
+title: Object Mode
+nav_order: 3
+has_children: true
 ---
 
 # Objects

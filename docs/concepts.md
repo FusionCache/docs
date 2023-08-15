@@ -2,8 +2,8 @@
 layout: default
 title: Concepts
 nav_order: 1
-parent: Overview
-has_children: true
+parent: Object Mode
+has_children: false
 ---
 
 
