@@ -3,7 +3,7 @@ layout: default
 title: Examples
 nav_order: 1
 parent: Delete
-grand_parent: API
+grand_parent: Objects API
 ---
 
 # Examples
