@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Object Interfaces
+title: Interfaces
 nav_order: 0
 has_children: false
 parent: Objects API
