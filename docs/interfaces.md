@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Object Interfaces
-nav_order: 7
+nav_order: 0
 has_children: false
+parent: Objects API
 ---
 
 
@@ -15,13 +16,16 @@ Each interface can have its max read buffer size set, with each having a maximum
 
 ## Limits
 
-| Interface   | Default     | Minimum   | Maximum     |
-|:---         |:---         |:---       |:---         |
-|REST         | 1024 bytes  | 64 bytes  | 8 MB        |
-|WS Standard  | 1024 bytes  | 64 bytes  | 2 MB        |
-|WS Bulk      | 8 MB        | 8 MB      | 1 GB        |
+| Interface   | Default     | Minimum   | Maximum     | Port  |
+|:---         |:---         |:---       |:---         |:---:  |
+|REST         | 1024 bytes  | 64 bytes  | 8 MB        | 1981  |
+|WS Standard  | 1024 bytes  | 64 bytes  | 2 MB        | 1982  |
+|WS Bulk      | 8 MB        | 8 MB      | 1 GB        | 1983  |
 
-Each query uses a buffer large enough for the query and it is not deallocated until query execution completes. A query is rejected if it exceeds the buffer size.
+
+<br/>
+
+A query is rejected if it exceeds the buffer size.
 
 <br/>
 
@@ -46,4 +50,4 @@ A standard WebSocket, except it will accept larger queries and disallows the fol
 - `UPDATE`
 - `GET`
 
-This interface is intended to store hundreds of objects per query, possibly on startup when initial data is required. It is more efficient to send one large or a few medium sized `STORE` queries rather than many small queries, for example if storing thousands of objects.
+This interface is intended to store hundreds of objects per query, possibly on startup when initial data is required. It is more efficient to send one large or a few medium sized `STORE` queries rather than many small queries.
