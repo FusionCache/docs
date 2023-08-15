@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Objects
-parent: "Overview"
+parent: "Concepts"
 nav_order: 2
 ---
 
