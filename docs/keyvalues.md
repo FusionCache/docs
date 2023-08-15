@@ -1,9 +1,7 @@
 ---
 layout: default
-title: Key Values
-parent: Concepts
-grand_parent: Overview
-nav_order: 1
+title: Key Value Mode
+nav_order: 2
 has_children: false
 ---
 
