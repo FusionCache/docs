@@ -8,23 +8,20 @@ has_children: true
 
 # Overview
 
-FusionCache is an object cache for storing, searching and retrieving JSON data. There are two modes:
-
-Fusion is designed to prioritise read query performance. The engine is developed in C++ and is fully asynchronous to maximise CPU resources.
+FusionCache is a cache for storing, searching and retrieving JSON data. There are two modes:
 
 
 **KeyValue**
 
-- Data is handled as key values, similar to Redis or Memcached.
-- Queries and responses are use a WebSocket interface.
+- Data is handled as key values, similar to Redis or Memcached
+- Queries and responses are use a WebSocket interface
 
 <br/>
 
 **Objects**
 
-- Data is handled as JSON objects and relationships between objects are tracked.
-- Queries and responses are handled by REST and WebSocket interfaces, with a dedicated WebSocket interface for bulk data.
-
+- Data is handled as JSON objects and relationships between objects are tracked
+- Queries and responses are handled by REST and WebSocket interfaces, with a dedicated WebSocket interface for bulk data
 
 <br/>
 

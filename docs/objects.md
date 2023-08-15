@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Objects
-parent: "Concepts"
+parent: Concepts
 nav_order: 2
+has_children: false
 ---
 
 # Objects
