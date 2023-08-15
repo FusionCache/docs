@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Interfaces
+title: Interface
 nav_order: 0
 has_children: false
 parent: KV API
 ---
 
 
-# Key Value Interfaces
+# Key Value Interface
 Queries are submitted to the WebSocket interface, there is no REST interface available.
 
 The interface has a max read buffer size **per query**, with a maximum defined by Fusion.
