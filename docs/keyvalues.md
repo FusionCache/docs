@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Key Values
-parent: "Concepts"
+parent: Concepts
 nav_order: 1
 ---
 
