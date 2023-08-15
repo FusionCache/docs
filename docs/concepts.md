@@ -3,7 +3,7 @@ layout: default
 title: Concepts
 nav_order: 1
 parent: Overview
-has_chidren: true
+has_children: true
 ---
 
 # Concepts
