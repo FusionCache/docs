@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Guides
-nav_order: 11
+nav_order: 50
 has_children: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Object Mode
-nav_order: 3
+nav_order: 15
 has_children: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Install
-nav_order: 8
+nav_order: 35
 has_children: true
 ---
 
