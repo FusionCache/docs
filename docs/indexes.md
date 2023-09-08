@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Indexes
-nav_order: 6
+parent: Object Mode
+nav_order: 2
 has_children: false
 ---
 

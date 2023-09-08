@@ -37,7 +37,7 @@ A `SUB` object with:
 | Key               | Type      | Information |  Required |
 |:---               |:------    |:---         |:---:       |
 | create  | boolean   | `true`: creates the channel(s) if they don't exist <br/> `false`: for each channel that does not exist, an error is returned | N |
-| ch      | array of strings  | Channel names to subscribe to. If a channel does not exist, it will be created if `createIfNotExist` is true | Y |
+| ch      | array of strings  | Channel names to subscribe to. If a channel does not exist, it will be created if `create` is true | Y |
 
 
 <br/>
@@ -170,6 +170,7 @@ In this case, `msg` is an array of objects.
 <br/>
 
 ## Subscribing Examples
+
 <br/>
 
 ### Single Channel, Not Creating

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Design
-nav_order: 5
+nav_order: 30
 has_children: false
 ---
 
