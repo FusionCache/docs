@@ -11,7 +11,7 @@ Publish to one or many channels.
 
 To reduce network traffic, the server will only respond with a `PUB_RSP` if an error occurs. 
 
-This command can create channels if they don't exist. You can also create a channel without publishing using `CREATE_CHNL`.  
+This command can create channels if they don't exist. You can also create a channel without publishing using [CREATE_CHNL](../pscreatechannel/pscreatechnl.md).  
 
 <br/>
 

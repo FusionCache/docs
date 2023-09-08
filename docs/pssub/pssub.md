@@ -9,7 +9,9 @@ has_children: false
 # Sub
 Subscribe to one or many channels. A response is received for each channel subscribed to.
 <br/><br/>
-If the response indicates success the client will receive messages published to each subscribed channel.
+This command can create channels if they don't exist. You can also create a channel without subscribing using [CREATE_CHNL](../pscreatechannel/pscreatechnl.md).  
+<br/><br/>
+If the response indicates success the client will being receiving messages for those channels.
 <br/><br/>
 A message is delivered in a `MSG` object with the channel name (`ch`) and message body (`msg`):
 
