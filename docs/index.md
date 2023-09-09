@@ -8,7 +8,9 @@ has_children: false
 
 # Overview
 
-FusionCache is a cache for storing, searching and retrieving JSON data. There are two modes:
+FusionCache is a JSON cache and JSON publish-subscribe server. 
+
+The mode is defined in the configuration file to either object cache, key value cache or publish subscribe server.
 
 
 **KeyValue**
@@ -22,6 +24,13 @@ FusionCache is a cache for storing, searching and retrieving JSON data. There ar
 
 - Data is handled as JSON objects and relationships between objects are tracked
 - Queries and responses are handled by REST and WebSocket interfaces, with a dedicated WebSocket interface for bulk data
+
+<br/>
+
+**Publish Subscribe**
+
+- Clients register as a publisher or subscriber (or both)
+- Publishers send JSON data to channel(s), which the server then sends to subscribers of those channels
 
 <br/>
 
@@ -43,6 +52,8 @@ Fusion is available as a Debian package. An Alpine Linux based Docker image will
 <br/>
 
 - [Quickstart](guides/quickstart/quickstart.md)
+- [KeyValue](keyvalues.md)
+- [PubSub](pubsub.md)
 - [Objects](objects.md) and [Concepts](concepts.md)
 - [Design](design.md) for details of the internals
 
@@ -55,8 +66,8 @@ Fusion is still in alpha and has limitations:
 | Limitation            | Description               |
 |:----------------------|:--------------------------|
 |Threads| There is a 64 thread limit. This is not a technical limitation, it will increase as development progresses.|
-|Memory| There is no data eviction, nor any protection against memory use. This means Fusion will eat system memory, causing the OS to use swapped memory if the heap is full. <br/> Of course you can delete data at any time.<br/> A future release will address this. |
-|Security| The query interfaces use HTTP rather than HTTPS. Fusion is not intended for a public network.<br/>There is no user authentication or a way to assign query types to a user, for example to prevent certain users deleting.
+|Memory| The cache has no data eviction. <br/> Of course you can delete data at any time.<br/> A future release will address this. |
+|Security| The interfaces use HTTP rather than HTTPS. Fusion is not intended for a public network.<br/>There is no user authentication or roles, for example to prevent certain users deleting data.
 
 
 
