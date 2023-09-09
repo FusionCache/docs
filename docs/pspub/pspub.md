@@ -193,7 +193,7 @@ We don't set `create` as `true` so if the channel does not exist we receive:
 
 ### Multiple Channels
 
-Subscribe to "payments":
+Publish to "payments" and "stats" channels:
 
 ```json
 {
@@ -205,7 +205,7 @@ Subscribe to "payments":
 }
 ```
 
-If "payments" exists then no response for that, but if "stats" did not exist then we receive and error for that channel:
+As an example, if "payments" exists but "stats" does not, there will be an error response for the non-existent "stats" channel since `create` is not set:
 
 ```json
 {
@@ -216,3 +216,5 @@ If "payments" exists then no response for that, but if "stats" did not exist the
   }
 }
 ```
+
+Setting `"create":true` in the `PUB` command will resolve this.
