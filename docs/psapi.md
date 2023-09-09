@@ -10,6 +10,8 @@ In this mode, Fusion acts as a lightweight publish-subscribe server, providing a
 
 Clients publish to channels whilst clients that are subscribed to those channels will receive messages.
 
+To enable publish subscribe, set the `mode` in the config file to "pubsub".
+
 <br/>
 
 # Commands
