@@ -8,24 +8,42 @@ has_children: false
 
 # Run Fusion
 
-By default, Fusion will start in KV mode with the query WebSocket interface bound to 127.0.0.1 on port 1987.
+By default, Fusion will start in KV mode with:
+
+- the query WebSocket interface bound to `127.0.0.1:1987`
+- max query size is `64` bytes
+
+The config file has a `mode` which can be:
+
+- `kv` for key value 
+- `objects` for object mode
+- `pubsub` for publish subscribe
 
 
 <br/>
 
 ## Config File
-The default config is:
+The default config is shown below. You only need the section for the current mode, but by default all sections are present.
 
 ```json
 {
-  "cacheMode":"kv",
+  "mode":"kv",
   "kv":
   {
     "ws":
     {
       "ip":"127.0.0.1",
       "port":1987,
-      "maxRead":1024
+      "maxRead":64
+    }
+  },
+  "pubsub":
+  {
+    "data":
+    {
+      "ip":"127.0.0.1",
+      "port":1990,
+      "maxRead":256
     }
   },
   "objects":
@@ -53,11 +71,13 @@ The default config is:
     }
   }
 }
+
 ```
 
 <br/>
 
-The `restQuery`, `wsQuery` and `bulkStore`:
+## Object Mode Settings
+The `restQuery`, `wsQuery` and `bulkStore` have specific settings:
 
 | Parameter       | Type  | Description
 |:---             |:---:  | :---  |
