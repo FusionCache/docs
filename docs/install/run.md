@@ -77,14 +77,17 @@ The default config is shown below. You only need the section for the current mod
 <br/>
 
 ## Object Mode Settings
-The `restQuery`, `wsQuery` and `bulkStore` have specific settings:
+Each interface has settings for `ip`, `port` and `maxRead`. Objects mode has an additional `enabled` setting:
+
+<br/>
+
 
 | Parameter       | Type  | Description
 |:---             |:---:  | :---  |
-|`enabled`        | bool    | true to enable the interface, otherwise false (not applicable to KV mode)| 
 |`ip`             | string  | IP address for the interface |
 |`port`           | integer | Port of the interface |
 |`maxRead`        | integer | Max size, in bytes, of the payload the interface will accept |
+|`enabled`        | bool    | **Object mode only:** true to enable the interface, otherwise false| 
 
 
 <br/>
