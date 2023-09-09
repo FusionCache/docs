@@ -54,3 +54,8 @@ Clients connect to the server via the WebSocket interface and use a few simple c
 
 A client can act as a subscriber and publisher. A client can subscribe to a channel to which it publishes, although this makes little sense other than for testing.
 
+<br/>
+<br/>
+
+# Configuration
+To enable pubsub mode, set the `mode` in the config file to "pubsub".
