@@ -8,6 +8,11 @@ has_children: false
 
 # Run Fusion
 
+To start:
+
+- `cd /usr/local/bin/fusioncache`
+- `./fusionserver --config=default.json`
+
 By default, Fusion will start in KV mode with:
 
 - the query WebSocket interface bound to `127.0.0.1:1987`

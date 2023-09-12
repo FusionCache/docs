@@ -28,11 +28,17 @@ Fusion is available as a Debian package. Docker images will be published soon.
 
 <br/>
 
-## Download or Clone
+## Download
+
+- Go to [GitHub](https://github.com/FusionCache/releases/)
+- Click on the .deb file then click the download file icon on the far right:
+![Download icon](https://user-images.githubusercontent.com/129124415/267442177-c7fdba54-5a22-471d-bb85-7406ab2ad666.png)
 
 
-- Go to [GitHub](https://github.com/FusionCache/releases/tree/main)
-- Right-click on the `.deb` file and `Save link as...` or clone
+## Clone
+
+`git clone https://github.com/FusionCache/releases.git`
+
 
 <br/> 
 
