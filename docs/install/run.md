@@ -16,7 +16,7 @@ To start:
 By default, Fusion will start in KV mode with:
 
 - the query WebSocket interface bound to `127.0.0.1:1987`
-- max query size is `64` bytes
+- max query size is `1500` bytes
 
 The config file has a `mode` which can be:
 
