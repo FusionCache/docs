@@ -12,16 +12,12 @@ Fusion is available as a Debian package. Docker images will be published soon.
 
 {: .important}
 >- There is not an installer for Windows and there are no plans for this
->- The Debian package should run in WSL2 but this has not been tested
+>   - The Debian package may work in WSL2 but this has not been tested
 >- There is only a 64-bit build and no plans for a 32-bit build
 >- An ARM build will be available later
 
 <br/>
 
-
-Fusion can be installed by downloading the Debian package or cloning the release repo.
-
-<br/>
 
 ## Download
 
