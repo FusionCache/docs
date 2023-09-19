@@ -27,20 +27,13 @@ Fusion can be installed by downloading the Debian package or cloning the release
 
 - [Intel/AMD 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.1.10_amd64.deb)
 
-<br/>
-
-## Clone
-
-`git clone https://github.com/FusionCache/releases.git`
-
-
 <br/> 
 
 ## Install
 
-Install with `dpkg`, for example for version 0.1.10:
+Install with `dpkg`, for example for version 0.1.11:
 
-`sudo dpkg -i fusioncache_0.1.10_amd64.deb`
+`sudo dpkg -i fusioncache_0.1.11_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
