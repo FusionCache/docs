@@ -20,8 +20,7 @@ Fusion is available as a Debian package. Docker images will be published soon.
 
 
 ## Download
-
-- [Intel/AMD 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.1.10_amd64.deb)
+- [Intel/AMD 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.1.11_amd64.deb)
 
 <br/> 
 
