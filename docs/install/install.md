@@ -6,29 +6,29 @@ has_children: true
 ---
 
 # Install
-Fusion is available as a Debian package. Docker images will be published soon.
+
+- Fusion is available as a Debian package
+- Docker images will be published soon
+- There is only a 64-bit build for x86
+- An ARM build will be available later
 
 <br/>
 
 {: .important}
->- There is not an installer for Windows and there are no plans for this
->   - The Debian package may work in WSL2 but this has not been tested
->- There is only a 64-bit build and no plans for a 32-bit build
->- An ARM build will be available later
+>- There is not an installer for Windows but package may work in WSL2 but this has not been tested
 
 <br/>
 
-
 ## Download
-- [Intel/AMD 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.1.11_amd64.deb)
+- [x86 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.0_amd64.deb)
 
 <br/> 
 
 ## Install
 
-Install with `dpkg`, for example for version 0.1.11:
+Install with `dpkg`, for example for version 0.2.0:
 
-`sudo dpkg -i fusioncache_0.1.11_amd64.deb`
+`sudo dpkg -i fusioncache_0.2.0_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
