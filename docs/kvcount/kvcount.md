@@ -25,6 +25,7 @@ An empty `COUNT` object.
 }
 ```
 
+<br/>
 
 ## Response
 `COUNT_RSP` object containing the status  (`st`) and the count (`cnt`).
