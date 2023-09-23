@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Server Info
-nav_order: 9
+nav_order: 45
 parent: KV API
 has_children: false
 ---
@@ -19,9 +19,7 @@ An empty object:
 
 ```json
 {
-  "SERVER_INFO":
-  {    
-  }
+  "SERVER_INFO":{}
 }
 ```
 
@@ -29,11 +27,11 @@ An empty object:
 <br/>
 
 ## Response
-`SERVER_INFO_RSP` object containing the status (`st`) which is always `0` (Success) and :
+`SERVER_INFO_RSP` object containing the status (`st`) which is always `Ok` and :
 
 | Key | Information |
 |:---|:---|
-|`keyCnt`   | unsigned int: number of keys cached |
+|`st`       | unsigned int: status
 |`qryCnt`   | unsigned int: number of queries since startup|
 |`version`  | string: Fusion version, in format `major.minor.revision`|
 
@@ -46,10 +44,9 @@ An empty object:
 {
   "SERVER_INFO_RSP":
   {
-    "st": 0,
-    "keyCnt": 5632,
-    "qryCnt": 928,
-    "version": "0.1.5"
+    "st": 1,
+    "qryCnt": 12345,
+    "version": "0.2.0"
   }
 }
 ```

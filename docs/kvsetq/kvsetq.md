@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Set Quiet
-nav_order: 2
+nav_order: 15
 parent: KV API
 has_children: false
 ---
