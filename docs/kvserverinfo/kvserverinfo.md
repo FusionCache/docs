@@ -27,11 +27,11 @@ An empty object:
 <br/>
 
 ## Response
-`SERVER_INFO_RSP` object containing the status (`st`) which is always `Ok` and :
+`SERVER_INFO_RSP` object containing:
 
 | Key | Information |
 |:---|:---|
-|`st`       | unsigned int: status
+|`st`       | unsigned int: `1` (always successful)
 |`qryCnt`   | unsigned int: number of queries since startup|
 |`version`  | string: Fusion version, in format `major.minor.revision`|
 

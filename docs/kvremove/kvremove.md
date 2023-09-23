@@ -18,12 +18,7 @@ An array of keys:
 
 ```json
 {
-  "RMV":
-  [
-    "<key1>",
-    "<key2>",
-    "<keyN>"
-  ]
+  "RMV":["<key1>","<key2>","<keyN>"]
 }
 ```
 
@@ -32,19 +27,17 @@ An array of keys:
 ## Response
 `RMV_RSP` object containing the status (`st`) and key (`k`).
 
-<br/>
+These are status names, their integer values are listed [here](../kvstatuslist.md):
 
-| Status  | Meaning | Information | 
-|:---     |:---:    |:---     |
-|5        | KeyRemoved        | Key removed                 |
-|3        | KeyNotExist       | Error: key does not exist   |
-|6        | KeyLengthInvalid  | Error: key is not at least the minimum length |
-|7        | TypeInvalid       | Error: key is not a string  |
+- KeyRemoved
+- KeyNotExist
+- KeyLengthInvalid
+- KeyTypeInvalid
 
 <br/>
 
 {: .important}
-> There is a response for each key, so you will receive a response for each key in `RMV`.
+> You will receive a response for each key in `RMV`.
 >
 > The order of the responses is not gauranteed to be the same as in the `RMV` query.
 
@@ -52,11 +45,12 @@ An array of keys:
 
 Example:
 
+Key removed:
 ```json
 {
   "RMV_RSP":
   {
-    "st":5,
+    "st":24,
     "k":"user1234_username"
   }
 }
@@ -78,3 +72,5 @@ Example:
   ]
 }
 ```
+
+This produces four responses, one for each key.

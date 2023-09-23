@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: Set Quiet
@@ -21,15 +22,12 @@ A `SETQ` object with the same syntax as [SET](../kvset/kvset.md).
 
 
 ## Response
-`SETQ_RSP` object containing the key  (`k`) and a status (`st`) which can only contain an error condition.
+`SETQ_RSP` object containing the key  (`k`) and the status (`st`):
 
-<br/>
+These are status names, their integer values are listed [here](../kvstatuslist.md):
 
-| Status  | Meaning | Information      | 
-|:---     |:---:    |:---     |
-|6        | KeyLengthInvalid  | Error: key is not at least the minimum length |
-|7        | TypeInvalid       | Error: key is not a string |
-
+- KeyLengthInvalid
+- KeyTypeInvalid
 
 <br/>
 
@@ -43,11 +41,12 @@ A `SETQ` object with the same syntax as [SET](../kvset/kvset.md).
 
 
 Example - key length is below mininum:
+
 ```json
 {
   "SETQ_RSP":
   {
-    "st":6,
+    "st":25,
     "k":"short"
   }
 }

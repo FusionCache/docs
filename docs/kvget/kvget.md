@@ -25,22 +25,32 @@ An array of keys:
 <br/>
 
 ## Response
-`GET_RSP` object containing the status (`st`) and a key-value:  `"<keyname>":<value>`.
+`GET_RSP` object containing the status (`st`) and the key-value pair if the key exists.
+
+If an error occurs, such as they key does not exist, the status (`st`) is set accordingly with a `k` member set to the key which produced the error:
+
+```json
+{
+  "GET_RSP":
+  {
+    "st":22,
+    "k":"ThisKeyDoesNotExist"
+  }
+}
+```
 
 <br/>
+These are status names, their integer values are listed [here](../kvstatuslist.md):
 
-| Status  | Meaning | Information      | 
-|:---     |:---:    |:---      |
-|0        | Ok | Success |
-|3        | KeyNotExist | Error: key does not exist |
-|6        | KeyLengthInvalid | Error: key is not at least the minimum length |
-|7        | TypeInvalid | Error: key is not a string |
-
+- Ok
+- KeyNotExist
+- KeyLengthInvalid
+- KeyTypeInvalid
 
 <br/>
 
 {: .important}
-> There is a response for each key, so you will receive a response for each key in `GET`.
+> You will receive a response for each key in `GET`.
 >
 > The order of the responses is not gauranteed to be the same as in the `GET` query.
 
@@ -52,7 +62,7 @@ Example:
 {
   "GET_RSP":
   {
-    "st":0,
+    "st":1,
     "user1234_username":"mary"
   }
 }
@@ -70,7 +80,7 @@ Example:
 }
 ```
 
-### Multiple Pairs
+### Multiple Keys
 
 ```json
 {
@@ -85,7 +95,7 @@ This returns a response for each key:
   "GET_RSP":
   {
     "54321_dobyear": 1981,
-    "st": 0
+    "st": 1
   }
 }
 ```
@@ -95,7 +105,7 @@ This returns a response for each key:
   "GET_RSP":
   {
     "54321_email": "crusty@mcemail.com",
-    "st": 0
+    "st": 1
   }
 }
 ```
