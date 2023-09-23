@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Get
-nav_order: 5
+nav_order: 30
 parent: KV API
 has_children: false
 ---
 
 # GET
-Get one or many key-value pairs.
+Get one or many values.
 
 
 <br/>
@@ -18,12 +18,7 @@ An array of keys:
 
 ```json
 {
-  "GET":
-  [
-    "<key1>",
-    "<key2>",
-    "<keyN>"
-  ]
+  "GET":["<key1>","<key2>","<keyN>"]
 }
 ```
 
@@ -71,10 +66,7 @@ Example:
 ### Single Key
 ```json
 {
-  "GET":
-  [
-    "12345_username"
-  ]
+  "GET":["12345_username"]
 }
 ```
 
@@ -82,11 +74,7 @@ Example:
 
 ```json
 {
-  "GET":
-  [
-    "54321_dobyear",
-    "54321_email"
-  ]
+  "GET":["54321_dobyear","54321_email"]
 }
 ```
 

@@ -13,8 +13,18 @@ Fusion will store the relationship between the key and its value so it can be re
 
 <br/>
 
-# Values
-A value can be: string, number, boolean, object or an array:
+# Value Types
+A value can be:
+
+- string
+- number
+- boolean
+- object 
+- array
+- null
+
+Binary is not permitted.
+
 
 ```json
 "user123_surname":"Smith"
@@ -41,7 +51,7 @@ A value can be: string, number, boolean, object or an array:
 "favourite_pets":["dog", "cat", "gorilla"]
 ```
 
-Objects and arrays can contain: string, number, boolean, object or array:
+Because a value can be an object, you can store this user's details in a single key:
 
 ```json
 "user1234_details":
@@ -135,10 +145,7 @@ Use the `GET` query which returns a `GET_RSP`:
 
 ```json
 {
-  "GET":
-  [
-    "user123_forename"
-  ]
+  "GET":["user123_forename"]
 }
 ```
 
@@ -161,12 +168,8 @@ Response:
 
 ```json
 {
-  "GET":
-  [
-    "user123_forename",
-    "user123_surname"
-  ]
+  "GET":["user123_forename","user123_surname"]
 }
 ```
 
-This will return **two** `GET_RSP` responses.
+This will return **two** `GET_RSP` responses in an undefined order.

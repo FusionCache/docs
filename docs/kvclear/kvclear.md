@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Clear
-nav_order: 7
+nav_order: 40
 parent: KV API
 has_children: false
 ---
