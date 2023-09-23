@@ -18,9 +18,7 @@ An empty object:
 
 ```json
 {
-  "CLEAR":
-  {    
-  }
+  "CLEAR":{}
 }
 ```
 
@@ -28,7 +26,7 @@ An empty object:
 <br/>
 
 ## Response
-`CLEAR_RSP` object containing the total number of objects of keys deleted (`cnt`) and the status (`cnt`) which is always 0 (Success).
+`CLEAR_RSP` object containing the total number of objects of keys deleted (`cnt`) and the status (`cnt`) which always indicates success (`1`).
 
 
 <br/>
@@ -39,7 +37,7 @@ Example:
 {
   "CLEAR_RSP":
   {
-    "st": 0,
+    "st": 1,
     "cnt": 3543
   }
 }

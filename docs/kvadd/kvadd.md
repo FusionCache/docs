@@ -9,8 +9,9 @@ has_children: false
 # ADD
 Stores one or multiple key-values but only if the key does not already exist.
 
-If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md).
+To overwrite an existing key's value, use [`SET`](../kvset/kvset.md).
 
+`ADD` returns a response for each key. If you know that the keys does not already exist, you can use [`ADDQ`](../kvaddq/kvaddq.md) which only returns a response if it fails to add a key.
 
 <br/>
 
@@ -28,6 +29,8 @@ If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md)
 }
 ```
 
+This adds keys "username" and "timeout" with their respective values.
+
 <br/>
 
 
@@ -36,18 +39,18 @@ If you want to overwrite an existing key's value, use [`SET`](../kvset/kvset.md)
 
 <br/>
 
-| Status  | Meaning | Information      | 
-|:---     |:---:    |:---     |
-|1        | KeySet            | Key did not already exist, value stored |
-|4        | KeyExists         | Error: key already exists |
-|6        | KeyLengthInvalid  | Error: key is not at least the minimum length |
-|7        | TypeInvalid       | Error: key is not a string |
+These are status names, their integer values are listed [here](../kvstatuslist.md):
+
+- KeySet
+- KeyExists
+- KeyLengthInvalid
+- KeyTypeInvalid
 
 
 <br/>
 
 {: .important}
-> There is a response for each key, so you will receive a response for each key in `ADD`.
+> You will receive a response for each key in `ADD`.
 >
 > The order of the responses is not gauranteed to be the same as in the `ADD` query.
 
@@ -60,13 +63,11 @@ Example:
 {
   "ADD_RSP":
   {
-    "st":1,
+    "st":20,
     "k":"user1234_username"
   }
 }
 ```
-
-
 
 <br/>
 

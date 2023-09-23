@@ -9,7 +9,7 @@ has_children: false
 # SET
 Store one or many key-value pairs. It can also be used to update an existing key's value.
 
-If you want to set a key but don't want to overwrite the value if the key already exists, use [`ADD`](../kvadd/kvadd.md).
+If you don't want to overwrite the value if the key already exists, use [`ADD`](../kvadd/kvadd.md).
 
 <br/>
 
@@ -20,7 +20,8 @@ If you want to set a key but don't want to overwrite the value if the key alread
 <br/>
 
 **Values**
-- Type can be: string, number or boolean
+
+A list of permitted value types is [here](../keyvalues.md#value-types).
 
 <br/>
 
@@ -33,9 +34,9 @@ An object with key-value pairs: `"<keyname>":<value>`.
 {
   "SET":
   {
-    "stringvalue":"astring",
-    "intvalue":234,
-    "boolvalue":true
+    "keyforastring":"astring",
+    "keyforanint":234,
+    "keyforabool":true
   }
 }
 ```
@@ -44,22 +45,19 @@ An object with key-value pairs: `"<keyname>":<value>`.
 
 
 ## Response
-`SET_RSP` object containing the key  (`k`) and the status (`st`).
+`SET_RSP` object containing the key  (`k`) and the status (`st`):
 
-<br/>
+These are status names, their integer values are listed [here](../kvstatuslist.md):
 
-| Status  | Meaning | Information      | 
-|:---     |:---:    |:---     |
-|1        | KeySet            | Key did not already exist, value stored |
-|2        | KeyUpdated        | Key existed and its value is updated |
-|6        | KeyLengthInvalid  | Error: key is not at least the minimum length |
-|7        | TypeInvalid       | Error: key is not a string |
-
+- KeySet
+- KeyUpdated
+- KeyLengthInvalid
+- KeyTypeInvalid
 
 <br/>
 
 {: .important}
-> There is a response for each key, so you will receive a response for each key in `SET`.
+> You will receive a response for each key in `SET`.
 >
 > The order of the responses is not gauranteed to be the same as in the `SET` query.
 
@@ -72,7 +70,7 @@ Example:
 {
   "SET_RSP":
   {
-    "st":1,
+    "st":20,
     "k":"user1234_username"
   }
 }
@@ -92,7 +90,7 @@ Example:
 }
 ```
 
-### Multiple Pairs
+### Multiple Keys
 
 ```json
 {
@@ -100,30 +98,19 @@ Example:
   {
     "54321_username":"crusty",
     "54321_email":"crusty@mcemail.com",
-    "54321_dobyear":1982,
     "54321_active":true
   }
 }
 ```
 
-This produces four separate responses (one for each key in `SET`):
+This produces three separate responses (one for each key in `SET`):
 
 ```json
 {
   "SET_RSP":
   {
     "k": "54321_active",
-    "st": 1
-  }
-}
-```
-
-```json
-{
-  "SET_RSP":
-  {
-    "k": "54321_dobyear",
-    "st": 1
+    "st": 20
   }
 }
 ```
@@ -133,7 +120,7 @@ This produces four separate responses (one for each key in `SET`):
   "SET_RSP":
   {
     "k": "54321_email",
-    "st": 1
+    "st": 20
   }
 }
 ```
@@ -143,7 +130,7 @@ This produces four separate responses (one for each key in `SET`):
   "SET_RSP":
   {
     "k": "54321_username",
-    "st": 1
+    "st": 20
   }
 }
 ```
