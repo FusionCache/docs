@@ -13,91 +13,45 @@ To start:
 - `cd /usr/local/bin/fusioncache`
 - `./fusionserver --config=default.json`
 
-By default, Fusion will start in KV mode with:
+By default, Fusion starts with settings:
 
-- the query WebSocket interface bound to `127.0.0.1:1987`
-- max query size is `1500` bytes
-
-The config file has a `mode` which can be:
-
-- `kv` for key value 
-- `objects` for object mode
-- `pubsub` for publish subscribe
+- the command WebSocket interface bound to `127.0.0.1:1987`
+- max payload size is `1024` bytes
 
 
 <br/>
 
 ## Config File
-The default config is shown below. You only need the section for the current mode, but by default all sections are present.
+The default config is:
+
 
 ```json
 {
-  "mode":"kv",
+  "version":1,
   "kv":
   {
-    "ws":
-    {
-      "ip":"127.0.0.1",
-      "port":1987,
-      "maxRead":64
-    }
-  },
-  "pubsub":
-  {
-    "data":
-    {
-      "ip":"127.0.0.1",
-      "port":1990,
-      "maxRead":256
-    }
-  },
-  "objects":
-  {
-    "restQuery":
-    {
-      "enabled":true,
-      "ip":"127.0.0.1",
-      "port":1981,
-      "maxRead":1024
-    },
-    "wsQuery":
-    {
-      "enabled":true,
-      "ip":"127.0.0.1",
-      "port":1982,
-      "maxRead":1024
-    },
-    "bulkStore":
-    {
-      "enabled":false,
-      "ip":"127.0.0.1",
-      "port":1983,
-      "maxRead":8388608
-    }
+    "ip":"127.0.0.1",
+    "port":1987,
+    "maxPayload":1024
   }
 }
-
 ```
 
 <br/>
 
-## Object Mode Settings
-Each interface has settings for `ip`, `port` and `maxRead`. Objects mode has an additional `enabled` setting:
+| Parameter   | Type  | Description
+|:---         |:---:  | :---  |
+|version      | unsigned int  | Must be `1` |
+|kv           | object        | Settings for key-value WebSocket interface |
+
 
 <br/>
 
+### KV Settings
 
 | Parameter       | Type  | Description
 |:---             |:---:  | :---  |
-|`ip`             | string  | IP address for the interface |
-|`port`           | integer | Port of the interface |
-|`maxRead`        | integer | Max size, in bytes, of the payload the interface will accept |
-|`enabled`        | bool    | **Object mode only:** true to enable the interface, otherwise false| 
-
-
-<br/>
-
-
-## Query Interface Read Buffers
-Each query interface has a maximum buffer size for the query. If a query is received that exceeds the maximum size, it is rejected. 
+|`ip`             | string  | IP address of the interface |
+|`port`           | unsigned integer | Port of the interface |
+|`maxPayload`     | unsigned integer | Max size, in bytes, of the payload the interface will accept. Must be within the min/max [limits](../kvinterfaces.md) |
 
