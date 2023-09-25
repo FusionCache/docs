@@ -6,10 +6,7 @@ has_children: true
 ---
 
 # Key Value API
-In KV mode, Fusion acts similar to Redis and memcached: data is stored as key-value pairs. 
-
-See [KV Mode](design.md) for more information.
-
+Fusion acts similar to Redis and memcached, storing as key-value pairs, but Fusion uses WebSockets for querying.
 
 
 **General**
@@ -22,8 +19,8 @@ See [KV Mode](design.md) for more information.
 
 **Keys**
 
-- Keys have a minimum length of 6 characters
-- Keys must be a string
+- A key have a minimum length of 6 characters
+- Keys are always strings
 
 
 **Values**
@@ -37,8 +34,31 @@ See [KV Mode](design.md) for more information.
     - Items can be string, number, boolean, object or array
 
 
-
 For example:
+
+Store key "username" with a string value "billy":
+
+```json
+{
+  "SET":
+  {
+    "username":"billy"
+  }
+}
+```
+
+Store key "username_age" with an integer value:
+
+```json
+{
+  "SET":
+  {
+    "username_age":45
+  }
+}
+```
+
+Store key "user_654321" with an object value:
 
 ```json
 {
@@ -64,13 +84,23 @@ For example:
 }
 ```
 
-We can retrieve the key:
+Retrieve a single value:
 
 ```json
 {
-  "GET":
-  [
-    "user_654321"
-  ]
+  "GET":["user_654321"]
 }
 ```
+
+Retrieve multiple values:
+
+```json
+{
+  "GET":["user_654321", "username_age"]
+}
+```
+
+
+{: .important}
+> The second `GET` will send two separate responses, one for each key.
+
