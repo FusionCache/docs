@@ -15,7 +15,7 @@ has_children: true
 <br/>
 
 {: .important}
->- There is not an installer for Windows but package may work in WSL2 but this has not been tested
+>- There is not a Windows build but it may work in WSL2, though this has not been tested
 
 <br/>
 
@@ -33,13 +33,3 @@ Install with `dpkg`, for example for version 0.2.0:
 This is installs to: `/usr/local/bin/fusioncache`
 
 See [Run](run.md) for starting instructions.
-
-
-
-
-
-
-
-
-
-

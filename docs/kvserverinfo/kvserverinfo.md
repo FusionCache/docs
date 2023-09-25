@@ -32,7 +32,7 @@ An empty object:
 | Key | Information |
 |:---|:---|
 |`st`       | unsigned int: `1` (always successful)
-|`qryCnt`   | unsigned int: number of queries since startup|
+|`qryCnt`   | unsigned int: number of queries since startup, including the `SERVER_INFO`|
 |`version`  | string: Fusion version, in format `major.minor.revision`|
 
 
