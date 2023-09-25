@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Interface
+title: Status Values
 nav_order: 5
 has_children: false
 parent: KV API
 ---
 
-# Status List
+# Response Status Values
 
 Each command returns a `st` unsigned integer which can be one of the following:
 
@@ -39,24 +39,19 @@ This is when there is more than one command, i.e.:
 ```json
 {
   "GET":["somekey"],
-  "GET":["anotherkey"]
+  "SET":{"anotherkey":"blah"}
 }
 ```
 
-This is invalid. In this case it should be sent in two messages or in a single call as:
+This is invalid and should be sent in two separate commands.
 
-```json
-{
-  "GET":["somekey", "anotherkey"]
-}
-```
 
 <br/>
 
 ### JsonInvalid
 If the JSON is invalid a special `ERR` response is sent, see [here](#err-response) for format.
 
-For example, if this is received:
+For example, if this is sent to the server:
 
 ```json
 {
@@ -72,7 +67,7 @@ A `SET_RSP` cannot be returned because the JSON must be parsed to realise that t
 <br/>
 
 ### Err Response
-This occurs when a command-specific can't be returned, typically when the JSON is invalid or an unknown error occur. 
+This occurs when a command-specific response can't be returned, typically when the JSON is invalid or an unknown error occurs.
 
 The response is an `ERR` object with:
 
@@ -81,6 +76,7 @@ The response is an `ERR` object with:
 | st  | unsigned int: one of the above status, though typically only JsonInvalid or Unknown |
 | m   | string: additional information if available. May be empty. |
 
+<br/>
 Example:
 
 ```json
@@ -91,3 +87,4 @@ Example:
     "m":""
   }
 }
+```
