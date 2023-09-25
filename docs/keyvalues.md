@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Key Value Mode
+title: Key Values
 nav_order: 10
 has_children: false
 ---
 
 # Key Values
-This is associating (i.e. mapping) a unique key to a value. For example, we could associate `"user123_email"` with `"james123@email.com"` to store the email address for "user123".
+This is associating (i.e. mapping) a unique key to a value.
 
+For example, we could associate `"user123_email"` with `"james123@email.com"` to store the email address for "user123". The key is "user123_email" can be used to retrieve the key later.
 
-Fusion will store the relationship between the key and its value so it can be retrieved later.
 
 <br/>
 
@@ -25,6 +25,7 @@ A value can be:
 
 Binary is not permitted.
 
+<br/>
 
 ```json
 "user123_surname":"Smith"
@@ -114,6 +115,12 @@ Key-value pairs are stored using the `SET` command:
   }
 }
 ```
+
+There is also `SETQ`, `ADD` and `ADDQ`:
+
+- `SETQ` : the same as `SET` but a response is only sent if the `SETQ` fails
+- `ADD` : this returns an error if the key already exists (whereas `SET` overwrites the value)
+- `ADDQ` : the same as `ADD` but only sends a response if the `ADDQ` fails (i.e. the key already exists)
 
 <br/><br/>
 

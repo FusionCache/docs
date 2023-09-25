@@ -8,9 +8,7 @@ has_children: false
 
 # Overview
 
-FusionCache is a JSON cache, handling as key-values. It is to Redis and memcached, except the queries are JSON based over WebSockets.
-
-<br/>
+FusionCache is a JSON cache, handling data as key-values. It is similar to Redis and memcached, except the querying is JSON based over WebSockets.
 
 [KeyValue](keyvalues.md) has more information and there's a [quick start](https://www.fusioncache.io/quick-start/) guide.
 
@@ -22,7 +20,7 @@ Fusion is available as a Debian package.
 {: .important}
 > Fusion is only available for 64bit x86 CPUs. An ARM build will be available in the future.
 >
-> It has not been tested on Mac or Windows, although it should run on WSL2 in Windows.
+> It has not been tested on Mac or Windows, although it may run on WSL2.
 >
 
 
