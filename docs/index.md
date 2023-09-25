@@ -8,40 +8,16 @@ has_children: false
 
 # Overview
 
-FusionCache is a JSON cache and JSON publish-subscribe server. 
-
-The mode is defined in the configuration file to either object cache, key value cache or publish subscribe server.
-
-
-**KeyValue**
-
-- Data is handled as key values, similar to Redis or Memcached
-- Queries and responses are use a WebSocket interface
+FusionCache is a JSON cache, handling as key-values. It is to Redis and memcached, except the queries are JSON based over WebSockets.
 
 <br/>
 
-**Objects**
-
-- Data is handled as JSON objects and relationships between objects are tracked
-- Queries and responses are handled by REST and WebSocket interfaces, with a dedicated WebSocket interface for bulk data
+[KeyValue](keyvalues.md) has more information and there's a [quick start](https://www.fusioncache.io/quick-start/) guide.
 
 <br/>
-
-**Publish Subscribe**
-
-- Clients register as a publisher or subscriber (or both)
-- Publishers send JSON data to channel(s), which the server then sends to subscribers of those channels
-
-<br/>
-
-{: .important}
-> From here, FusionCache is referred to as just Fusion.
-
-<br/>
-
 
 ## Start Here
-Fusion is available as a Debian package. An Alpine Linux based Docker image will be released soon.
+Fusion is available as a Debian package.
 
 {: .important}
 > Fusion is only available for 64bit x86 CPUs. An ARM build will be available in the future.
@@ -49,13 +25,6 @@ Fusion is available as a Debian package. An Alpine Linux based Docker image will
 > It has not been tested on Mac or Windows, although it should run on WSL2 in Windows.
 >
 
-<br/>
-
-- [Quickstart](guides/quickstart/quickstart.md)
-- [KeyValue](keyvalues.md)
-- [PubSub](pubsub.md)
-- [Objects](objects.md) and [Concepts](concepts.md)
-- [Design](design.md) for details of the internals
 
 <br/>
 
@@ -67,7 +36,5 @@ Fusion is still in alpha and has limitations:
 |:----------------------|:--------------------------|
 |Threads| There is a 64 thread limit. This is not a technical limitation, it will increase as development progresses.|
 |Memory| The cache has no data eviction. <br/> Of course you can delete data at any time.<br/> A future release will address this. |
-|Security| The interfaces use HTTP rather than HTTPS. Fusion is not intended for a public network.<br/>There is no user authentication or roles, for example to prevent certain users deleting data.
-
-
+|Security| The interfaces use HTTP rather than HTTPS. Fusion is not intended for a public network.
 
