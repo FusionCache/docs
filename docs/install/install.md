@@ -20,15 +20,15 @@ has_children: true
 <br/>
 
 ## Download
-- [x86 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.0_amd64.deb)
+- [x86 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.1_amd64.deb)
 
 <br/> 
 
 ## Install
 
-Install with `dpkg`, for example for version 0.2.0:
+Install with `dpkg`, for example for version 0.2.1:
 
-`sudo dpkg -i fusioncache_0.2.0_amd64.deb`
+`sudo dpkg -i fusioncache_0.2.1_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
