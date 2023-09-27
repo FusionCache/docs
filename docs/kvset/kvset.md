@@ -6,10 +6,10 @@ parent: KV API
 has_children: false
 ---
 
-# SET
+# KV_SET
 Store one or many key-value pairs. It can also be used to update an existing key's value.
 
-If you don't want to overwrite the value if the key already exists, use [`ADD`](../kvadd/kvadd.md).
+If you don't want to overwrite the value if the key already exists, use [`KV_ADD`](../kvadd/kvadd.md).
 
 <br/>
 
@@ -32,7 +32,7 @@ An object with key-value pairs: `"<keyname>":<value>`.
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "keyforastring":"astring",
     "keyforanint":234,
@@ -45,7 +45,7 @@ An object with key-value pairs: `"<keyname>":<value>`.
 
 
 ## Response
-`SET_RSP` object containing the key  (`k`) and the status (`st`):
+`KV_SET_RSP` object containing the key  (`k`) and the status (`st`):
 
 These are status names, their integer values are listed [here](../kvstatuslist.md):
 
@@ -57,9 +57,9 @@ These are status names, their integer values are listed [here](../kvstatuslist.m
 <br/>
 
 {: .important}
-> You will receive a response for each key in `SET`.
+> You will receive a response for each key in `KV_SET`.
 >
-> The order of the responses is not gauranteed to be the same as in the `SET` query.
+> The order of the responses is not gauranteed to be the same as in the `KV_SET` query.
 
 
 <br/>
@@ -68,7 +68,7 @@ Example:
 
 ```json
 {
-  "SET_RSP":
+  "KV_SET_RSP":
   {
     "st":20,
     "k":"user1234_username"
@@ -83,7 +83,7 @@ Example:
 ### Single Pair
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "12345_username":"spongebob"
   }
@@ -94,7 +94,7 @@ Example:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "54321_username":"crusty",
     "54321_email":"crusty@mcemail.com",
@@ -107,7 +107,7 @@ This produces three separate responses (one for each key in `SET`):
 
 ```json
 {
-  "SET_RSP":
+  "KV_SET_RSP":
   {
     "k": "54321_active",
     "st": 20
@@ -117,7 +117,7 @@ This produces three separate responses (one for each key in `SET`):
 
 ```json
 {
-  "SET_RSP":
+  "KV_SET_RSP":
   {
     "k": "54321_email",
     "st": 20
@@ -127,7 +127,7 @@ This produces three separate responses (one for each key in `SET`):
 
 ```json
 {
-  "SET_RSP":
+  "KV_SET_RSP":
   {
     "k": "54321_username",
     "st": 20

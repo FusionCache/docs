@@ -11,10 +11,10 @@ Fusion acts similar to Redis and memcached, storing as key-value pairs, but Fusi
 
 **General**
 
-- Data is stored using `SET` or `ADD`
-- `SET` and `ADD` can store multiple keys
-- Data is retrieved with `GET`
-- `GET` can retrieve multiple keys
+- Data is stored using `KV_SET` or `KV_ADD`
+- `KV_SET` and `KV_ADD` can store multiple keys
+- Data is retrieved with `KV_GET`
+- `KV_GET` can retrieve multiple keys
 
 
 **Keys**
@@ -33,14 +33,13 @@ Fusion acts similar to Redis and memcached, storing as key-value pairs, but Fusi
   - Array
     - Items can be string, number, boolean, object or array
 
-
 For example:
 
 Store key "username" with a string value "billy":
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "username":"billy"
   }
@@ -51,7 +50,7 @@ Store key "username_age" with an integer value:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "username_age":45
   }
@@ -62,7 +61,7 @@ Store key "user_654321" with an object value:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "user_654321":
     {
@@ -88,7 +87,7 @@ Retrieve a single value:
 
 ```json
 {
-  "GET":["user_654321"]
+  "KV_GET":["user_654321"]
 }
 ```
 
@@ -96,11 +95,11 @@ Retrieve multiple values:
 
 ```json
 {
-  "GET":["user_654321", "username_age"]
+  "KV_GET":["user_654321", "username_age"]
 }
 ```
 
 
 {: .important}
-> The second `GET` will send two separate responses, one for each key.
+> The second `KV_GET` will send two separate responses, one for each key.
 

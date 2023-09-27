@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# SERVER_INFO
+# KV_SERVER_INFO
 Requests server information.
 
 
@@ -19,7 +19,7 @@ An empty object:
 
 ```json
 {
-  "SERVER_INFO":{}
+  "KV_SERVER_INFO":{}
 }
 ```
 
@@ -27,7 +27,7 @@ An empty object:
 <br/>
 
 ## Response
-`SERVER_INFO_RSP` object containing:
+`KV_SERVER_INFO_RSP` object containing:
 
 | Key | Information |
 |:---|:---|
@@ -42,7 +42,7 @@ An empty object:
 
 ```json
 {
-  "SERVER_INFO_RSP":
+  "KV_SERVER_INFO_RSP":
   {
     "st": 1,
     "qryCnt": 12345,

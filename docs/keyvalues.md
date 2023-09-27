@@ -78,11 +78,11 @@ Because a value can be an object, you can store this user's details in a single 
 
 
 # Store a Value
-Key-value pairs are stored using the `SET` command:
+Key-value pairs are stored using the `KV_SET` command:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "user123_surname":"Smith"
   }
@@ -92,7 +92,7 @@ Key-value pairs are stored using the `SET` command:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "user1234_details":
     {
@@ -116,11 +116,11 @@ Key-value pairs are stored using the `SET` command:
 }
 ```
 
-There is also `SETQ`, `ADD` and `ADDQ`:
+There is also `KV_SETQ`, `KV_ADD` and `KV_ADDQ`:
 
-- `SETQ` : the same as `SET` but a response is only sent if the `SETQ` fails
-- `ADD` : this returns an error if the key already exists (whereas `SET` overwrites the value)
-- `ADDQ` : the same as `ADD` but only sends a response if the `ADDQ` fails (i.e. the key already exists)
+- `KV_SETQ` : the same as `KV_SET` but a response is only sent if the `KV_SETQ` fails
+- `KV_ADD` : this returns an error if the key already exists (whereas `KV_SET` overwrites the value)
+- `KV_ADDQ` : the same as `KV_ADD` but only sends a response if the `KV_ADDQ` fails (i.e. the key already exists)
 
 <br/><br/>
 
@@ -128,7 +128,7 @@ There is also `SETQ`, `ADD` and `ADDQ`:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "user123_forename":"James",
     "user123_surname":"Smith"
@@ -140,19 +140,19 @@ There is also `SETQ`, `ADD` and `ADDQ`:
 
 # Set Response
 
-`SET` will respond with a `SET_RSP` for *each* value stored. The response includes the original key and a status to indicate success or failure. 
+`KV_SET` will respond with a `KV_SET_RSP` for *each* value stored. The response includes the original key and a status to indicate success or failure. 
 
-If you don't need confirmation, you can use `SETQ` (set quiet) which only sends a response on failure.
+If you don't need confirmation, you can use `KV_SETQ` (set quiet) which only sends a response on failure.
 
 
 <br/><br/>
 
 # Retrieve a Value
-Use the `GET` query which returns a `GET_RSP`:
+Use the `KV_GET` query which returns a `KV_GET_RSP`:
 
 ```json
 {
-  "GET":["user123_forename"]
+  "KV_GET":["user123_forename"]
 }
 ```
 
@@ -171,12 +171,12 @@ Response:
 <br/>
 
 # Retrieve Multiple Values
-`GET` is an array so you can retrieve multiple values in one call. Values are returned in **separate** responses:
+`KV_GET` is an array so you can retrieve multiple values in one call. Values are returned in **separate** responses:
 
 ```json
 {
-  "GET":["user123_forename","user123_surname"]
+  "KV_GET":["user123_forename","user123_surname"]
 }
 ```
 
-This will return **two** `GET_RSP` responses in an undefined order.
+This will return **two** `KV_GET_RSP` responses in an undefined order.
