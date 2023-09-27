@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# COUNT
+# KV_COUNT
 Returns the number of keys in the cache.
 
 
@@ -15,20 +15,20 @@ Returns the number of keys in the cache.
 
 ## Structure
 
-An empty `COUNT` object.
+An empty `KV_COUNT` object.
 
 <br/>
 
 ```json
 {
-  "COUNT":{}
+  "KV_COUNT":{}
 }
 ```
 
 <br/>
 
 ## Response
-`COUNT_RSP` object containing the status  (`st`) and the count (`cnt`).
+`KV_COUNT_RSP` object containing the status  (`st`) and the count (`cnt`).
 
 
 <br/>
@@ -36,7 +36,7 @@ An empty `COUNT` object.
 
 ```json
 {
-  "COUNT_RSP":
+  "KV_COUNT_RSP":
   {
     "st":1,
     "cnt":879287

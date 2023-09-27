@@ -18,11 +18,11 @@ Each command returns a `st` unsigned integer which can be one of the following:
 | 10  | CommandNotExist   | The command is not known |
 | 11  | CommandMultiple   | There may be multiple commands. See [below](#commandmultiple).  |
 | 12  | JsonInvalid       | Json fails to parse. See [below](#jsoninvalid) |
-| 20  | KeySet            | Key is set. `SET` returns KeySet if it's the first time the key is set. <br /> `ADD` returns KeySet if the key is added (i.e. the key did not already exist) |
-| 21  | KeyUpdated        | Key has been set by `SET` and it already existed |
-| 22  | KeyNotExist       | Key does not exist, i.e. with `GET` or `RMV` |
-| 23  | KeyExists         | Key already exists, i.e. with `ADD` which requires the key does not already exist |
-| 24  | KeyRemoved        | Key has been removed. Can only be returned by `RMV` |
+| 20  | KeySet            | Key is set. `KV_SET` returns KeySet if it's the first time the key is set. <br /> `KV_ADD` returns KeySet if the key is added (i.e. the key did not already exist) |
+| 21  | KeyUpdated        | Key has been set by `KV_GET` and it already existed |
+| 22  | KeyNotExist       | Key does not exist, i.e. with `KV_GET` or `KV_RMV` |
+| 23  | KeyExists         | Key already exists, i.e. with `KV_ADD` which requires the key does not already exist |
+| 24  | KeyRemoved        | Key has been removed. Can only be returned by `KV_RMV` |
 | 26  | KeyTypeInvalid    | Key is not a string |
 | 41  | ValidTypeInvalid  | A value is not a valid [type](keyvalues.md#value-types) |
 | 100 | Unknown           | An unknown error, not one of the above. |
@@ -38,8 +38,8 @@ This is when there is more than one command, i.e.:
 
 ```json
 {
-  "GET":["somekey"],
-  "SET":{"anotherkey":"blah"}
+  "KV_GET":["somekey"],
+  "KV_SET":{"anotherkey":"blah"}
 }
 ```
 
@@ -49,13 +49,13 @@ This is invalid and should be sent in two separate commands.
 <br/>
 
 ### JsonInvalid
-If the JSON is invalid a special `ERR` response is sent, see [here](#err-response) for format.
+If the JSON is invalid a special `KV_ERR` response is sent, see [here](#err-response) for format.
 
 For example, if this is sent to the server:
 
 ```json
 {
-  "SET":
+  "KV_SET":
   {
     "ThisKeyHasNoValue"
   }
@@ -69,7 +69,7 @@ A `SET_RSP` cannot be returned because the JSON must be parsed to realise that t
 ### Err Response
 This occurs when a command-specific response can't be returned, typically when the JSON is invalid or an unknown error occurs.
 
-The response is an `ERR` object with:
+The response is an `KV_ERR` object with:
 
 | Key | Description   |
 |:--- |:---           |
@@ -81,7 +81,7 @@ Example:
 
 ```json
 {
-  "ERR":
+  "KV_ERR":
   {
     "st":12,
     "m":""

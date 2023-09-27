@@ -6,22 +6,22 @@ parent: KV API
 has_children: false
 ---
 
-# ADD
+# KV_ADD
 Stores one or multiple key-values but only if the key does not already exist.
 
-To overwrite an existing key's value, use [`SET`](../kvset/kvset.md).
+To overwrite an existing key's value, use [`KV_SET`](../kvset/kvset.md).
 
-`ADD` returns a response for each key. If you know that the keys does not already exist, you can use [`ADDQ`](../kvaddq/kvaddq.md) which only returns a response if it fails to add a key.
+`KV_ADD` returns a response for each key. If you know that the keys does not already exist, you can use [`KV_ADDQ`](../kvaddq/kvaddq.md) which only returns a response if it fails to add a key.
 
 <br/>
 
 ## Structure
 
-`ADD` object with one or many key-value pairs:
+`KV_ADD` object with one or many key-value pairs:
 
 ```json
 {
-  "ADD":
+  "KV_ADD":
   {
     "username":"bob",
     "timeout":60
@@ -35,7 +35,7 @@ This adds keys "username" and "timeout" with their respective values.
 
 
 ## Response
-`ADD_RSP` object containing the key `k` and status `st`.
+`KV_ADD_RSP` object containing the key `k` and status `st`.
 
 <br/>
 
@@ -50,9 +50,9 @@ These are status names, their integer values are listed [here](../kvstatuslist.m
 <br/>
 
 {: .important}
-> You will receive a response for each key in `ADD`.
+> You will receive a response for each key in `KV_ADD`.
 >
-> The order of the responses is not gauranteed to be the same as in the `ADD` query.
+> The order of the responses is not gauranteed to be the same as in the `KV_ADD` query.
 
 
 <br/>
@@ -61,7 +61,7 @@ Example:
 
 ```json
 {
-  "ADD_RSP":
+  "KV_ADD_RSP":
   {
     "st":20,
     "k":"user1234_username"
@@ -75,7 +75,7 @@ Example:
 
 ```json
 {
-  "ADD":
+  "KV_ADD":
   {
     "12345_username":"pingu",
     "12345_email":"pingu@mcemail.com"

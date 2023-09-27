@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# GET
+# KV_GET
 Get one or many values.
 
 
@@ -18,20 +18,20 @@ An array of keys:
 
 ```json
 {
-  "GET":["<key1>","<key2>","<keyN>"]
+  "KV_GET":["<key1>","<key2>","<keyN>"]
 }
 ```
 
 <br/>
 
 ## Response
-`GET_RSP` object containing the status (`st`) and the key-value pair if the key exists.
+`KV_GET_RSP` object containing the status (`st`) and the key-value pair if the key exists.
 
 If an error occurs, such as they key does not exist, the status (`st`) is set accordingly with a `k` member set to the key which produced the error:
 
 ```json
 {
-  "GET_RSP":
+  "KV_GET_RSP":
   {
     "st":22,
     "k":"ThisKeyDoesNotExist"
@@ -60,7 +60,7 @@ Example:
 
 ```json
 {
-  "GET_RSP":
+  "KV_GET_RSP":
   {
     "st":1,
     "user1234_username":"mary"
@@ -76,7 +76,7 @@ Example:
 ### Single Key
 ```json
 {
-  "GET":["12345_username"]
+  "KV_GET":["12345_username"]
 }
 ```
 
@@ -84,7 +84,7 @@ Example:
 
 ```json
 {
-  "GET":["54321_dobyear","54321_email"]
+  "KV_GET":["54321_dobyear","54321_email"]
 }
 ```
 
@@ -92,7 +92,7 @@ This returns a response for each key:
 
 ```json
 {
-  "GET_RSP":
+  "KV_GET_RSP":
   {
     "54321_dobyear": 1981,
     "st": 1
@@ -102,7 +102,7 @@ This returns a response for each key:
 
 ```json
 {
-  "GET_RSP":
+  "KV_GET_RSP":
   {
     "54321_email": "crusty@mcemail.com",
     "st": 1

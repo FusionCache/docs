@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# REMOVE
+# KV_REMOVE
 Deletes one or many key-value pairs.
 
 
@@ -18,14 +18,14 @@ An array of keys:
 
 ```json
 {
-  "RMV":["<key1>","<key2>","<keyN>"]
+  "KV_RMV":["<key1>","<key2>","<keyN>"]
 }
 ```
 
 <br/>
 
 ## Response
-`RMV_RSP` object containing the status (`st`) and key (`k`).
+`KV_RMV_RSP` object containing the status (`st`) and key (`k`).
 
 These are status names, their integer values are listed [here](../kvstatuslist.md):
 
@@ -37,9 +37,9 @@ These are status names, their integer values are listed [here](../kvstatuslist.m
 <br/>
 
 {: .important}
-> You will receive a response for each key in `RMV`.
+> You will receive a response for each key in `KV_RMV`.
 >
-> The order of the responses is not gauranteed to be the same as in the `RMV` query.
+> The order of the responses is not gauranteed to be the same as in the `KV_RMV` query.
 
 <br/>
 
@@ -48,7 +48,7 @@ Example:
 Key removed:
 ```json
 {
-  "RMV_RSP":
+  "KV_RMV_RSP":
   {
     "st":24,
     "k":"user1234_username"
@@ -63,7 +63,7 @@ Key removed:
 
 ```json
 {
-  "RMV":
+  "KV_RMV":
   [
     "54321_username",
     "54321_email",
