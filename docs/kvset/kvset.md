@@ -9,6 +9,8 @@ has_children: false
 # KV_SET
 Store one or many key-value pairs. It can also be used to update an existing key's value.
 
+`KV_SET` always returns a response. If you only want a response on failure, use [`KV_SETQ`](../kvsetq/kvsetq.md).
+
 If you don't want to overwrite the value if the key already exists, use [`KV_ADD`](../kvadd/kvadd.md).
 
 <br/>

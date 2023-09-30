@@ -9,9 +9,10 @@ has_children: false
 # KV_ADD
 Stores one or multiple key-values but only if the key does not already exist.
 
+`KV_ADD` always returns a response. If you only want a response on failure, use [`KV_ADDQ`](../kvaddq/kvaddq.md).
+
 To overwrite an existing key's value, use [`KV_SET`](../kvset/kvset.md).
 
-`KV_ADD` returns a response for each key. If you know that the keys does not already exist, you can use [`KV_ADDQ`](../kvaddq/kvaddq.md) which only returns a response if it fails to add a key.
 
 <br/>
 
