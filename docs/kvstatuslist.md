@@ -15,9 +15,10 @@ Each command returns a `st` unsigned integer which can be one of the following:
 |:---                   |:---       |:---           |
 | 1   | Ok                | Success   |
 | 2   | OpCodeInvalid     | The opcode in the WebSocket message is not valid. It must be text. |
+| 3   | JsonInvalid       | Json fails to parse. See [below](#jsoninvalid) |
 | 10  | CommandNotExist   | The command is not known |
 | 11  | CommandMultiple   | There may be multiple commands. See [below](#commandmultiple).  |
-| 12  | JsonInvalid       | Json fails to parse. See [below](#jsoninvalid) |
+| 12  | CommandType       | The command is the wrong type, i.e. <br/> `"KV_SET":["abc"]` <br/> where `KV_SET` should be an object: <br/> `"KV_SET":{"somekey":"value"}` |
 | 20  | KeySet            | Key is set. `KV_SET` returns KeySet if it's the first time the key is set. <br /> `KV_ADD` returns KeySet if the key is added (i.e. the key did not already exist) |
 | 21  | KeyUpdated        | Key has been set by `KV_GET` and it already existed |
 | 22  | KeyNotExist       | Key does not exist, i.e. with `KV_GET` or `KV_RMV` |
@@ -51,7 +52,7 @@ This is invalid and should be sent in two separate commands.
 ### JsonInvalid
 If the JSON is invalid a special `KV_ERR` response is sent, see [here](#err-response) for format.
 
-For example, if this is sent to the server:
+For example, if this invalid JSON is received:
 
 ```json
 {
@@ -83,7 +84,7 @@ Example:
 {
   "KV_ERR":
   {
-    "st":12,
+    "st":3,
     "m":""
   }
 }
