@@ -20,8 +20,8 @@ Each command returns a `st` unsigned integer which can be one of the following:
 | 11  | CommandMultiple   | There may be multiple commands. See [below](#commandmultiple).  |
 | 12  | CommandType       | The command is the wrong type, i.e. <br/> `"KV_SET":["abc"]` <br/> where `KV_SET` should be an object: <br/> `"KV_SET":{"somekey":"value"}` |
 | 20  | KeySet            | Key is set. `KV_SET` returns KeySet if it's the first time the key is set. <br /> `KV_ADD` returns KeySet if the key is added (i.e. the key did not already exist) |
-| 21  | KeyUpdated        | Key has been set by `KV_GET` and it already existed |
-| 22  | KeyNotExist       | Key does not exist, i.e. with `KV_GET` or `KV_RMV` |
+| 21  | KeyUpdated        | Key has been set by `KV_SET` and it already existed |
+| 22  | KeyNotExist       | Key does not exist |
 | 23  | KeyExists         | Key already exists, i.e. with `KV_ADD` which requires the key does not already exist |
 | 24  | KeyRemoved        | Key has been removed. Can only be returned by `KV_RMV` |
 | 26  | KeyTypeInvalid    | Key is not a string |
