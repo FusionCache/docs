@@ -26,9 +26,9 @@ has_children: true
 
 ## Install
 
-Install with `dpkg`, for example for version 0.2.1:
+Install with `dpkg`, for example for version 0.2.3:
 
-`sudo dpkg -i fusioncache_0.2.1_amd64.deb`
+`sudo dpkg -i fusioncache_0.2.3_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
