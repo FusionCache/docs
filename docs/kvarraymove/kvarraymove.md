@@ -126,9 +126,9 @@ These are status names, their integer values are listed [here](../kvstatuslist.m
 <br/>
 
 {: .important}
-> You will receive a response for each key in `KV_APPEND`.
+> You will receive a response for each key in `KV_ARRAY_MOVE`.
 >
-> The order of the responses is not gauranteed to be the same as in the `KV_APPEND` query.
+> The order of the responses is not gauranteed to be the same as in the `KV_ARRAY_MOVE` query.
 
 <br/>
 
