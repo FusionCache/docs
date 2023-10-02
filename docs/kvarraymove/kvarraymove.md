@@ -9,7 +9,7 @@ has_children: false
 # KV_ARRAY_MOVE
 Moves the position of an item in an array to a different position *in the same array*.
 
-If a key has an array value type, this command can be used to move items around.
+If a key is for an array, this command can be used to move items within that array.
 
 Multiple keys are permitted.
 
@@ -32,12 +32,12 @@ A `KV_ARRAY_MOVE` object with the key name, as a two element array:
 {
   "KV_ARRAY_MOVE":
   {
-    "<mykeyname>":[indexOfItemToMove, insertIndex]
+    "<mykeyname>":[indexToMove, insertIndex]
   }
 }
 ```
 
-This moves the item in position `indexOfItemToMove` and inserts it at position `insertIndex`:
+This moves the item in position `indexToMove` and inserts it at position `insertIndex`:
 
 <br/>
 
@@ -85,11 +85,11 @@ This always moves an item to the end of the array:
 {
   "KV_ARRAY_MOVE":
   {
-    "<mykeyname>":[indexOfItemToMove]
+    "<mykeyname>":[indexToMove]
   }
 }
 ```
-This moves the item in position `indexOfItemToMove` and inserts at the end.
+This moves the item in position `indexToMove` and inserts at the end.
 
 
 ### Example
@@ -243,7 +243,7 @@ We must deprioritise "Homework" to be last:
 
 We use the single index version which moves an item to the end.
 
-If we get the key now we have:
+If we get the key we have:
 
 ```json
 {
