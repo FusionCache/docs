@@ -20,7 +20,7 @@ has_children: true
 <br/>
 
 ## Download
-- [x86 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.2_amd64.deb)
+- [x86 64-bit](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.3_amd64.deb)
 
 <br/> 
 
