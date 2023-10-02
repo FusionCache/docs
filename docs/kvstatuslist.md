@@ -65,7 +65,7 @@ For example, if this invalid JSON is received:
 }
 ```
 
-A `SET_RSP` cannot be returned because the JSON must be parsed to realise that this is a `SET`.
+A `KV_SET_RSP` cannot be returned because the JSON must be parsed to realise that this is a `KV_SET`.
 
 <br/>
 
