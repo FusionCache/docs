@@ -72,7 +72,7 @@ A `KV_SET_RSP` cannot be returned because the JSON must be parsed to realise tha
 ### Err Response
 This occurs when a command-specific response can't be returned, typically when the JSON is invalid or an unknown error occurs.
 
-The response is an `KV_ERR` object with:
+The response is a `KV_ERR` object with:
 
 | Key | Description   |
 |:--- |:---           |
