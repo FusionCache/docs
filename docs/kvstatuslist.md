@@ -26,6 +26,8 @@ Each command returns a `st` unsigned integer which can be one of the following:
 | 24  | KeyRemoved        | Key has been removed. Can only be returned by `KV_RMV` |
 | 26  | KeyTypeInvalid    | Key is not a string |
 | 41  | ValidTypeInvalid  | A value is not a valid [type](keyvalues.md#value-types) |
+| 42  | ValueSize         | The size of a value is not valid, i.e. number of elements in an array  |
+| 43  | OutOfBounds       | The given position is invalid |
 | 100 | Unknown           | An unknown error, not one of the above. |
 
 
