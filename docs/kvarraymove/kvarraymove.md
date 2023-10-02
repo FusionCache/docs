@@ -11,6 +11,7 @@ Moves the position of an item in an array to a different position *in the same a
 
 If a key has an array value type, this command can be used to move items around.
 
+Multiple keys are permitted.
 
 <br/>
 
@@ -201,3 +202,61 @@ The same applies if the `users:groups` array is empty and we do:
 ```
 
 We can't move the first item because there are no items.
+
+<br/>
+
+
+## Examples
+In the examples above all the arrays have string elements but that's for clarity, you can move array items of any supported JSON type.
+
+<br/>
+
+### Array with Object Items
+
+Store an array of objects:
+
+```json
+{
+  "KV_SET":
+  {
+    "user:1234:favourites":
+    [
+      {"name":"Homework", "url":"school.com/pain"},
+      {"name":"Videos", "url":"youtube.com/mychannel"},
+      {"name":"Pubs", "url":"pubs.com/blah"},
+      {"name":"Football", "url":"footyfootball.com"}     
+    ]
+  }
+}
+```
+
+We must deprioritise "Homework" to be last:
+
+```json
+{
+  "KV_ARRAY_MOVE":
+  {
+    "user:1234:favourites":[0]
+  }
+}
+```
+
+We use the single index version which moves an item to the end.
+
+If we get the key now we have:
+
+```json
+{
+  "KV_GET_RSP":
+  {
+    "user:1234:favourites":
+    [
+      {"name": "Videos","url": "youtube.com/mychannel"},
+      {"name": "Pubs","url": "pubs.com/blah"},
+      {"name": "Football","url": "footyfootball.com"},
+      {"name": "Homework","url": "school.com/pain"}
+    ],
+    "st": 1
+  }
+}
+```
