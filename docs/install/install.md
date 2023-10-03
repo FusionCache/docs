@@ -19,7 +19,6 @@ Fusion is only available as a x86-64bit Debian package:
 > - Docker image will be published soon
 
 <br/> 
-<br/> 
 
 # Install
 
