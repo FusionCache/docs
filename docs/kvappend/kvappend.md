@@ -55,7 +55,7 @@ If we `KV_GET` the "numbers" array we receive:
 <br/>
 
 ### Object
-Add member(s) to an object. If the member name alreay exists, it is ignored.
+Add member(s) to an object. If the member already exists, it is ignored.
 
 Given:
 ```json
@@ -70,7 +70,7 @@ Given:
 }
 ```
 
-We want to add a surname member:
+We want to add surname and age:
 
 ```json
 {
@@ -85,7 +85,7 @@ We want to add a surname member:
 }
 ```
 
-Send a `KV_GET` for "person_1234" and response is:
+Now `KV_GET` for "person_1234":
 
 ```json
 {
@@ -128,7 +128,7 @@ Append the string:
 }
 ```
 
-Send a `KV_GET` for "mycatsname" and response is:
+Now `KV_GET` for "mycatsname":
 
 ```json
 {
