@@ -6,7 +6,7 @@ parent: KV API
 has_children: false
 ---
 
-# SETQ
+# KV_SETQ
 Set Quiet is the same as [KV_SET](../kvset/kvset.md) but a response is only sent if an error occurs.
 
 

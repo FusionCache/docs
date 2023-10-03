@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Run
-parent: Install
+parent: Download & Install
 nav_order: 3
 has_children: false
 ---
