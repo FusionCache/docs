@@ -136,7 +136,7 @@ These are status names, their integer values are listed [here](../kvstatuslist.m
 
 *ValueTypeInvalid*
 
-If you the array contains a non-integer:
+If the array contains a non-integer:
 ```json
 {
   "KV_ARRAY_MOVE":
