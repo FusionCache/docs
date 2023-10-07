@@ -7,35 +7,65 @@ has_children: false
 ---
 
 # KV_FIND
-Searches the cache for values matching criteria and returns their keys.
+Searches the cache for values matching criteria and returns their keys. 
 
-The command can have an optional `path` and requires an operator: `==`, `>`, `<`, `>=`, `<=`.
-
-
-{: .important}
-> This is an expiremental command and syntax.
-
-<br/>
-
-## Structure 
-There are two ways to define search criteria: with or without a `path`.
-
-## Path
-The `path` is a JSON Pointer:
+For example:
 
 ```json
 {
   "KV_FIND":
   {
-    "path":"/address/city",
-    "==":"London"
+    "path":"/User/username",
+    "==":"billy"
   }
 }
 ```
 
-This says, "return the keys for all values which contain `{ "address":{"city":"London"} }`.
+This says: return the keys for objects which have `{ "User":{"username":"billy"} }`.
 
-Examples [below](#example---with-path).
+<br/>
+
+The above example checks all keys but we may want to restrict which keys that are checked. We can use the `keyrgx` which uses a regular expression:
+
+```json
+{
+  "KV_FIND":
+  {
+    "keyrgx":"user:app2:\\d*",
+    "path":"/User/loggedIn",
+    "==":true
+  }
+}
+```
+
+This says: return all keys that match the regular expression if they have `{ "User":{"loggedIn":true} }`
+
+<br/>
+
+### Operator
+
+The operator is mandatory. It can be one of:
+
+  - `==`
+  - `>`
+  - `<`
+  - `>=`
+  - `<=`
+
+<br/>
+
+### Path and Key Regular Expression
+
+| Name | Description | Required |
+|:---  |:--- |:---:|
+| `path`      | string: a JSON Pointer path to search in values that are objects | N |
+| `keyrgx`    | string: a regular expression to restrict which keys are searched | N |
+
+
+<br/>
+
+## Structure 
+You only need to define a path if the value is an object.
 
 <br/>
 
@@ -51,9 +81,9 @@ If a key's value is not an object you cannot use `path` because the path require
 }
 ```
 
-We can't use JSON pointer here because `"abc.json"` is a string rather than an object.
+We can't use `path` here because `"abc.json"` is a string rather than an object.
 
-To find the keys with a scalar value (string, integer, bool, etc) you omit the path (the alternative was to allow `path` to be an empty string but this seemed more error prone):
+To find the keys with a scalar value (string, integer, bool, etc) you should omit the path:
 
 ```json
 {
@@ -67,7 +97,37 @@ To find the keys with a scalar value (string, integer, bool, etc) you omit the p
 <br/>
 
 
-## Example - With Path
+## Path
+The `path` is a JSON Pointer:
+
+```json
+{
+  "KV_FIND":
+  {
+    "path":"/User/address/city",
+    "==":"London"
+  }
+}
+```
+
+This returns the keys for all values which contain:
+
+```json
+{
+  "User":
+  {
+    "address":
+    { 
+      "city":"London"
+    }
+  }
+}
+```
+
+<br/>
+
+
+## Examples - With Path
 
 Given:
 
