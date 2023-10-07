@@ -7,9 +7,9 @@ has_children: false
 ---
 
 # KV_FIND
-Searches the cache for values matching criteria and returning the keys for those matching.
+Searches the cache for values matching criteria and returns their keys.
 
-The command can have an optional `path` and requires an operator (`=`, `>`, `<`, `>=`, `<=`).
+The command can have an optional `path` and requires an operator: `==`, `>`, `<`, `>=`, `<=`.
 
 
 {: .important}
@@ -18,27 +18,54 @@ The command can have an optional `path` and requires an operator (`=`, `>`, `<`,
 <br/>
 
 ## Structure 
-There are two ways to define search criteria: with or without a `path`, which is a JSON Pointer.
+There are two ways to define search criteria: with or without a `path`.
+
+## Path
+The `path` is a JSON Pointer:
 
 ```json
 {
   "KV_FIND":
   {
     "path":"/address/city",
-    "=":"London"
+    "==":"London"
   }
 }
 ```
 
-This path is applied to all values in the cache, and those that contain `"/address/city"` have the value compared with `"London"`.
+This says, "return the key for all values which contain `{ "address":{"city":"London"} }`.
 
+<br/>
 
-If a key's value is not an object, you cannot use the `path`, because the path requires a root object (details below).
+## No Path
+If a key's value is not an object you cannot use `path` because the path requires a root object. Let's say we have a `"defaults:config"`:
+
+```json
+{
+  "KV_SET":
+  {
+    "defaults:config":"abc.json"
+  }
+}
+```
+
+We can't use JSON pointer here because `"abc.json"` is a string rather than an object.
+
+To find the keys with a scalar value (string, integer, bool, etc) you omit the path (the alternative was to allow `path` to be an empty string but this seemed more error prone):
+
+```json
+{
+  "KV_FIND":
+  {
+    "==":"abc.json"
+  }
+}
+```
 
 <br/>
 
 
-## With Path
+## Example - With Path
 
 Given:
 
@@ -77,7 +104,7 @@ We find all users who live in London:
   "KV_FIND":
   {
     "path":"/address/city",
-    "=":"London"
+    "==":"London"
   }
 }
 ```
@@ -92,7 +119,7 @@ Find all users born in 1985:
   "KV_FIND":
   {
     "path":"/dobYear",
-    "=":1985
+    "==":1985
   }
 }
 ```
@@ -135,7 +162,8 @@ This returns Sarah and James.
 
 <br/>
 
-## Arrays
+### Arrays
+
 ```json
 {
   "KV_SET":
@@ -179,7 +207,7 @@ Find users who are only in Manager:
   "KV_FIND":
   {
     "path":"/user/groups",
-    "=":["Manager"]
+    "==":["Manager"]
   }
 }
 ```
@@ -191,7 +219,7 @@ Find users who are in Test and Manager:
   "KV_FIND":
   {
     "path":"/user/groups",
-    "=":["Test", "Manager"]
+    "==":["Test", "Manager"]
   }
 }
 ```
@@ -199,30 +227,50 @@ Find users who are in Test and Manager:
 
 <br/>
 
-## Without Path
-This is required because the JSON pointer notation can only search from an object. If you:
+
+## Examples - No Path
+This example shows the syntax, it's not the preferred way to organise keys:
 
 ```json
 {
   "KV_SET":
   {
-    "defaults:config":"abc.json"
+    "ui:defaults:showSidePane":false,
+    "ui:defaults:darkTheme":true,
+    "ui:defaults:restoreLastSession":true
   }
 }
 ```
 
-We can't use JSON pointer here because `"abc.json"` is a string rather than an object.
-
-To find the keys with a string value `"abc.json"`:
+On startup, find only defaults that are `true`:
 
 ```json
 {
   "KV_FIND":
   {
-    "=":"abc.json"
+    "==":true
   }
 }
 ```
+<br/>
+
+This example is unrealistic because it returns any key that is `true` which may not be the intention. This is better:
+
+```json
+{
+  "KV_SET":
+  {
+    "ui:defaults":
+    {
+      "showSidePane":false,
+      "darkTheme":true,
+      "restoreLastSession":true
+    }
+  }
+}
+```
+
+And on startup just `KV_GET` the `"ui:defaults"`.
 
 <br/>
 
@@ -282,7 +330,7 @@ Find for a user:
   "KV_FIND":
   {
     "path":"/user",
-    "=":"user2"
+    "==":"user2"
   }
 }
 ```
@@ -355,7 +403,7 @@ Get properties that are true at startup:
 {
   "KV_FIND":
   {
-    "=":true
+    "==":true
   }
 }
 ```
