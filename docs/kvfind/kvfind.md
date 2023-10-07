@@ -9,25 +9,66 @@ has_children: false
 # KV_FIND
 Searches the cache for values matching criteria and returns their keys. 
 
-For example:
+<br/>
+
+### Scalar Values
+```json
+{
+  "KV_SET":
+  {
+    "user:10:username":"Hector"
+  }
+}
+```
+
+```json
+{
+  "KV_FIND":
+  {
+    "==":"Hector"
+  }
+}
+```
+<br/>
+
+### Object Values
+You can use `path` to select from inside the object. We create a key `"user:10"` with an object value:
+
+```json
+{
+  "KV_SET":
+  {
+    "user:10":
+    {
+      "User":
+      {
+        "username":"Hector"
+      }
+    }
+  }
+}
+```
+We can now use `path` to select the username from inside the User object:
 
 ```json
 {
   "KV_FIND":
   {
     "path":"/User/username",
-    "==":"billy"
+    "==":"Hector"
   }
 }
 ```
 
-This says: return the keys for objects which have `{ "User":{"username":"billy"} }`.
-
 <br/>
 
-The above example checks all keys but we may want to restrict which keys that are checked. We can use the `keyrgx` which uses a regular expression.
+### Restrict Keys
 
-We track web and phone app users. We format our keys as `<app_type>:user:<user_id>`:
+The examples above checks values for all keys, but we may want to restrict which values are checked. The `keyrgx` is used for this.
+
+The `keyrgx` is a regular expression string which must match the whole key (i.e. it won't match substrings).
+
+Example: we track web and phone app users. We format our keys as `<app_type>:user:<user_id>`:
 
 
 ```json
@@ -93,9 +134,9 @@ This returns just `web:user:10`.
 
 <br/>
 
-### Operator
+## Operators
 
-The operator is mandatory. It can be one of:
+The operator is mandatory and defines which comparison to perform. It can be one of:
 
   - `==`
   - `>`
@@ -105,7 +146,10 @@ The operator is mandatory. It can be one of:
 
 <br/>
 
-### Path and Key Regular Expression
+
+## Structure 
+The path is optional but is required if the keys are objects.
+
 
 | Name | Description | Required |
 |:---  |:--- |:---:|
@@ -115,10 +159,6 @@ The operator is mandatory. It can be one of:
 
 <br/>
 
-## Structure 
-The path is optional but is required if the keys are objects.
-
-<br/>
 
 ## No Path
 If a key's value is not an object you cannot use `path` because the path requires a root object. Let's say we have a `"defaults:config"`:
