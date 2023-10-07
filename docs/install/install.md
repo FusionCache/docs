@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Download & Install
-nav_order: 35
+nav_order: 15
 has_children: true
 ---
 
