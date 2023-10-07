@@ -25,20 +25,71 @@ This says: return the keys for objects which have `{ "User":{"username":"billy"}
 
 <br/>
 
-The above example checks all keys but we may want to restrict which keys that are checked. We can use the `keyrgx` which uses a regular expression:
+The above example checks all keys but we may want to restrict which keys that are checked. We can use the `keyrgx` which uses a regular expression.
+
+We track web and phone app users. We format our keys as `<app_type>:user:<user_id>`:
+
+
+```json
+{
+  "KV_SET":
+  {
+    "web:user:10":
+    {
+      "User":
+      {
+        "username":"webuser10",
+        "loggedIn":true
+      }
+    },
+    "web:user:11":
+    {
+      "User":
+      {
+        "username":"webuser11",
+        "loggedIn":false
+      }
+    },
+    "phone:user:100":
+    {
+      "User":
+      {
+        "username":"phoneuser100",
+        "loggedIn":true
+      }
+    },
+    "phone:user:101":
+    {
+      "User":
+      {
+        "username":"phoneuser101",
+        "loggedIn":true
+      }
+    }
+  }
+}
+```
+
+We want to find all web users who are logged in:
 
 ```json
 {
   "KV_FIND":
   {
-    "keyrgx":"user:app2:\\d*",
+    "keyrgx":"web:user:\\d*",
     "path":"/User/loggedIn",
     "==":true
   }
 }
 ```
+<br/>
 
-This says: return all keys that match the regular expression if they have `{ "User":{"loggedIn":true} }`
+This returns just `web:user:10`.
+
+
+- `keyrgx` filters the keys to "web:user:" followed by a number (`\\d` is needed to escape the '\\')
+- `path` selects `/User/loggedIn`
+- `==` checks if `/User/loggedIn` is `true`
 
 <br/>
 
@@ -58,14 +109,14 @@ The operator is mandatory. It can be one of:
 
 | Name | Description | Required |
 |:---  |:--- |:---:|
-| `path`      | string: a JSON Pointer path to search in values that are objects | N |
 | `keyrgx`    | string: a regular expression to restrict which keys are searched | N |
+| `path`      | string: a JSON Pointer path to select from **objects** | N |
 
 
 <br/>
 
 ## Structure 
-You only need to define a path if the value is an object.
+The path is optional but is required if the keys are objects.
 
 <br/>
 
@@ -97,7 +148,7 @@ To find the keys with a scalar value (string, integer, bool, etc) you should omi
 <br/>
 
 
-## Path
+## Use Path
 The `path` is a JSON Pointer:
 
 ```json
