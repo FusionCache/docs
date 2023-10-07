@@ -33,7 +33,9 @@ The `path` is a JSON Pointer:
 }
 ```
 
-This says, "return the key for all values which contain `{ "address":{"city":"London"} }`.
+This says, "return the keys for all values which contain `{ "address":{"city":"London"} }`.
+
+Examples [below](#example---with-path).
 
 <br/>
 
@@ -373,37 +375,6 @@ Response:
       "logs:app:101",
       "logs:app:102"
     ]
-  }
-}
-```
-<br/>
-
-## No Path
-
-Not using a path has limited value because it doesn't restrict the search, so it's only useful if it makes sense for your values to be scalar.
-
-
-Default settings for a UI app:
-
-```json
-{
-  "KV_SET":
-  {
-    "property:showSidePanel:":false,
-    "property:inboxThreadView":false,
-    "property:showProfilePic":true
-  }
-}
-```
-
-
-Get properties that are true at startup:
-
-```json
-{
-  "KV_FIND":
-  {
-    "==":true
   }
 }
 ```
