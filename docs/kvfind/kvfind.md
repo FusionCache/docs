@@ -56,7 +56,7 @@ Find where value is less than 60:
 Returns `"user:11:age"`.
 
 
-{. :important}
+{: .important}
 > It is not recommended to use scalar values because they don't provide encaspulation/structure to the data. In the example above, a "User" object with "age" and "username" members is better.
 
 <br/>
