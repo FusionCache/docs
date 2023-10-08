@@ -78,7 +78,7 @@ We can retrieve all data on a user with a single key:
 
 ```json
 {
-  "KV_GET":["user::10"]  
+  "KV_GET":["user:10"]  
 }
 ```
 
