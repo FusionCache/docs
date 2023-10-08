@@ -11,7 +11,7 @@ Fusion is only available as a x86-64bit Debian package:
 
 | Architecture | Version | |
 |:---|:---:|:---:|
-|x86 64-bit| 0.2.4 | [Download](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.4_amd64.deb)|
+|x86 64-bit| 0.2.5 | [Download](https://fusion.gateway.scarf.sh/package/fusioncache_0.2.5_amd64.deb)| 
 
 
 {: .important}
@@ -22,9 +22,9 @@ Fusion is only available as a x86-64bit Debian package:
 
 # Install
 
-Install with `dpkg`, for example for version 0.2.4:
+Install with `dpkg`, for example for version 0.2.5:
 
-`sudo dpkg -i fusioncache_0.2.4_amd64.deb`
+`sudo dpkg -i fusioncache_0.2.5_amd64.deb`
  
 This is installs to: `/usr/local/bin/fusioncache`
 
