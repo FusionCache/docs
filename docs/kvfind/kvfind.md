@@ -147,7 +147,7 @@ We want to find all web users who are logged in:
 {
   "KV_FIND":
   {
-    "keyrgx":"web:user:\\d*",
+    "keyrgx":"web:user:[0-9]+",
     "path":"/User/loggedIn",
     "==":true
   }
@@ -158,7 +158,7 @@ We want to find all web users who are logged in:
 This returns just `web:user:10`.
 
 
-- `keyrgx` filters the keys to "web:user:" followed by a number (`\\d` is needed to escape the '\\')
+- `keyrgx` filters the keys to "web:user:" followed by a number
 - `path` selects `/User/loggedIn`
 - `==` checks if `/User/loggedIn` equals `true`
 
