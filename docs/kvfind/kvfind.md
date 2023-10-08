@@ -9,6 +9,11 @@ has_children: false
 # KV_FIND
 Searches the cache for values matching criteria and returns their keys. 
 
+Note, this is a relatively expensive operation because all keys must be checked. Even when the `keyrgx` is set, each key must still be checked with the regular expression. If it fails, the value is not checked.
+
+{: .important}
+> This command is useful but may not be suitable for production. A future release will provide a suitable alternative.
+
 <br/>
 
 ### Scalar Values
@@ -16,11 +21,15 @@ Searches the cache for values matching criteria and returns their keys.
 {
   "KV_SET":
   {
-    "user:10:username":"Hector"
+    "user:10:username":"Hector",
+    "user:10:age":75,
+    "user:11:username":"MrWhite",    
+    "user:11:age":55
   }
 }
 ```
 
+Find where value equals "Hector":
 ```json
 {
   "KV_FIND":
@@ -29,6 +38,27 @@ Searches the cache for values matching criteria and returns their keys.
   }
 }
 ```
+
+Returns `"user:10:username"`.
+
+<br/>
+
+Find where value is less than 60:
+
+```json
+{
+  "KV_FIND":
+  {
+    "<":60
+  }
+}
+```
+Returns `"user:11:age"`.
+
+
+{. :important}
+> It is not recommended to use scalar values because they provide encaspulation/structure to the data. In the example above, a "User" object "age" and "username" is preferred.
+
 <br/>
 
 ### Object Values
@@ -130,7 +160,7 @@ This returns just `web:user:10`.
 
 - `keyrgx` filters the keys to "web:user:" followed by a number (`\\d` is needed to escape the '\\')
 - `path` selects `/User/loggedIn`
-- `==` checks if `/User/loggedIn` is `true`
+- `==` checks if `/User/loggedIn` equals `true`
 
 <br/>
 
