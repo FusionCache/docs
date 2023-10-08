@@ -9,7 +9,7 @@ has_children: false
 # KV_FIND
 Searches the cache for values matching criteria and returns their keys. 
 
-Note, this is a relatively expensive operation because all keys must be checked. Even when the `keyrgx` is set, each key must still be checked with the regular expression. If it fails, the value is not checked.
+Note, this is a relatively expensive operation because all keys must be checked. Even when the `keyrgx` is set, each key must still be checked with the regular expression.
 
 {: .important}
 > This command is useful but may not be suitable for production. A future release will provide a suitable alternative.
@@ -29,7 +29,7 @@ Note, this is a relatively expensive operation because all keys must be checked.
 }
 ```
 
-Find where value equals "Hector":
+Find values that are "Hector":
 ```json
 {
   "KV_FIND":
@@ -57,7 +57,7 @@ Returns `"user:11:age"`.
 
 
 {. :important}
-> It is not recommended to use scalar values because they provide encaspulation/structure to the data. In the example above, a "User" object "age" and "username" is preferred.
+> It is not recommended to use scalar values because they don't provide encaspulation/structure to the data. In the example above, a "User" object with "age" and "username" members is better.
 
 <br/>
 
@@ -78,7 +78,7 @@ You can use `path` to select from inside the object. We create a key `"user:10"`
   }
 }
 ```
-We can now use `path` to select the username from inside the User object:
+We can use `path` to select the username from inside the User object:
 
 ```json
 {
@@ -164,7 +164,7 @@ This returns just `web:user:10`.
 
 <br/>
 
-## Operators
+## Operator
 
 The operator is mandatory and defines which comparison to perform. It can be one of:
 
@@ -178,13 +178,13 @@ The operator is mandatory and defines which comparison to perform. It can be one
 
 
 ## Structure 
-The path is optional but is required if the keys are objects.
+The path is optional but is required if the values is an object.
 
 
 | Name | Description | Required |
 |:---  |:--- |:---:|
-| `keyrgx`    | string: a regular expression to restrict which keys are searched | N |
-| `path`      | string: a JSON Pointer path to select from **objects** | N |
+| `keyrgx`    | string: a regular expression. Only keys which match the expression will have their value checked. Cannot be empty. | N |
+| `path`      | string: a JSON Pointer path to select from **objects**. Cannot be empty. | N |
 
 
 <br/>
