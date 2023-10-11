@@ -32,7 +32,7 @@ Fusion is new software and has limitations:
 
 | Limitation            | Description               |
 |:----------------------|:--------------------------|
-|Cores| Fusion has a limit of 8 cores. If your CPU has more than 8 cores, Fusion will run as if on 8 cores.|
+|Cores| This version is limited to 8 cores. If your CPU has more than 8 cores, Fusion will run as if on 8 cores.|
 |Memory| The cache has no data eviction. <br/> Of course you can delete data at any time.<br/> A future release will address this. |
 |Security| The interfaces use HTTP rather than HTTPS. Fusion is not intended for a public network.
 
